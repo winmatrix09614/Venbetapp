@@ -1,0 +1,67 @@
+:root {
+  --bg-dark: #0a0c10;
+  --bg-card: #14171c;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a4a8;
+  --accent: #ff6b35;
+  --accent-glow: rgba(255, 107, 53, 0.3);
+  --border: #2a2e35;
+  --success: #2ecc71;
+  --error: #e74c3c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.app-container {
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+
+.pending-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+
+.pending-card {
+  background: var(--bg-card);
+  border-radius: 48px;
+  padding: 40px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.pending-card .logo-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.pending-card h2 {
+  margin: 20px 0 10px;
+  font-size: 24px;
+}
+
+.pending-card button {
+  margin-top: 24px;
+  background: linear-gradient(95deg, #ff6b35, #ffb347);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 40px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

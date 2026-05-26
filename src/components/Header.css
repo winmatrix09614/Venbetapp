@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: transparent;
+  gap: 12px;
+}
+
+.back-button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.back-button:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.back-arrow {
+  font-size: 28px;
+  color: var(--text-primary);
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35, #ffb347);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.user-id {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.attempts-header {
+  font-size: 12px;
+  color: var(--accent);
+  margin-top: 4px;
+}
