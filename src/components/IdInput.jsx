@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { API_BASE } from '../config';
 import './IdInput.css';
 
 function IdInput({ onLogin }) {

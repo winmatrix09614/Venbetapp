@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './Header';
-import { API_BASE } from '../config';
 import './MainMenu.css';
 
 function MainMenu({ userId, attempts, onNavigate, onLogout }) {

@@ -4,8 +4,6 @@ import Header from './Header';
 import { API_BASE } from '../config';
 import './History.css';
 
-const API_BASE = 'https://prognosist-production.up.railway.app';
-
 function History({ userId, onBack }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);

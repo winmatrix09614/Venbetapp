@@ -8,8 +8,6 @@ import LoadingScreen from './components/LoadingScreen';
 import { API_BASE } from './config';
 import './App.css';
 
-const API_BASE = 'https://venbetappback-production.up.railway.app';
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState(null);

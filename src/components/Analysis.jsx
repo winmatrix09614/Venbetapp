@@ -4,8 +4,6 @@ import Header from './Header';
 import { API_BASE } from '../config';
 import './Analysis.css';
 
-const API_BASE = 'https://prognosist-production.up.railway.app';
-
 function Analysis({ userId, attempts, updateAttempts, onBack }) {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
