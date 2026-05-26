@@ -7,23 +7,13 @@
   padding: 20px 20px 40px;
 }
 
-.attempts-display {
-  background: rgba(255,107,53,0.15);
-  padding: 10px 20px;
-  border-radius: 40px;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--accent);
-  margin: 20px auto 30px auto;
-  display: inline-block;
-}
-
 .menu-cards {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
   max-width: 400px;
+  margin: 20px auto;
 }
 
 .card {
@@ -36,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  text-align: left;
 }
 
 .card:hover:not(.disabled-card) {
@@ -55,6 +46,7 @@
 
 .card-icon {
   font-size: 42px;
+  flex-shrink: 0;
 }
 
 .card-text {
@@ -81,32 +73,4 @@
 
 .card-desc.soon {
   color: #ffb347;
-}
-/* добавить в конец файла */
-.user-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 100%;
-  max-width: 400px;
-  margin: 10px auto 20px auto;
-  padding: 0 16px;
-}
-
-.user-id {
-  background: rgba(255,255,255,0.05);
-  padding: 6px 12px;
-  border-radius: 40px;
-  font-size: 14px;
-  font-family: monospace;
-  color: var(--text-secondary);
-}
-
-.attempts-display {
-  background: rgba(255,107,53,0.15);
-  padding: 6px 16px;
-  border-radius: 40px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent);
 }

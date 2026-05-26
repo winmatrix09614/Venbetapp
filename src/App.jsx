@@ -24,7 +24,7 @@ function App() {
     }
   }, []);
 
-  const checkUserStatus = async (id) => {
+  const checkUserStatus = async (id, isPolling = false) => {
     try {
       const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
       const data = await res.json();
@@ -33,53 +33,55 @@ function App() {
         setUserStatus('active');
         setAttempts(data.attempts);
         setIsLoading(false);
+        return true;
       } else if (data.status === 'pending') {
         setUserId(id);
         setUserStatus('pending');
         setIsLoading(false);
-        // Начинаем опрос каждые 5 секунд
-        const interval = setInterval(async () => {
-          const res2 = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
-          const data2 = await res2.json();
-          if (data2.status === 'active') {
-            clearInterval(interval);
-            setUserStatus('active');
-            setAttempts(data2.attempts);
-          }
-        }, 5000);
-        return () => clearInterval(interval);
+        return false;
       } else {
         localStorage.removeItem('venbet_user_id');
         setIsLoading(false);
+        return false;
       }
     } catch (err) {
       console.error(err);
       setIsLoading(false);
+      return false;
     }
   };
 
   const handleLogin = async (id) => {
     localStorage.setItem('venbet_user_id', id);
-    // Отправляем запрос на регистрацию
     await fetch(`${API_BASE}/register_request?bet_id=${id}`);
-    checkUserStatus(id);
+    const isActive = await checkUserStatus(id);
+    if (!isActive) {
+      const interval = setInterval(async () => {
+        const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
+        const data = await res.json();
+        if (data.status === 'active') {
+          clearInterval(interval);
+          setUserStatus('active');
+          setAttempts(data.attempts);
+        } else if (data.status === 'banned') {
+          clearInterval(interval);
+          setUserStatus('banned');
+        }
+      }, 5000);
+      return () => clearInterval(interval);
+    }
   };
 
-  // Найти в файле src/App.jsx функцию handleLogout и заменить её содержимое на следующее:
-const handleLogout = () => {
-  if (window.confirm('Вы уверены, что хотите выйти?')) {
-    // 1. Очищаем ID в localStorage
-    localStorage.removeItem('venbet_user_id');
-    // 2. Сбрасываем состояние в приложении
-    setUserId(null);
-    setUserStatus(null);
-    setAttempts(0);
-    // 3. Возвращаемся на экран ввода ID
-    setCurrentScreen('main');
-    // 4. Полностью перезагружаем страницу, чтобы сбросить всё до базового состояния
-    window.location.reload();
-  }
-};
+  const handleLogout = () => {
+    if (window.confirm('Вы уверены, что хотите выйти?')) {
+      localStorage.removeItem('venbet_user_id');
+      setUserId(null);
+      setUserStatus(null);
+      setAttempts(0);
+      setCurrentScreen('main');
+      window.location.reload();
+    }
+  };
 
   const updateAttempts = (newAttempts) => {
     setAttempts(newAttempts);
@@ -94,9 +96,9 @@ const handleLogout = () => {
           <div className="logo-icon">⏳</div>
           <h2>Ожидание подтверждения</h2>
           <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
-                <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
-        ⚠️ Не закрывайте это окно и приложение для автоматического входа
-      </p>
+          <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
+            ⚠️ Не закрывайте это окно и приложение для автоматического входа
+          </p>
           <button onClick={handleLogout} className="gradient-btn">Выйти</button>
         </div>
       </div>

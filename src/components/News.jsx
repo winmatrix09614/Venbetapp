@@ -15,11 +15,18 @@ function News({ onBack }) {
         if (response.data.news && response.data.news.length) {
           setNews(response.data.news);
         } else {
-          setNews([]);
+          // Заглушка для демонстрации, пока бэкенд не настроит RSS
+          setNews([
+            { title: "⚽ Чемпионат мира 2026: расписание матчей", link: "#", pubDate: "27 мая 2026" },
+            { title: "🏆 Лига чемпионов: финал уже близко", link: "#", pubDate: "26 мая 2026" },
+            { title: "📰 Новости спорта будут загружаться автоматически", link: "#", pubDate: "Скоро" }
+          ]);
         }
       } catch (error) {
         console.error('News fetch error:', error);
-        setNews([]);
+        setNews([
+          { title: "Новости временно недоступны", link: "#", pubDate: "Попробуйте позже" }
+        ]);
       } finally {
         setLoading(false);
       }
@@ -29,14 +36,13 @@ function News({ onBack }) {
 
   return (
     <div className="news-page">
-      <Header title="⚡ Новости спорта" onBack={onBack} />
+      <Header title="Новости спорта" onBack={onBack} />
       <div className="news-list">
         {loading && <div className="news-placeholder">Загрузка новостей...</div>}
-        {!loading && news.length === 0 && <div className="news-placeholder">Новости временно недоступны</div>}
-        {news.map((item, idx) => (
+        {!loading && news.map((item, idx) => (
           <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="news-card">
             <div className="news-card-title">{item.title}</div>
-            <div className="news-card-date">{new Date(item.pubDate).toLocaleDateString()}</div>
+            <div className="news-card-date">{item.pubDate}</div>
           </a>
         ))}
       </div>

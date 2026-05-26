@@ -43,6 +43,8 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
       formData.append('user_id', userId);
       if (text) formData.append('text', text);
       if (file) formData.append('photo', file);
+
+      // Важно: НЕ добавляем headers! Браузер сам установит multipart/form-data с границей
       const response = await axios.post(`${API_BASE}/webapp/predict`, formData);
       const data = response.data;
       if (data.error) {
@@ -82,7 +84,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
 
   return (
     <div className="analysis-page">
-      <Header title="⚡ AI Анализ" userId={userId} attempts={attempts} onBack={onBack} />
+      <Header title="AI Анализ" userId={userId} attempts={attempts} onBack={onBack} />
       <div className="chat-container">
         <div className="chat-messages">
           {messages.map((msg) => (

@@ -3,7 +3,8 @@
   align-items: center;
   padding: 16px 20px;
   background: transparent;
-  gap: 12px;
+  border-bottom: none;
+  gap: 16px;
 }
 
 .back-button {
@@ -17,6 +18,7 @@
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .back-button:hover {
@@ -26,6 +28,7 @@
 .back-arrow {
   font-size: 28px;
   color: var(--text-primary);
+  line-height: 1;
 }
 
 .header-center {
