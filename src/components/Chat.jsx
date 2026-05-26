@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Message from './Message';
 import axios from 'axios';
+import { API_BASE } from '../config';
 import './Chat.css';
 
 function Chat({ userId, telegramUser, onLogout }) {

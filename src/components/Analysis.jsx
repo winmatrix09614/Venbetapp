@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import { API_BASE } from '../config';
 import './Analysis.css';
 
 const API_BASE = 'https://prognosist-production.up.railway.app';

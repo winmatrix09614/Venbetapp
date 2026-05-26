@@ -1,4 +1,5 @@
 import React from 'react';
+import { API_BASE } from '../config';
 import './Message.css';
 
 function Message({ message }) {

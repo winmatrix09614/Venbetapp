@@ -1,4 +1,5 @@
 import React from 'react';
+import { API_BASE } from '../config';
 import './Header.css';
 
 function Header({ title, onBack, userId, attempts }) {

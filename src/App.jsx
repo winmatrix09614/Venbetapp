@@ -5,9 +5,10 @@ import Analysis from './components/Analysis';
 import News from './components/News';
 import History from './components/History';
 import LoadingScreen from './components/LoadingScreen';
+import { API_BASE } from './config';
 import './App.css';
 
-const API_BASE = 'https://prognosist-production.up.railway.app';
+const API_BASE = 'https://venbetappback-production.up.railway.app';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
