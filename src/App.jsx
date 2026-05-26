@@ -67,17 +67,18 @@ function App() {
     checkUserStatus(id);
   };
 
-  const handleLogout = () => {
+  // Найти в файле src/App.jsx функцию handleLogout и заменить её содержимое на следующее:
+const handleLogout = () => {
   if (window.confirm('Вы уверены, что хотите выйти?')) {
-    // 1. Удаляем ID из localStorage
+    // 1. Очищаем ID в localStorage
     localStorage.removeItem('venbet_user_id');
-    // 2. Сбрасываем состояние приложения
+    // 2. Сбрасываем состояние в приложении
     setUserId(null);
     setUserStatus(null);
     setAttempts(0);
     // 3. Возвращаемся на экран ввода ID
     setCurrentScreen('main');
-    // 4. Перезагружаем страницу, чтобы очистить все кэшированные данные
+    // 4. Полностью перезагружаем страницу, чтобы сбросить всё до базового состояния
     window.location.reload();
   }
 };
@@ -95,6 +96,9 @@ function App() {
           <div className="logo-icon">⏳</div>
           <h2>Ожидание подтверждения</h2>
           <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
+                <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
+        ⚠️ Не закрывайте это окно и приложение для автоматического входа
+      </p>
           <button onClick={handleLogout} className="gradient-btn">Выйти</button>
         </div>
       </div>
