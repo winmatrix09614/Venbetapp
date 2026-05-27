@@ -11,14 +11,14 @@ function MainMenu({ userId, attempts, onNavigate, onLogout }) {
     <div className="main-menu">
       <Header title="⚡ VenBet AI" userId={userId} attempts={attempts} onBack={onLogout} />
       <div className="menu-cards">
-        <div className="card primary-card" onClick={() => onNavigate('analysis')}>
+        <div className="card" onClick={() => onNavigate('analysis')}>
           <div className="card-icon">🧠</div>
           <div className="card-text">
             <div className="card-title">AI Анализ</div>
             <div className="card-desc">Загрузи скрин или опиши матч</div>
           </div>
         </div>
-        <div className="card secondary-card" onClick={() => onNavigate('news')}>
+        <div className="card" onClick={() => onNavigate('news')}>
           <div className="card-icon">📰</div>
           <div className="card-text">
             <div className="card-title">Новости</div>
@@ -32,11 +32,11 @@ function MainMenu({ userId, attempts, onNavigate, onLogout }) {
             <div className="card-desc">Написать в Telegram</div>
           </div>
         </div>
-        <div className="card disabled-card">
-          <div className="card-icon">📊</div>
+        <div className="card" onClick={() => onNavigate('history')}>
+          <div className="card-icon">📜</div>
           <div className="card-text">
-            <div className="card-title">Статистика</div>
-            <div className="card-desc soon">В разработке</div>
+            <div className="card-title">История прогнозов</div>
+            <div className="card-desc">Твои предыдущие запросы</div>
           </div>
         </div>
         <div className="card disabled-card">

@@ -1,11 +1,12 @@
 :root {
   --bg-dark: #0a0c10;
-  --bg-card: #14171c;
+  --bg-card: rgba(20, 23, 28, 0.85);
+  --bg-card-solid: #14171c;
   --text-primary: #ffffff;
   --text-secondary: #a0a4a8;
   --accent: #ff6b35;
   --accent-glow: rgba(255, 107, 53, 0.3);
-  --border: #2a2e35;
+  --border: rgba(42, 46, 53, 0.5);
   --success: #2ecc71;
   --error: #e74c3c;
 }
@@ -20,7 +21,7 @@ body {
   font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg-dark);
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
 }
 
@@ -29,45 +30,7 @@ body {
   background: var(--bg-dark);
 }
 
-/* Экран ожидания */
-.pending-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--bg-dark);
-}
-
-.pending-card {
-  background: var(--bg-card);
-  border-radius: 48px;
-  padding: 40px;
-  text-align: center;
-  max-width: 300px;
-}
-
-.pending-card .logo-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.pending-card h2 {
-  margin: 20px 0 10px;
-  font-size: 24px;
-}
-
-.pending-card button {
-  margin-top: 24px;
-  background: linear-gradient(95deg, #ff6b35, #ffb347);
-  border: none;
-  padding: 12px 24px;
-  border-radius: 40px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Анимации */
+/* Анимация появления */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -77,4 +40,22 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Для карточек меню и сообщений */
+.menu-cards .card,
+.message {
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+}
+
+.menu-cards .card:nth-child(1) { animation-delay: 0.05s; }
+.menu-cards .card:nth-child(2) { animation-delay: 0.1s; }
+.menu-cards .card:nth-child(3) { animation-delay: 0.15s; }
+.menu-cards .card:nth-child(4) { animation-delay: 0.2s; }
+.menu-cards .card:nth-child(5) { animation-delay: 0.25s; }
+
+.message {
+  animation-duration: 0.3s;
+  animation-delay: 0s;
 }

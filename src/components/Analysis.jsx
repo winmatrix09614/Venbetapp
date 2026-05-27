@@ -17,7 +17,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
       {
         id: 1,
         type: 'bot',
-        text: '⚡ Привет! Загрузи скриншот матча из 1xBet или напиши название команд.',
+        text: 'Привет! 👋 Загрузи скриншот матча из 1xBet или напиши название команд.',
         timestamp: new Date(),
       },
     ]);
