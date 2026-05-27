@@ -74,11 +74,13 @@ function App() {
 
   const handleLogout = () => {
     if (window.confirm('Вы уверены, что хотите выйти?')) {
+      // Полный сброс состояния
       localStorage.removeItem('venbet_user_id');
       setUserId(null);
       setUserStatus(null);
       setAttempts(0);
       setCurrentScreen('main');
+      // Перезагружаем страницу, чтобы гарантированно очистить всё
       window.location.reload();
     }
   };
