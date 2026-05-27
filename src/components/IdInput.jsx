@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../config';
 import './IdInput.css';
 
 function IdInput({ onLogin }) {
@@ -20,9 +21,8 @@ function IdInput({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmed = id.trim();
-    // Валидация: начинается с 168, всего 10 цифр
-    if (!/^168\d{7}$/.test(trimmed)) {
-      setError('ID должен начинаться с 168 и содержать ровно 10 цифр');
+    if (!/^\d+$/.test(trimmed)) {
+      setError('ID должен содержать только цифры');
       return;
     }
     setError('');

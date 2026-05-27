@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import IdInput from './components/IdInput';
 import MainMenu from './components/MainMenu';
 import Analysis from './components/Analysis';
@@ -14,7 +14,6 @@ function App() {
   const [userStatus, setUserStatus] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
-  const statusInterval = useRef(null);
 
   useEffect(() => {
     const savedId = localStorage.getItem('venbet_user_id');
@@ -23,13 +22,9 @@ function App() {
     } else {
       setIsLoading(false);
     }
-    // Очистка интервала при размонтировании
-    return () => {
-      if (statusInterval.current) clearInterval(statusInterval.current);
-    };
   }, []);
 
-  const checkUserStatus = async (id, isPolling = false) => {
+  const checkUserStatus = async (id) => {
     try {
       const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
       const data = await res.json();
@@ -57,43 +52,31 @@ function App() {
   };
 
   const handleLogin = async (id) => {
-    // Очищаем предыдущий интервал
-    if (statusInterval.current) {
-      clearInterval(statusInterval.current);
-      statusInterval.current = null;
-    }
     localStorage.setItem('venbet_user_id', id);
     await fetch(`${API_BASE}/register_request?bet_id=${id}`);
     const isActive = await checkUserStatus(id);
     if (!isActive) {
-      statusInterval.current = setInterval(async () => {
+      const interval = setInterval(async () => {
         const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
         const data = await res.json();
         if (data.status === 'active') {
-          clearInterval(statusInterval.current);
-          statusInterval.current = null;
+          clearInterval(interval);
           setUserStatus('active');
           setAttempts(data.attempts);
         } else if (data.status === 'banned') {
-          clearInterval(statusInterval.current);
-          statusInterval.current = null;
+          clearInterval(interval);
           setUserStatus('banned');
         }
       }, 5000);
+      // Cleanup не обязателен, но можно вернуть функцию
+      return () => clearInterval(interval);
     }
   };
 
   const handleLogout = () => {
     if (window.confirm('Вы уверены, что хотите выйти?')) {
-      if (statusInterval.current) {
-        clearInterval(statusInterval.current);
-        statusInterval.current = null;
-      }
       localStorage.removeItem('venbet_user_id');
-      setUserId(null);
-      setUserStatus(null);
-      setAttempts(0);
-      setCurrentScreen('main');
+      window.location.reload();
     }
   };
 
@@ -110,9 +93,6 @@ function App() {
           <div className="logo-icon">⏳</div>
           <h2>Ожидание подтверждения</h2>
           <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
-          <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
-            ⚠️ Не закрывайте это окно и приложение для автоматического входа
-          </p>
           <button onClick={handleLogout} className="gradient-btn">Выйти</button>
         </div>
       </div>
