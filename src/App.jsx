@@ -89,20 +89,20 @@ function App() {
   if (isLoading) return <LoadingScreen />;
   if (!userId) return <IdInput onLogin={handleLogin} />;
   if (userStatus === 'pending') {
-    return (
-      <div className="pending-screen">
-        <div className="pending-card">
-          <div className="logo-icon">⏳</div>
-          <h2>Ожидание подтверждения</h2>
-          <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
-          <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
-            ⚠️ Не закрывайте это окно и приложение для автоматического входа
-          </p>
-          <button onClick={handleLogout} className="gradient-btn">Выйти</button>
-        </div>
+  return (
+    <div className="pending-screen">
+      <div className="pending-card">
+        <div className="logo-icon">⏳</div>
+        <h2>Ожидание подтверждения</h2>
+        <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
+        <p className="warning-text">
+          ⚠️ Не закрывайте это окно и приложение для автоматического входа
+        </p>
+        <button onClick={handleLogout} className="gradient-btn">Выйти</button>
       </div>
-    );
-  }
+    </div>
+  );
+}
   if (userStatus === 'banned') {
     return (
       <div className="pending-screen">

@@ -120,7 +120,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}
               disabled={loading}
             />
-            <label className="attach-btn">
+            <label className="attach-btn" title="Загрузить фото">
               📸
               <input type="file" accept="image/*" onChange={handlePhotoChange} disabled={loading} hidden />
             </label>

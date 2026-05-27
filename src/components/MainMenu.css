@@ -6,6 +6,14 @@
   align-items: center;
   padding: 20px 20px 40px;
 }
+/* Дополнительно: если нужно подвинуть именно заголовок, можно в Header.css
+   добавить для .header .header-title небольшую кастомизацию на мобилках */
+@media (max-width: 480px) {
+  .main-menu {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 
 .menu-cards {
   display: flex;

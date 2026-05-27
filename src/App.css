@@ -59,3 +59,33 @@ body {
   animation-duration: 0.3s;
   animation-delay: 0s;
 }
+.pending-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+.pending-card {
+  background: var(--bg-card);
+  border-radius: 48px;
+  padding: 40px;
+  text-align: center;
+  max-width: 300px;
+}
+.pending-card .logo-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.pending-card h2 {
+  margin: 20px 0 10px;
+  font-size: 24px;
+}
+.warning-text {
+  font-size: 14px;
+  color: #ffb347;
+  margin-top: 15px;
+}
+.pending-card button {
+  margin-top: 24px;
+}
