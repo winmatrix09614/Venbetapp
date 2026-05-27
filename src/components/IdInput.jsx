@@ -70,7 +70,7 @@ function IdInput({ onLogin }) {
           </div>
         </div>
         <div className="footer-note">
-          VenBet AI v2.0 · Neural Network<br />@usefulappbot
+          VenBet AI v3.1.5 · @usefulappbot
         </div>
       </div>
     </div>

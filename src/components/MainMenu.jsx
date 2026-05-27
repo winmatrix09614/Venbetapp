@@ -3,9 +3,7 @@ import Header from './Header';
 import './MainMenu.css';
 
 function MainMenu({ userId, attempts, onNavigate, onLogout }) {
-  const openManager = () => {
-    window.open('https://t.me/Gggrymka', '_blank');
-  };
+  const openManager = () => window.open('https://t.me/Gggrymka', '_blank');
 
   return (
     <div className="main-menu">

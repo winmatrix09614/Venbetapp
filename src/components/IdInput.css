@@ -33,9 +33,10 @@
 .logo-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* сдвигаем влево */
   gap: 12px;
   margin-bottom: 12px;
+  margin-left: -8px; /* дополнительное смещение */
 }
 
 .logo-icon {
@@ -140,7 +141,7 @@
 
 .stat-value.online {
   color: #2ecc71;
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .stat-label {
