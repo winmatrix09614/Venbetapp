@@ -28,6 +28,13 @@ function News({ onBack }) {
     fetchNews();
   }, []);
 
+  // Функция для обрезки подзаголовка на фронте (на всякий случай)
+  const truncate = (text, maxLength = 100) => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength - 3) + '...';
+  };
+
   if (loading) {
     return (
       <div className="news-page">
@@ -66,10 +73,11 @@ function News({ onBack }) {
             </div>
             <div className="news-content">
               <h3 className="news-title">{item.title}</h3>
+              {item.description && (
+                <div className="news-description">{truncate(item.description)}</div>
+              )}
               <div className="news-date">
-                {item.pubDate
-                  ? new Date(item.pubDate).toLocaleDateString('ru-RU')
-                  : ''}
+                {new Date(item.pubDate).toLocaleDateString('ru-RU')}
               </div>
             </div>
           </a>
