@@ -4,16 +4,6 @@ import Header from './Header';
 import { API_BASE } from '../config';
 import './News.css';
 
-// Функция для получения URL favicon через Google API
-const getFaviconUrl = (articleUrl) => {
-  try {
-    const url = new URL(articleUrl);
-    return `https://www.google.com/s2/favicons?domain=${url.hostname}&sz=64`;
-  } catch (e) {
-    return null;
-  }
-};
-
 function News({ onBack }) {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,20 +61,8 @@ function News({ onBack }) {
             rel="noopener noreferrer"
             className="news-card"
           >
-            <div className="news-image">
-              {item.image_url ? (
-                <img src={item.image_url} alt={item.title} />
-              ) : (
-                <div className="news-image-fallback">
-                  {getFaviconUrl(item.link) && (
-                    <img
-                      src={getFaviconUrl(item.link)}
-                      alt="site icon"
-                      className="news-favicon"
-                    />
-                  )}
-                </div>
-              )}
+            <div className="news-icon">
+              <span>📰</span>
             </div>
             <div className="news-content">
               <h3 className="news-title">{item.title}</h3>
