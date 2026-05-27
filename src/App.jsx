@@ -68,7 +68,6 @@ function App() {
           setUserStatus('banned');
         }
       }, 5000);
-      // Cleanup не обязателен, но можно вернуть функцию
       return () => clearInterval(interval);
     }
   };
@@ -76,7 +75,10 @@ function App() {
   const handleLogout = () => {
     if (window.confirm('Вы уверены, что хотите выйти?')) {
       localStorage.removeItem('venbet_user_id');
-      window.location.reload();
+      setUserId(null);
+      setUserStatus(null);
+      setAttempts(0);
+      setCurrentScreen('main');
     }
   };
 
@@ -93,6 +95,9 @@ function App() {
           <div className="logo-icon">⏳</div>
           <h2>Ожидание подтверждения</h2>
           <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
+          <p style={{ fontSize: '14px', color: '#ffb347', marginTop: '15px' }}>
+            ⚠️ Не закрывайте это окно и приложение для автоматического входа
+          </p>
           <button onClick={handleLogout} className="gradient-btn">Выйти</button>
         </div>
       </div>

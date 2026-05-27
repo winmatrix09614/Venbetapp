@@ -5,15 +5,6 @@
   flex-direction: column;
 }
 
-.attempts-badge-chat {
-  text-align: center;
-  padding: 12px;
-  background: rgba(255,107,53,0.1);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
 .chat-container {
   flex: 1;
   display: flex;
@@ -34,6 +25,7 @@
   display: flex;
   flex-direction: column;
   max-width: 80%;
+  animation: fadeInUp 0.3s ease;
 }
 
 .message.user {
@@ -109,6 +101,7 @@
   width: fit-content;
   display: flex;
   gap: 4px;
+  animation: fadeInUp 0.3s ease;
 }
 
 .dot {
@@ -169,39 +162,13 @@
   margin-top: 8px;
 }
 
-.back-btn-chat {
-  display: block;
-  margin: 20px auto;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 14px;
-}
-.user-info-chat {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 20px;
-  background: rgba(0,0,0,0.2);
-  border-bottom: 1px solid var(--border);
-}
-
-.user-id-chat {
-  font-size: 14px;
-  font-family: monospace;
-  color: var(--text-secondary);
-  background: rgba(255,255,255,0.05);
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-
-.attempts-badge-chat {
-  background: rgba(255,107,53,0.15);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
