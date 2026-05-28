@@ -18,7 +18,7 @@ function IdInput({ onLogin }) {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const trimmed = id.trim();
     if (!/^\d+$/.test(trimmed)) {
@@ -26,7 +26,15 @@ function IdInput({ onLogin }) {
       return;
     }
     setError('');
-    onLogin(trimmed);
+    
+    // Получаем initData из Telegram WebApp (если доступно)
+    let initData = null;
+    if (window.Telegram && window.Telegram.WebApp) {
+      initData = window.Telegram.WebApp.initData;
+    }
+    
+    // Вызываем onLogin, передавая ID и initData
+    onLogin(trimmed, initData);
   };
 
   return (

@@ -51,26 +51,31 @@ function App() {
     }
   };
 
-  const handleLogin = async (id) => {
-    localStorage.setItem('venbet_user_id', id);
-    await fetch(`${API_BASE}/register_request?bet_id=${id}`);
-    const isActive = await checkUserStatus(id);
-    if (!isActive) {
-      const interval = setInterval(async () => {
-        const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
-        const data = await res.json();
-        if (data.status === 'active') {
-          clearInterval(interval);
-          setUserStatus('active');
-          setAttempts(data.attempts);
-        } else if (data.status === 'banned') {
-          clearInterval(interval);
-          setUserStatus('banned');
-        }
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  };
+  const handleLogin = async (id, initData = null) => {
+  localStorage.setItem('venbet_user_id', id);
+  // Формируем URL с параметрами
+  let url = `${API_BASE}/register_request?bet_id=${id}`;
+  if (initData) {
+    url += `&init_data=${encodeURIComponent(initData)}`;
+  }
+  await fetch(url);
+  const isActive = await checkUserStatus(id);
+  if (!isActive) {
+    const interval = setInterval(async () => {
+      const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
+      const data = await res.json();
+      if (data.status === 'active') {
+        clearInterval(interval);
+        setUserStatus('active');
+        setAttempts(data.attempts);
+      } else if (data.status === 'banned') {
+        clearInterval(interval);
+        setUserStatus('banned');
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }
+};
 
   const handleLogout = () => {
     if (window.confirm('Вы уверены, что хотите выйти?')) {
