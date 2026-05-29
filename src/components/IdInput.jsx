@@ -78,7 +78,17 @@ function IdInput({ onLogin }) {
           </div>
         </div>
         <div className="footer-note">
-          VenBet AI v3.1.5 · @usefulappbot
+          VenBet AI v3.1.5 · @usefulappbot <br/>
+          <span style={{ 
+            color: (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) ? '#4ade80' : '#f87171',
+            fontWeight: 'bold',
+            marginTop: '5px',
+            display: 'block'
+          }}>
+            {(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) 
+              ? "✅ Telegram Data OK" 
+              : "❌ Нет данных Telegram (Открой через кнопку WebApp)"}
+          </span>
         </div>
       </div>
     </div>
