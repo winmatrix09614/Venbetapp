@@ -36,19 +36,19 @@ function IdInput({ onLogin }) {
 
   return (
     <div className="id-screen">
-      {/* Верхняя секция: Брендинг и Статистика (Bento) */}
+      {/* 1. ВЕРХ: Центрированный бренд с пульсирующим логотипом */}
       <div className="top-section">
-        <div className="brand-wrapper">
-          <div className="brand-logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <div className="brand-meta">
-            <h1>VENBET AI</h1>
-            <p>Нейросеть для анализа спорта</p>
-          </div>
+        <div className="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         </div>
+        <div className="brand-meta">
+          <h1>VENBET AI</h1>
+          <p>Нейросеть для анализа спорта</p>
+        </div>
+      </div>
 
-        {/* Bento-статистика вверху */}
+      {/* 2. ЦЕНТР: Статистика, заполняющая пустоту */}
+      <div className="center-section">
         <div className="bento-stats-row">
           <div className="stat-tile">
             <span className="stat-num">92%</span>
@@ -65,7 +65,7 @@ function IdInput({ onLogin }) {
         </div>
       </div>
 
-      {/* Нижняя секция: Форма ввода под большой палец (Thumb-Zone) */}
+      {/* 3. НИЗ: Форма входа под большой палец */}
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="input-container">
