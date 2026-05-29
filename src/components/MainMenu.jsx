@@ -47,7 +47,7 @@ function MainMenu({ userId, attempts, onNavigate, onLogout }) {
           </div>
           <div className="card-text">
             <div className="card-title">Сводка</div>
-            <div className="card-desc">Аналитика рынка</div>
+            <div className="card-desc">Спортивные новости</div>
           </div>
         </div>
 
