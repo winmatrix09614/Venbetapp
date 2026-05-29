@@ -15,7 +15,7 @@
   position: absolute;
   /* Отрицательные отступы, чтобы блюр не "съедал" края экрана */
   top: -20px; left: -20px; right: -20px; bottom: -20px; 
-  background-image: url('/bg-dark.jpg'); /* Путь к картинке из папки public */
+  background-image: url('/bg-dark.jpeg'); /* Путь к картинке из папки public */
   background-size: cover;
   background-position: center;
   filter: blur(15px) brightness(0.6); /* Блюр и легкое затемнение */
