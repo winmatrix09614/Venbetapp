@@ -64,7 +64,7 @@ a.news-list-item {
   flex-direction: column;
   transition: transform 0.2s ease, border-color 0.2s ease;
   cursor: pointer;
-  min-height: 240px; /* Увеличили высоту контейнера, чтобы он выглядел массивно */
+  min-height: 250px; /* Задаем жесткую минимальную высоту */
 }
 
 .news-hero-card:active {
@@ -85,10 +85,10 @@ a.news-list-item {
   color: #a0a4a8;
   font-size: 14px;
   line-height: 1.5;
-  margin-bottom: 16px;
-  /* Добавили обрезку текста многоточием (как в Актуальном) */
+  margin-bottom: 24px; /* Увеличили отступ, чтобы раздвинуть карточку */
+  /* CSS-магия: Ровно 3 строки и троеточие в конце */
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Ограничиваем ровно тремя строчками */
+  -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
