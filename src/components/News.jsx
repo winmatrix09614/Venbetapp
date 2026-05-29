@@ -28,10 +28,15 @@ function News({ onBack }) {
     fetchNews();
   }, []);
 
+  // Улучшенная функция для обрезки и очистки от HTML-мусора
   const truncate = (text, maxLength = 100) => {
     if (!text) return '';
-    if (text.length <= maxLength) return text;
-    return text.slice(0, maxLength - 3) + '...';
+    
+    // Вычищаем &nbsp; и любые случайно попавшие HTML-теги
+    let cleanText = text.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '');
+    
+    if (cleanText.length <= maxLength) return cleanText;
+    return cleanText.slice(0, maxLength - 3) + '...';
   };
 
   // Экран загрузки
