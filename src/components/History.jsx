@@ -8,6 +8,7 @@ function History({ userId, onBack }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Загрузка данных с сервера
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -33,6 +34,25 @@ function History({ userId, onBack }) {
     });
   };
 
+  // Помощник для превращения 'team1' в реальное название команды
+  const getWinnerName = (item) => {
+    if (!item || !item.winner || !item.match_description) return 'Неопределено';
+    const rawWinner = item.winner.toLowerCase();
+    
+    if (rawWinner === 'draw') return 'Ничья';
+    
+    // Пытаемся разбить описание матча "Team A vs Team B" на команды
+    const teams = item.match_description.split(' vs ');
+    
+    if (teams.length === 2) {
+      if (rawWinner === 'team1') return teams[0].trim();
+      if (rawWinner === 'team2') return teams[1].trim();
+    }
+    
+    return rawWinner; // Fallback, если не удалось распарсить
+  };
+
+  // ОСНОВНАЯ РАЗМЕТКА (Всё, что ниже, рисуется на экране)
   return (
     <div className="history-screen">
       <Header title="ИСТОРИЯ" onBack={onBack} />
@@ -66,8 +86,15 @@ function History({ userId, onBack }) {
                 
                 <div className="history-divider"></div>
                 
-                <div className="pred-winner">{item.winner}</div>
+                {/* Выводим реальное имя победителя */}
+                <div className="pred-winner">{getWinnerName(item)}</div> 
                 
+                {/* Выводим полный текст прогноза (если есть) */}
+                {item.analysis_text && (
+                  <div className="history-text">{item.analysis_text}</div>
+                )}
+                
+                {/* Шкала уверенности */}
                 <div className="pred-confidence">
                   <div className="conf-labels">
                     <span>Уверенность</span>
