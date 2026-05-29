@@ -41,8 +41,8 @@ function History({ userId, onBack }) {
     
     if (rawWinner === 'draw') return 'Ничья';
     
-    // Пытаемся разбить описание матча "Team A vs Team B" на команды
-    const teams = item.match_description.split(' vs ');
+    // Разбиваем строку "Команда 1 - Команда 2"
+    const teams = item.match_description.split(' - ');
     
     if (teams.length === 2) {
       if (rawWinner === 'team1') return teams[0].trim();
@@ -89,7 +89,10 @@ function History({ userId, onBack }) {
                 {/* Выводим реальное имя победителя */}
                 <div className="pred-winner">{getWinnerName(item)}</div> 
                 
-                {/* Выводим полный текст прогноза (если есть) */}
+                {/* Выводим полный текст прогноза (или additional). В API должно быть нужное поле */}
+                {item.additional && (
+                  <div className="history-text">{item.additional}</div>
+                )}
                 {item.analysis_text && (
                   <div className="history-text">{item.analysis_text}</div>
                 )}
