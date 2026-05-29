@@ -110,9 +110,23 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
             <div key={msg.id} className={`message-row ${msg.type}`}>
               <div className="message-content">
                 
-                {/* Если это карточка с прогнозом */}
-                {msg.prediction ? (
-                  <div className="bento-prediction">
+                {/* Рендерим фото (если юзер прикрепил) */}
+                {msg.fileUrl && (
+                  <div className="message-bubble" style={{ marginBottom: msg.text ? '8px' : '0' }}>
+                    <img src={msg.fileUrl} alt="attachment" className="msg-photo" />
+                  </div>
+                )}
+
+                {/* Рендерим текст (если он есть, и от юзера, и от бота) */}
+                {msg.text && (
+                  <div className="message-bubble">
+                    <div className="message-text">{msg.text}</div>
+                  </div>
+                )}
+
+                {/* Карточка прогноза (рисуется под текстом, если пришла от ИИ) */}
+                {msg.prediction && (
+                  <div className="bento-prediction" style={{ marginTop: msg.text ? '12px' : '0' }}>
                     <div className="pred-tag">ВЕРДИКТ НЕЙРОСЕТИ</div>
                     <div className="pred-winner">{msg.prediction.winner}</div>
                     
@@ -133,18 +147,13 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
                       <div className="pred-additional">{msg.additional}</div>
                     )}
                   </div>
-                ) : (
-                  // Обычное сообщение
-                  <div className="message-bubble">
-                    {msg.fileUrl && (
-                      <img src={msg.fileUrl} alt="attachment" className="msg-photo" />
-                    )}
-                    {msg.text && <div className="message-text">{msg.text}</div>}
-                  </div>
                 )}
+                
+                {/* Время сообщения */}
                 <div className="message-time">
                   {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                 </div>
+                
               </div>
             </div>
           ))}
