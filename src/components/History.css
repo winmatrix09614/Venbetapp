@@ -1,40 +1,124 @@
-.history-page {
+.history-screen {
   min-height: 100vh;
-  background: var(--bg-dark);
+  background: #000000; /* Абсолютный OLED-черный */
+  padding-bottom: 40px;
+}
+
+.history-container {
+  padding: 0 16px;
+  margin-top: 10px;
+}
+
+/* Экраны загрузки и пустоты */
+.history-placeholder {
+  text-align: center;
+  padding: 80px 20px;
+  color: #8a8f98;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.empty-sub {
+  font-size: 13px;
+  opacity: 0.6;
 }
 
 .history-list {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.history-card {
-  background: var(--bg-card);
-  border-radius: 24px;
-  padding: 16px;
-  margin-bottom: 16px;
-  border: 1px solid var(--border);
+/* --- Bento-карточка истории --- */
+.bento-history-card {
+  background: linear-gradient(180deg, #161920 0%, #101217 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.history-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #5c626b;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .history-date {
   font-size: 12px;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  color: #5c626b;
 }
 
 .history-match {
+  color: #ffffff;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.history-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 16px;
+}
+
+/* --- Стили шкалы прогноза (Синхронизировано с Терминалом) --- */
+.pred-winner {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.pred-confidence {
   margin-bottom: 4px;
 }
 
-.history-prediction {
-  font-size: 14px;
-  color: var(--accent);
+.conf-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #a0a4a8;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-.history-placeholder {
-  text-align: center;
-  padding: 60px;
-  color: var(--text-secondary);
+.conf-labels span:last-child {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.conf-bar-bg {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Оранжевый градиент из терминала */
+.conf-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b35, #ffb347);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
