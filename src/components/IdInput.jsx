@@ -78,14 +78,7 @@ function IdInput({ onLogin }) {
           </div>
         </div>
         <div className="footer-note">
-          VenBet AI v3.1.5 · @usefulappbot <br/>
-          <div style={{ fontSize: '10px', color: '#a1a1aa', marginTop: '10px', wordBreak: 'break-all', textAlign: 'left', background: 'rgba(0,0,0,0.5)', padding: '5px', borderRadius: '5px' }}>
-            [DEBUG SYSTEM] <br/>
-            Telegram Object: {window.Telegram ? '✅ На месте' : '❌ Отсутствует'} <br/>
-            WebApp Object: {window.Telegram?.WebApp ? '✅ На месте' : '❌ Отсутствует'} <br/>
-            initData: {window.Telegram?.WebApp?.initData ? '✅ ЕСТЬ' : '❌ ПУСТО'} <br/>
-            URL Hash: {window.location.hash ? '✅ ' + window.location.hash.substring(0, 15) + '...' : '❌ HASH СТЕРТ РЕДИРЕКТОМ'}
-          </div>
+          VenBet AI v3.1.5 · @usefulappbot
         </div>
       </div>
     </div>
