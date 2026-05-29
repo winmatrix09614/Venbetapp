@@ -86,7 +86,7 @@ function IdInput({ onLogin }) {
             display: 'block'
           }}>
             {(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) 
-              ? "✅ Telegram Data OK" 
+              ? "✅ Telegram Data OK1" 
               : "❌ Нет данных Telegram (Открой через кнопку WebApp)"}
           </span>
         </div>
