@@ -91,7 +91,7 @@ function IdInput({ onLogin }) {
         </form>
 
         <div className="app-version">
-          VenBet AI v3.1.5 · @usefulappbot
+          VenBet AI v3.1.6 · @usefulappbot
         </div>
       </div>
     </div>
