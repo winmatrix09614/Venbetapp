@@ -1,11 +1,8 @@
-export const THEMES = {
+﻿export const THEMES = {
   default: {
-    id: 'default',
-    dir: 'ltr', // Слева направо
-    brandName: 'VENBET AI',
+    id: 'default', dir: 'ltr', brandName: 'VENBET AI',
     subtitle: 'Нейросеть для анализа спорта',
-    inputLabel: 'Ваш ID 1xBet',
-    inputPlaceholder: 'Например: 10000000',
+    inputLabel: 'Ваш ID 1xBet', inputPlaceholder: 'Например: 10000000',
     inputDesc: 'ID можно найти в приложении 1xBet → Профиль',
     btnText: 'Продолжить',
     waitingTitle: 'Ожидание подтверждения',
@@ -16,15 +13,12 @@ export const THEMES = {
       newsTitle: 'Сводка', newsDesc: 'Спортивные новости',
       supportTitle: 'Поддержка', supportDesc: 'Связь со специалистом'
     },
-    primaryColor: '#ff8c00' // Классический оранжевый
+    primaryColor: '#ff8c00'
   },
   latam: {
-    id: 'latam',
-    dir: 'ltr',
-    brandName: 'PREDICTOR PRO',
+    id: 'latam', dir: 'ltr', brandName: 'PREDICTOR PRO',
     subtitle: 'Inteligencia Artificial Deportiva',
-    inputLabel: 'Tu ID de 1xBet',
-    inputPlaceholder: 'Ejemplo: 10000000',
+    inputLabel: 'Tu ID de 1xBet', inputPlaceholder: 'Ejemplo: 10000000',
     inputDesc: 'Puedes encontrar tu ID en la app de 1xBet → Perfil',
     btnText: 'Continuar',
     waitingTitle: 'Esperando confirmación',
@@ -35,15 +29,12 @@ export const THEMES = {
       newsTitle: 'Noticias', newsDesc: 'Novedades deportivas',
       supportTitle: 'Soporte', supportDesc: 'Contactar especialista'
     },
-    primaryColor: '#00f2fe' // Кибер-синий для Латама
+    primaryColor: '#00f2fe'
   },
   arabic: {
-    id: 'arabic',
-    dir: 'rtl', // СПРАВА НАЛЕВО!
-    brandName: 'المهندس AI', // Al-Muhandis AI
+    id: 'arabic', dir: 'rtl', brandName: 'المهندس AI',
     subtitle: 'الذكاء الاصطناعي للتحليل الرياضي',
-    inputLabel: 'معرف 1xBet الخاص بك',
-    inputPlaceholder: 'مثال: 10000000',
+    inputLabel: 'معرف 1xBet الخاص بك', inputPlaceholder: 'مثال: 10000000',
     inputDesc: 'يمكنك العثور على المعرف الخاص بك في تطبيق 1xBet ← الملف الشخصي',
     btnText: 'متابعة',
     waitingTitle: 'في انتظار التأكيد',
@@ -54,33 +45,26 @@ export const THEMES = {
       newsTitle: 'أخبار', newsDesc: 'أخبار رياضية',
       supportTitle: 'الدعم الفني', supportDesc: 'تواصل مع أخصائي'
     },
-    primaryColor: '#d4af37' // Премиальный золотой для Арабов
+    primaryColor: '#d4af37'
   }
 };
 
-// Функция определения темы по UTM-метке из Telegram (оставлена для обратной совместимости)
 export const getThemeBySource = (source) => {
   if (!source) return null;
   const s = source.toLowerCase();
-
   if (s.includes('latam') || s.includes('peru') || s.includes('es') || s.includes('mx') || s.includes('co')) return THEMES.latam;
   if (s.includes('arab') || s.includes('egypt') || s.includes('ae') || s.includes('sa') || s.includes('eg')) return THEMES.arabic;
-
   return null;
 };
 
-// Определение темы по языку интерфейса Telegram (фолбэк, если метка не задаёт ГЕО)
 export const getThemeByLanguage = (lang) => {
   if (!lang) return null;
   const l = lang.toLowerCase();
-
   if (l.startsWith('ar')) return THEMES.arabic;
   if (l.startsWith('es')) return THEMES.latam;
-
   return null;
 };
 
-// Главный резолвер: приоритет — метка кампании (баер), затем язык лида, иначе default.
 export const getTheme = (source, lang) => {
   return getThemeBySource(source) || getThemeByLanguage(lang) || THEMES.default;
 };
