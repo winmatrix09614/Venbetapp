@@ -6,6 +6,7 @@ import News from './components/News';
 import History from './components/History';
 import LoadingScreen from './components/LoadingScreen';
 import { API_BASE } from './config';
+import { THEMES, getThemeBySource } from './themes'; // <-- ИМПОРТ ТЕМ
 import './App.css';
 
 function App() {
@@ -14,8 +15,26 @@ function App() {
   const [userStatus, setUserStatus] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
+  
+  // Новые стейты для локализации
+  const [theme, setTheme] = useState(THEMES.default);
+  const [sourceParam, setSourceParam] = useState('');
 
   useEffect(() => {
+    // 1. ЛОВИМ UTM-МЕТКУ ИЗ TELEGRAM
+    let startParam = '';
+    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+      startParam = window.Telegram.WebApp.initDataUnsafe.start_param || '';
+    }
+    setSourceParam(startParam);
+
+    // 2. АКТИВИРУЕМ ТЕМАТИЧЕСКИЙ ПАКЕТ И RTL
+    const activeTheme = getThemeBySource(startParam);
+    setTheme(activeTheme);
+    document.documentElement.dir = activeTheme.dir; // Включает RTL для арабов
+    document.documentElement.style.setProperty('--primary-theme-color', activeTheme.primaryColor);
+
+    // Старая логика проверки авторизации
     const savedId = localStorage.getItem('venbet_user_id');
     if (savedId) {
       checkUserStatus(savedId);
@@ -29,92 +48,67 @@ function App() {
       const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
       const data = await res.json();
       if (data.status === 'active') {
-        setUserId(id);
-        setUserStatus('active');
-        setAttempts(data.attempts);
-        setIsLoading(false);
-        return true;
+        setUserId(id); setUserStatus('active'); setAttempts(data.attempts); setIsLoading(false); return true;
       } else if (data.status === 'pending') {
-        setUserId(id);
-        setUserStatus('pending');
-        setIsLoading(false);
-        return false;
+        setUserId(id); setUserStatus('pending'); setIsLoading(false); return false;
       } else {
-        localStorage.removeItem('venbet_user_id');
-        setIsLoading(false);
-        return false;
+        localStorage.removeItem('venbet_user_id'); setIsLoading(false); return false;
       }
-    } catch (err) {
-      console.error(err);
-      setIsLoading(false);
-      return false;
-    }
+    } catch (err) { setIsLoading(false); return false; }
   };
 
   const handleLogin = async (id, initData = null) => {
-  localStorage.setItem('venbet_user_id', id);
-  // Формируем URL с параметрами
-  let url = `${API_BASE}/register_request?bet_id=${id}`;
-  if (initData) {
-    url += `&init_data=${encodeURIComponent(initData)}`;
-  }
-  await fetch(url);
-  const isActive = await checkUserStatus(id);
-  if (!isActive) {
-    const interval = setInterval(async () => {
-      const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
-      const data = await res.json();
-      if (data.status === 'active') {
-        clearInterval(interval);
-        setUserStatus('active');
-        setAttempts(data.attempts);
-      } else if (data.status === 'banned') {
-        clearInterval(interval);
-        setUserStatus('banned');
-      }
-    }, 5000);
-    return () => clearInterval(interval);
-  }
-};
-
-  const handleLogout = () => {
-    if (window.confirm('Вы уверены, что хотите выйти?')) {
-      localStorage.removeItem('venbet_user_id');
-      setUserId(null);
-      setUserStatus(null);
-      setAttempts(0);
-      setCurrentScreen('main');
+    localStorage.setItem('venbet_user_id', id);
+    
+    // 3. ПЕРЕДАЕМ ИСТОЧНИК (UTM) НА БЭКЕНД ПРИ РЕГИСТРАЦИИ!
+    let url = `${API_BASE}/register_request?bet_id=${id}&source=${sourceParam}`;
+    if (initData) url += `&init_data=${encodeURIComponent(initData)}`;
+    
+    await fetch(url);
+    const isActive = await checkUserStatus(id);
+    if (!isActive) {
+      const interval = setInterval(async () => {
+        const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
+        const data = await res.json();
+        if (data.status === 'active') {
+          clearInterval(interval); setUserStatus('active'); setAttempts(data.attempts);
+        } else if (data.status === 'banned') {
+          clearInterval(interval); setUserStatus('banned');
+        }
+      }, 5000);
+      return () => clearInterval(interval);
     }
   };
 
-  const updateAttempts = (newAttempts) => {
-    setAttempts(newAttempts);
+  const handleLogout = () => {
+    if (window.confirm('Вы уверены, что хотите выйти?')) {
+      localStorage.removeItem('venbet_user_id'); setUserId(null); setUserStatus(null); setAttempts(0); setCurrentScreen('main');
+    }
   };
 
   if (isLoading) return <LoadingScreen />;
-  if (!userId) return <IdInput onLogin={handleLogin} />;
+  
+  // ПЕРЕДАЕМ ТЕМУ В ID INPUT
+  if (!userId) return <IdInput onLogin={handleLogin} theme={theme} />;
+  
   if (userStatus === 'pending') {
-  return (
-    <div className="pending-screen">
-      <div className="pending-card">
-        <div className="logo-icon">⏳</div>
-        <h2>Ожидание подтверждения</h2>
-        <p>Ваш ID отправлен менеджеру. Дождитесь активации аккаунта.</p>
-        <p className="warning-text">
-          ⚠️ Не закрывайте это окно и приложение для автоматического входа
-        </p>
-        <button onClick={handleLogout} className="gradient-btn">Выйти</button>
+    return (
+      <div className="pending-screen">
+        <div className="pending-card">
+          <div className="logo-icon">⏳</div>
+          <h2>{theme.waitingTitle}</h2>
+          <p>{theme.waitingDesc}</p>
+          <button onClick={handleLogout} className="gradient-btn">{theme.btnText}</button>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
   if (userStatus === 'banned') {
     return (
       <div className="pending-screen">
         <div className="pending-card">
           <div className="logo-icon">🚫</div>
           <h2>Доступ заблокирован</h2>
-          <p>Обратитесь к менеджеру.</p>
           <button onClick={handleLogout} className="gradient-btn">Выйти</button>
         </div>
       </div>
@@ -124,26 +118,16 @@ function App() {
   return (
     <div className="app-container">
       {currentScreen === 'main' && (
-        <MainMenu
-          userId={userId}
-          attempts={attempts}
-          onNavigate={setCurrentScreen}
-          onLogout={handleLogout}
-        />
+        <MainMenu userId={userId} attempts={attempts} onNavigate={setCurrentScreen} onLogout={handleLogout} theme={theme} />
       )}
       {currentScreen === 'analysis' && (
-        <Analysis
-          userId={userId}
-          attempts={attempts}
-          updateAttempts={updateAttempts}
-          onBack={() => setCurrentScreen('main')}
-        />
+        <Analysis userId={userId} attempts={attempts} updateAttempts={setAttempts} onBack={() => setCurrentScreen('main')} theme={theme} />
       )}
       {currentScreen === 'news' && (
-        <News onBack={() => setCurrentScreen('main')} />
+        <News onBack={() => setCurrentScreen('main')} theme={theme} />
       )}
       {currentScreen === 'history' && (
-        <History userId={userId} onBack={() => setCurrentScreen('main')} />
+        <History userId={userId} onBack={() => setCurrentScreen('main')} theme={theme} />
       )}
     </div>
   );

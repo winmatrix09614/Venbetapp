@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './IdInput.css';
 
-function IdInput({ onLogin }) {
+// ДОБАВЛЕН ПРОП theme
+function IdInput({ onLogin, theme }) {
   const [id, setId] = useState('');
   const [error, setError] = useState('');
   const [onlineCount, setOnlineCount] = useState(4123);
@@ -21,7 +22,7 @@ function IdInput({ onLogin }) {
     e.preventDefault();
     const trimmed = id.trim();
     if (!/^\d+$/.test(trimmed)) {
-      setError('ID должен содержать только цифры');
+      setError('ID error'); // Можно тоже вынести в словарь позже
       return;
     }
     setError('');
@@ -30,68 +31,56 @@ function IdInput({ onLogin }) {
     if (window.Telegram && window.Telegram.WebApp) {
       initData = window.Telegram.WebApp.initData;
     }
-    
     onLogin(trimmed, initData);
   };
 
   return (
     <div className="id-screen">
-      {/* 1. ВЕРХ: Центрированный бренд с пульсирующим логотипом */}
       <div className="top-section">
-        <div className="brand-logo">
+        <div className="brand-logo" style={{ color: 'var(--primary-theme-color)' }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         </div>
         <div className="brand-meta">
-          <h1>VENBET AI</h1>
-          <p>Нейросеть для анализа спорта</p>
+          {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
+          <h1>{theme.brandName}</h1>
+          <p>{theme.subtitle}</p>
         </div>
       </div>
 
-      {/* 2. ЦЕНТР: Статистика, заполняющая пустоту */}
       <div className="center-section">
         <div className="bento-stats-row">
-          <div className="stat-tile">
-            <span className="stat-num">92%</span>
-            <span className="stat-txt">Точность</span>
-          </div>
-          <div className="stat-tile">
-            <span className="stat-num">21.5K</span>
-            <span className="stat-txt">Анализов</span>
-          </div>
-          <div className="stat-tile">
-            <span className="stat-num online-pulse">{onlineCount}</span>
-            <span className="stat-txt">Активные</span>
-          </div>
+          <div className="stat-tile"><span className="stat-num">92%</span><span className="stat-txt">AI</span></div>
+          <div className="stat-tile"><span className="stat-num">21.5K</span><span className="stat-txt">PRO</span></div>
+          <div className="stat-tile"><span className="stat-num online-pulse">{onlineCount}</span><span className="stat-txt">Online</span></div>
         </div>
       </div>
 
-      {/* 3. НИЗ: Форма входа под большой палец */}
       <div className="bottom-section">
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="input-container">
-            <label>Ваш ID 1xBet</label>
+            {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
+            <label>{theme.inputLabel}</label>
             <input
               type="text"
-              placeholder="Например: 10000000"
+              placeholder={theme.inputPlaceholder}
               value={id}
               onChange={(e) => setId(e.target.value)}
               autoFocus
             />
-            <span className="input-description">
-              ID можно найти в приложении 1xBet → Профиль
-            </span>
+            <span className="input-description">{theme.inputDesc}</span>
           </div>
 
           {error && <div className="form-error">{error}</div>}
 
-          <button type="submit" className="prime-btn">
-            <span>Продолжить</span>
+          <button type="submit" className="prime-btn" style={{ backgroundColor: 'var(--primary-theme-color)' }}>
+            {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
+            <span>{theme.btnText}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </form>
 
         <div className="app-version">
-          VenBet AI v3.1.6 · @usefulappbot
+          {theme.brandName} v3.1.6 · @usefulappbot
         </div>
       </div>
     </div>
