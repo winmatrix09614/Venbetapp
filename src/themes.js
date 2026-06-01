@@ -58,13 +58,29 @@ export const THEMES = {
   }
 };
 
-// Функция определения темы по UTM-метке из Telegram
+// Функция определения темы по UTM-метке из Telegram (оставлена для обратной совместимости)
 export const getThemeBySource = (source) => {
-  if (!source) return THEMES.default;
+  if (!source) return null;
   const s = source.toLowerCase();
-  
-  if (s.includes('latam') || s.includes('peru') || s.includes('es')) return THEMES.latam;
-  if (s.includes('arab') || s.includes('egypt') || s.includes('ae')) return THEMES.arabic;
-  
-  return THEMES.default;
+
+  if (s.includes('latam') || s.includes('peru') || s.includes('es') || s.includes('mx') || s.includes('co')) return THEMES.latam;
+  if (s.includes('arab') || s.includes('egypt') || s.includes('ae') || s.includes('sa') || s.includes('eg')) return THEMES.arabic;
+
+  return null;
+};
+
+// Определение темы по языку интерфейса Telegram (фолбэк, если метка не задаёт ГЕО)
+export const getThemeByLanguage = (lang) => {
+  if (!lang) return null;
+  const l = lang.toLowerCase();
+
+  if (l.startsWith('ar')) return THEMES.arabic;
+  if (l.startsWith('es')) return THEMES.latam;
+
+  return null;
+};
+
+// Главный резолвер: приоритет — метка кампании (баер), затем язык лида, иначе default.
+export const getTheme = (source, lang) => {
+  return getThemeBySource(source) || getThemeByLanguage(lang) || THEMES.default;
 };

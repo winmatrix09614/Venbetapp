@@ -180,3 +180,41 @@ a.news-list-item {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* ДОБАВИТЬ в конец src/components/News.css — стили для картинок новостей */
+
+.news-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.news-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.news-thumb {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  margin-inline-end: 12px; /* logical property — корректно и для RTL */
+}
+.news-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* список становится горизонтальной строкой: миниатюра + текст */
+.news-list-item {
+  display: flex;
+  align-items: flex-start;
+}
