@@ -6,35 +6,28 @@ import News from './components/News';
 import History from './components/History';
 import LoadingScreen from './components/LoadingScreen';
 import { API_BASE } from './config';
-import { THEMES, getThemeBySource } from './themes'; // <-- ИМПОРТ ТЕМ
+// ИМПОРТ ТЕМ ЗДЕСЬ БОЛЬШЕ НЕ НУЖЕН, ОН В MAIN.JSX
 import './App.css';
 
-function App() {
+// ПРИНИМАЕМ ПРОПСЫ ИЗ MAIN.JSX
+function App({ initialTheme, sourceParam }) {
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState(null);
   const [userStatus, setUserStatus] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
-  
-  // Новые стейты для локализации
-  const [theme, setTheme] = useState(THEMES.default);
-  const [sourceParam, setSourceParam] = useState('');
+
+  // Тема зафиксирована с самого старта приложения
+  const theme = initialTheme;
 
   useEffect(() => {
-    // 1. ЛОВИМ UTM-МЕТКУ ИЗ TELEGRAM
-    let startParam = '';
-    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-      startParam = window.Telegram.WebApp.initDataUnsafe.start_param || '';
+    // Сообщаем Телеграму, что приложение готово, и разворачиваем его на весь экран
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.expand();
+      window.Telegram.WebApp.ready();
     }
-    setSourceParam(startParam);
 
-    // 2. АКТИВИРУЕМ ТЕМАТИЧЕСКИЙ ПАКЕТ И RTL
-    const activeTheme = getThemeBySource(startParam);
-    setTheme(activeTheme);
-    document.documentElement.dir = activeTheme.dir; // Включает RTL для арабов
-    document.documentElement.style.setProperty('--primary-theme-color', activeTheme.primaryColor);
-
-    // Старая логика проверки авторизации
+    // Проверка авторизации
     const savedId = localStorage.getItem('venbet_user_id');
     if (savedId) {
       checkUserStatus(savedId);
