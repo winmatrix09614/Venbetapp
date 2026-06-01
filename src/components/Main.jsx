@@ -1,33 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { getThemeBySource } from './themes'; // Импортируем нашу логику тем
+import { getThemeBySource } from './themes';
 import './index.css';
 
-// 1. Извлекаем параметры ДО запуска React
-function getStartParam() {
-  // Пытаемся взять из объекта Telegram
-  const tgParam = window.Telegram?.WebApp?.initDataUnsafe?.start_param;
-  if (tgParam) return tgParam;
-
-  // Fallback: если это прямая ссылка (Direct Link), ищем в URL
+try {
+  // 1. Ищем параметр utm_source прямо в ссылке, которую сгенерирует Python-бот
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('startapp') || urlParams.get('tgWebAppStartParam') || '';
+  const source = urlParams.get('utm_source') || '';
+
+  // 2. Определяем тему
+  const initialTheme = getThemeBySource(source);
+
+  // 3. Применяем настройки ДО рендера
+  document.documentElement.dir = initialTheme.dir;
+  document.documentElement.lang = initialTheme.dir === 'rtl' ? 'ar' : 'ru';
+  document.documentElement.style.setProperty('--primary-theme-color', initialTheme.primaryColor);
+
+  // 4. Запускаем приложение
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <App initialTheme={initialTheme} sourceParam={source} />
+    </React.StrictMode>
+  );
+} catch (e) {
+  console.error("Critical Init Error:", e);
+  // Защита от черного экрана: запускаем дефолтную версию
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode><App /></React.StrictMode>
+  );
 }
-
-const startParam = getStartParam();
-
-// 2. Определяем тему на основе параметра
-const initialTheme = getThemeBySource(startParam);
-
-// 3. Применяем RTL и цвета к корню документа ДО рендера интерфейса
-document.documentElement.dir = initialTheme.dir;
-document.documentElement.lang = initialTheme.dir === 'rtl' ? 'ar' : 'ru';
-document.documentElement.style.setProperty('--primary-theme-color', initialTheme.primaryColor);
-
-// 4. Запускаем React и передаем готовую тему внутрь App
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App initialTheme={initialTheme} sourceParam={startParam} />
-  </React.StrictMode>
-);
