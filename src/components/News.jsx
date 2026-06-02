@@ -14,6 +14,7 @@ function News({ onBack, theme }) {
   const themeId = (theme && theme.id) || 'default';
   const lang = themeId === 'arabic' ? 'ar' : themeId === 'latam' ? 'es' : 'ru';
   const locale = lang === 'ar' ? 'ar-EG' : lang === 'es' ? 'es-ES' : 'ru-RU';
+  const ui = (theme && theme.ui) || {};
   const title = (theme && theme.menu && theme.menu.newsTitle) || 'СВОДКА';
 
   useEffect(() => {
@@ -62,8 +63,8 @@ function News({ onBack, theme }) {
       <div className="news-screen">
         <Header title={title} onBack={onBack} />
         <div className="news-placeholder">
-          📭 Новости временно недоступны<br />
-          <span className="news-placeholder-sub">Попробуйте позже</span>
+          📭 {ui.newsUnavailable || 'Новости временно недоступны'}<br />
+          <span className="news-placeholder-sub">{ui.newsTryLater || 'Попробуйте позже'}</span>
         </div>
       </div>
     );
@@ -87,20 +88,20 @@ function News({ onBack, theme }) {
                      onError={(e) => { e.currentTarget.parentNode.style.display = 'none'; }} />
               </div>
             )}
-            <div className="news-tag highlight-tag">ГЛАВНОЕ</div>
+            <div className="news-tag highlight-tag">{ui.newsMainTag || 'ГЛАВНОЕ'}</div>
             <h2 className="hero-title">{mainNews.title}</h2>
             {mainNews.description && (
               <p className="hero-desc">{truncate(mainNews.description, 120)}</p>
             )}
             <div className="news-meta">
               <span className="news-date">{fmtDate(mainNews.pubDate)}</span>
-              <span className="read-more">Читать →</span>
+              <span className="read-more">{ui.newsRead || 'Читать →'}</span>
             </div>
           </a>
         )}
 
         {otherNews.length > 0 && (
-          <div className="news-divider">Последние новости</div>
+          <div className="news-divider">{ui.newsLatestTag || 'Последние новости'}</div>
         )}
 
         {/* Список с миниатюрами */}
@@ -116,7 +117,7 @@ function News({ onBack, theme }) {
                 <div className="unread-indicator"></div>
               )}
               <div className="news-content">
-                <div className="news-tag">АКТУАЛЬНОЕ</div>
+                <div className="news-tag">{ui.newsActualTag || 'АКТУАЛЬНОЕ'}</div>
                 <h3 className="item-title">{item.title}</h3>
                 {item.description && (
                   <p className="item-desc">{truncate(item.description, 90)}</p>

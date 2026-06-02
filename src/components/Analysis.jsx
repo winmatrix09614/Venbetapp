@@ -9,7 +9,9 @@ const IconClip = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColo
 const IconSend = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>);
 const IconClose = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>);
 
-function Analysis({ userId, attempts, updateAttempts, onBack }) {
+function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
+  const ui = theme.ui;
+  const lang = theme.id === 'arabic' ? 'ar' : theme.id === 'latam' ? 'es' : 'ru';
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
       {
         id: 1,
         type: 'bot',
-        text: 'Система инициализирована. Загрузите скриншот матча или введите названия команд для начала AI анализа.',
+        text: ui.analysisInit,
         timestamp: new Date(),
       },
     ]);
@@ -62,13 +64,14 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
       const formData = new FormData();
       formData.append('user_id', userId);
       if (text) formData.append('text', text);
+      formData.append('lang', lang);
       if (file) formData.append('photo', file);
       
       const response = await axios.post(`${API_BASE}/webapp/predict`, formData);
       const data = response.data;
       
       if (data.error) {
-        setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: `Ошибка: ${data.error}`, timestamp: new Date() }]);
+        setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: `${ui.errorPrefix}: ${data.error}`, timestamp: new Date() }]);
         setLoading(false);
         return;
       }
@@ -87,7 +90,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
       
     } catch (err) {
       console.error(err);
-      setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: 'Ошибка соединения с сервером.', timestamp: new Date() }]);
+      setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: ui.connError, timestamp: new Date() }]);
     } finally {
       setLoading(false);
       removePhoto();
@@ -102,7 +105,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
 
   return (
     <div className="analysis-page">
-      <Header title="AI АНАЛИЗ" userId={userId} attempts={attempts} onBack={onBack} />
+      <Header title={ui.analysisTitle} userId={userId} attempts={attempts} onBack={onBack} theme={theme} />
       
       <div className="chat-container">
         <div className="chat-messages">
@@ -127,12 +130,12 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
                 {/* Карточка прогноза (рисуется под текстом, если пришла от ИИ) */}
                 {msg.prediction && (
                   <div className="bento-prediction" style={{ marginTop: msg.text ? '12px' : '0' }}>
-                    <div className="pred-tag">ВЕРДИКТ НЕЙРОСЕТИ</div>
+                    <div className="pred-tag">{ui.verdictTag}</div>
                     <div className="pred-winner">{msg.prediction.winner}</div>
                     
                     <div className="pred-confidence">
                       <div className="conf-labels">
-                        <span>Уверенность</span>
+                        <span>{ui.confidence}</span>
                         <span>{msg.prediction.confidence}%</span>
                       </div>
                       <div className="conf-bar-bg">
@@ -191,7 +194,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack }) {
             
             <input
               type="text"
-              placeholder="Команды или скриншот..."
+              placeholder={ui.inputPlaceholder}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSend()}

@@ -22,7 +22,7 @@ function IdInput({ onLogin, theme }) {
     e.preventDefault();
     const trimmed = id.trim();
     if (!/^\d+$/.test(trimmed)) {
-      setError('ID error'); // Можно тоже вынести в словарь позже
+      setError(theme.ui.idError);
       return;
     }
     setError('');
@@ -38,7 +38,7 @@ function IdInput({ onLogin, theme }) {
     <div className="id-screen">
       <div className="top-section">
         <div className="brand-logo" style={{ color: 'var(--primary-theme-color)' }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: theme.icon }} />
         </div>
         <div className="brand-meta">
           {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
@@ -51,7 +51,7 @@ function IdInput({ onLogin, theme }) {
         <div className="bento-stats-row">
           <div className="stat-tile"><span className="stat-num">92%</span><span className="stat-txt">AI</span></div>
           <div className="stat-tile"><span className="stat-num">21.5K</span><span className="stat-txt">PRO</span></div>
-          <div className="stat-tile"><span className="stat-num online-pulse">{onlineCount}</span><span className="stat-txt">Online</span></div>
+          <div className="stat-tile"><span className="stat-num online-pulse">{onlineCount}</span><span className="stat-txt">{theme.ui.statOnline}</span></div>
         </div>
       </div>
 

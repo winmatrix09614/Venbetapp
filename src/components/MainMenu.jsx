@@ -16,7 +16,7 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
   return (
     <div className="main-menu">
       {/* Передаем бренд в шапку */}
-      <Header title={theme.brandName} userId={userId} attempts={attempts} onBack={onLogout} />
+      <Header title={theme.brandName} userId={userId} attempts={attempts} onBack={onLogout} theme={theme} />
       
       <div className="bento-grid">
         <div className="bento-card primary-card" onClick={() => onNavigate('analysis')} style={{ borderColor: 'var(--primary-theme-color)' }}>

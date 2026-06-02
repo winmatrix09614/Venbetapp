@@ -1,11 +1,12 @@
 import React from 'react';
 import './LoadingScreen.css';
 
-function LoadingScreen() {
+function LoadingScreen({ theme }) {
+  const txt = (theme && theme.ui && theme.ui.loading) || 'Загрузка приложения...';
   return (
     <div className="loading-container">
       <div className="spinner"></div>
-      <p>Загрузка приложения...</p>
+      <p>{txt}</p>
     </div>
   );
 }

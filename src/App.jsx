@@ -74,12 +74,12 @@ function App({ initialTheme, sourceParam }) {
   };
 
   const handleLogout = () => {
-    if (window.confirm('Вы уверены, что хотите выйти?')) {
+    if (window.confirm(theme.ui.logoutConfirm)) {
       localStorage.removeItem('venbet_user_id'); setUserId(null); setUserStatus(null); setAttempts(0); setCurrentScreen('main');
     }
   };
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading) return <LoadingScreen theme={theme} />;
   
   // ПЕРЕДАЕМ ТЕМУ В ID INPUT
   if (!userId) return <IdInput onLogin={handleLogin} theme={theme} />;
@@ -101,8 +101,8 @@ function App({ initialTheme, sourceParam }) {
       <div className="pending-screen">
         <div className="pending-card">
           <div className="logo-icon">🚫</div>
-          <h2>Доступ заблокирован</h2>
-          <button onClick={handleLogout} className="gradient-btn">Выйти</button>
+          <h2>{theme.ui.bannedTitle}</h2>
+          <button onClick={handleLogout} className="gradient-btn">{theme.ui.bannedBtn}</button>
         </div>
       </div>
     );
