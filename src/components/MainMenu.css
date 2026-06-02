@@ -119,3 +119,29 @@
   letter-spacing: 0.5px;
   margin-top: 2px;
 }
+/* --- Статистика капера + Прогноз дня --- */
+.capper-stats {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 10px 14px; margin: 10px 0 14px; font-size: 13px;
+}
+.capper-stats .cs-label { color: var(--primary-theme-color); font-weight: 700; }
+.capper-stats .cs-val { color: #fff; font-weight: 600; }
+.capper-stats .cs-acc { color: #2ecc71; font-weight: 700; }
+.capper-stats .cs-dot { color: #666; }
+.capper-stats .cs-period { color: #9a9aa0; margin-left: auto; }
+
+.daily-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+  display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 18px;
+}
+.daily-box {
+  position: relative; width: 100%; max-width: 420px; max-height: 88vh; overflow-y: auto;
+  background: #161616; border: 1px solid var(--primary-theme-color); border-radius: 16px; padding: 18px;
+}
+.daily-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; }
+.daily-head { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--primary-theme-color); font-size: 16px; margin-bottom: 8px; }
+.daily-head svg { width: 20px; height: 20px; }
+.daily-match { font-size: 15px; font-weight: 600; color: #fff; }
+.daily-text { margin-top: 12px; font-size: 13.5px; line-height: 1.6; color: #d0d0d5; }
+.daily-empty, .daily-loading { padding: 30px 10px; text-align: center; color: #9a9aa0; }

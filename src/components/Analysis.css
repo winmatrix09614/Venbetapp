@@ -270,3 +270,32 @@
   color: #ff6b35;
 }
 .send-btn.active:active { transform: scale(0.9); }
+/* --- Режим прогноза, видео-обучение --- */
+.mode-toggle { display: flex; gap: 6px; margin-bottom: 8px; }
+.mode-toggle button {
+  flex: 1; padding: 8px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12);
+  background: transparent; color: #9a9aa0; font-weight: 600; font-size: 13px; cursor: pointer;
+  transition: all .15s ease;
+}
+.mode-toggle button.active {
+  background: var(--primary-theme-color); color: #000; border-color: var(--primary-theme-color);
+}
+.howto-btn {
+  margin-top: 10px; width: 100%; padding: 10px; border-radius: 10px;
+  border: 1px solid var(--primary-theme-color); background: transparent;
+  color: var(--primary-theme-color); font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.howto-btn:active { transform: scale(0.98); }
+.video-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+  display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
+}
+.video-box { position: relative; width: 100%; max-width: 480px; }
+.video-close {
+  position: absolute; top: -38px; right: 0; background: none; border: none;
+  color: #fff; font-size: 24px; cursor: pointer;
+}
+.video-placeholder {
+  background: #1a1a1a; border: 1px dashed rgba(255,255,255,0.2); border-radius: 12px;
+  padding: 48px 20px; text-align: center; color: #9a9aa0; font-size: 15px;
+}

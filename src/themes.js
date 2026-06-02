@@ -38,7 +38,8 @@ export const THEMES = {
       newsMainTag: 'ГЛАВНОЕ', newsLatestTag: 'Последние новости', newsActualTag: 'АКТУАЛЬНОЕ',
       newsRead: 'Читать →', newsUnavailable: 'Новости временно недоступны', newsTryLater: 'Попробуйте позже',
       loading: 'Загрузка приложения...',
-      statOnline: 'Online', idError: 'Неверный ID'
+      statOnline: 'Online', idError: 'Неверный ID',
+      single: 'Одиночный', express: 'Экспресс', expressTitle: 'ЭКСПРЕСС', combined: 'Суммарная уверенность', howToBet: 'Как поставить ставку', videoSoon: 'Обучающее видео скоро появится', statsCapper: 'Статистика капера', predictionsWord: 'прогнозов', accuracyWord: 'точность', per7d: 'за 7 дней', dailyTitle: 'Прогноз дня', dailyDesc: 'Бесплатный сигнал', dailyEmpty: 'Прогноз дня пока не задан'
     }
   },
   latam: {
@@ -75,7 +76,8 @@ export const THEMES = {
       newsMainTag: 'DESTACADO', newsLatestTag: 'Últimas noticias', newsActualTag: 'ACTUAL',
       newsRead: 'Leer →', newsUnavailable: 'Noticias no disponibles temporalmente', newsTryLater: 'Inténtalo más tarde',
       loading: 'Cargando aplicación...',
-      statOnline: 'En línea', idError: 'ID inválido'
+      statOnline: 'En línea', idError: 'ID inválido',
+      single: 'Individual', express: 'Expreso', expressTitle: 'EXPRESO', combined: 'Confianza combinada', howToBet: 'Cómo hacer una apuesta', videoSoon: 'El video tutorial estará disponible pronto', statsCapper: 'Estadísticas del capper', predictionsWord: 'pronósticos', accuracyWord: 'precisión', per7d: 'en 7 días', dailyTitle: 'Pronóstico del día', dailyDesc: 'Señal gratuita', dailyEmpty: 'Aún no disponible'
     }
   },
   arabic: {
@@ -112,7 +114,8 @@ export const THEMES = {
       newsMainTag: 'الأبرز', newsLatestTag: 'آخر الأخبار', newsActualTag: 'عاجل',
       newsRead: 'اقرأ ←', newsUnavailable: 'الأخبار غير متوفرة مؤقتًا', newsTryLater: 'حاول لاحقًا',
       loading: 'جارٍ تحميل التطبيق...',
-      statOnline: 'متصل', idError: 'معرف غير صالح'
+      statOnline: 'متصل', idError: 'معرف غير صالح',
+      single: 'فردي', express: 'إكسبريس', expressTitle: 'إكسبريس', combined: 'الثقة المجمعة', howToBet: 'كيف تضع الرهان', videoSoon: 'الفيديو التعليمي قريبًا', statsCapper: 'إحصائيات الخبير', predictionsWord: 'توقعات', accuracyWord: 'دقة', per7d: 'خلال 7 أيام', dailyTitle: 'توقع اليوم', dailyDesc: 'إشارة مجانية', dailyEmpty: 'غير متاح بعد'
     }
   }
 };

@@ -18,6 +18,9 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const [photo, setPhoto] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
   const fileInputRef = useRef();
+  const [mode, setMode] = useState('single');
+  const [videoOpen, setVideoOpen] = useState(false);
+  const videoUrl = (theme && theme.videoUrl) || '';
 
   // Инициализация чата
   useEffect(() => {
@@ -65,6 +68,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       formData.append('user_id', userId);
       if (text) formData.append('text', text);
       formData.append('lang', lang);
+      formData.append('mode', mode);
       if (file) formData.append('photo', file);
       
       const response = await axios.post(`${API_BASE}/webapp/predict`, formData);
@@ -82,6 +86,8 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         text: data.prediction_text,
         prediction: data.prediction,
         additional: data.additional,
+        express: data.express,
+        mode: data.mode,
         timestamp: new Date(),
       };
       
@@ -151,6 +157,24 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     )}
                   </div>
                 )}
+
+                {msg.express && msg.express.events && (
+                  <div className="bento-prediction" style={{ marginTop: '12px', borderColor: 'var(--primary-theme-color)' }}>
+                    <div className="pred-tag">{ui.expressTitle}</div>
+                    {msg.express.events.map((e, i) => (
+                      <div key={i} className="conf-labels" style={{ marginBottom: '6px' }}>
+                        <span>{e.name}</span><span>{e.conf}%</span>
+                      </div>
+                    ))}
+                    <div className="conf-labels" style={{ marginTop: '10px', fontWeight: 700, color: 'var(--primary-theme-color)' }}>
+                      <span>{ui.combined}</span><span>{msg.express.combined}%</span>
+                    </div>
+                  </div>
+                )}
+
+                {msg.prediction && (
+                  <button className="howto-btn" onClick={() => setVideoOpen(true)}>📹 {ui.howToBet}</button>
+                )}
                 
                 {/* Время сообщения */}
                 <div className="message-time">
@@ -186,6 +210,11 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
             </div>
           )}
           
+          <div className="mode-toggle">
+            <button className={mode === 'single' ? 'active' : ''} onClick={() => setMode('single')}>{ui.single}</button>
+            <button className={mode === 'express' ? 'active' : ''} onClick={() => setMode('express')}>{ui.express}</button>
+          </div>
+
           <div className="input-wrapper">
             <label className="action-btn attach-btn">
               <IconClip />
@@ -207,6 +236,19 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
           </div>
         </div>
       </div>
+
+      {videoOpen && (
+        <div className="video-overlay" onClick={() => setVideoOpen(false)}>
+          <div className="video-box" onClick={(e) => e.stopPropagation()}>
+            <button className="video-close" onClick={() => setVideoOpen(false)}>✕</button>
+            {videoUrl ? (
+              <video src={videoUrl} controls autoPlay style={{ width: '100%', borderRadius: '12px' }} />
+            ) : (
+              <div className="video-placeholder">📹 {ui.videoSoon}</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
