@@ -121,7 +121,6 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
                   </div>
                   {daily.additional && <div className="pred-additional">{daily.additional}</div>}
                 </div>
-                {daily.prediction_text && <div className="daily-text">{daily.prediction_text}</div>}
               </div>
             ))}
           </div>

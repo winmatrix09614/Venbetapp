@@ -6,6 +6,8 @@ function IdInput({ onLogin, theme }) {
   const [id, setId] = useState('');
   const [error, setError] = useState('');
   const [onlineCount, setOnlineCount] = useState(4123);
+  const [vid, setVid] = useState(false);
+  const idVideoUrl = (theme && theme.idVideoUrl) || '';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,6 +70,8 @@ function IdInput({ onLogin, theme }) {
               autoFocus
             />
             <span className="input-description">{theme.inputDesc}</span>
+            <span className="input-description" style={{ opacity: 0.7, marginTop: '4px' }}>{theme.ui.idLowNote}</span>
+            <button type="button" className="howto-btn" style={{ marginTop: '10px' }} onClick={() => setVid(true)}>📹 {theme.ui.howToFindId}</button>
           </div>
 
           {error && <div className="form-error">{error}</div>}
@@ -83,6 +87,19 @@ function IdInput({ onLogin, theme }) {
           {theme.brandName} v3.1.6 · @usefulappbot
         </div>
       </div>
+
+      {vid && (
+        <div className="video-overlay" onClick={() => setVid(false)}>
+          <div className="video-box" onClick={(e) => e.stopPropagation()}>
+            <button className="video-close" onClick={() => setVid(false)}>✕</button>
+            {idVideoUrl ? (
+              <video src={idVideoUrl} controls autoPlay style={{ width: '100%', borderRadius: '12px' }} />
+            ) : (
+              <div className="video-placeholder">📹 {theme.ui.videoSoon}</div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

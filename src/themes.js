@@ -39,7 +39,7 @@ export const THEMES = {
       newsRead: 'Читать →', newsUnavailable: 'Новости временно недоступны', newsTryLater: 'Попробуйте позже',
       loading: 'Загрузка приложения...',
       statOnline: 'Online', idError: 'Неверный ID',
-      single: 'Одиночный', express: 'Экспресс', expressTitle: 'ЭКСПРЕСС', combined: 'Суммарная уверенность', howToBet: 'Как поставить ставку', videoSoon: 'Обучающее видео скоро появится', statsCapper: 'Статистика прогнозов', predictionsWord: 'прогнозов', accuracyWord: 'точность', per7d: 'за 7 дней', dailyTitle: 'Прогноз дня', dailyDesc: 'Бесплатный сигнал', dailyEmpty: 'Прогноз дня пока не задан', sportFootball: 'Футбол', sportBasketball: 'Баскетбол'
+      single: 'Одиночный', express: 'Экспресс', expressTitle: 'ЭКСПРЕСС', combined: 'Суммарная уверенность', howToBet: 'Как поставить ставку', videoSoon: 'Обучающее видео скоро появится', statsCapper: 'Статистика прогнозов', predictionsWord: 'прогнозов', accuracyWord: 'точность', per7d: 'за 7 дней', dailyTitle: 'Прогноз дня', dailyDesc: 'Бесплатный сигнал', dailyEmpty: 'Прогноз дня пока не задан', sportFootball: 'Футбол', sportBasketball: 'Баскетбол', idLowNote: 'ID ниже 168 — старый аккаунт, точность прогнозов может быть ниже.', howToFindId: 'Где взять ID?'
     }
   },
   latam: {
@@ -77,7 +77,7 @@ export const THEMES = {
       newsRead: 'Leer →', newsUnavailable: 'Noticias no disponibles temporalmente', newsTryLater: 'Inténtalo más tarde',
       loading: 'Cargando aplicación...',
       statOnline: 'En línea', idError: 'ID inválido',
-      single: 'Individual', express: 'Expreso', expressTitle: 'EXPRESO', combined: 'Confianza combinada', howToBet: 'Cómo hacer una apuesta', videoSoon: 'El video tutorial estará disponible pronto', statsCapper: 'Estadísticas de pronósticos', predictionsWord: 'pronósticos', accuracyWord: 'precisión', per7d: 'en 7 días', dailyTitle: 'Pronóstico del día', dailyDesc: 'Señal gratuita', dailyEmpty: 'Aún no disponible', sportFootball: 'Fútbol', sportBasketball: 'Baloncesto'
+      single: 'Individual', express: 'Expreso', expressTitle: 'EXPRESO', combined: 'Confianza combinada', howToBet: 'Cómo hacer una apuesta', videoSoon: 'El video tutorial estará disponible pronto', statsCapper: 'Estadísticas de pronósticos', predictionsWord: 'pronósticos', accuracyWord: 'precisión', per7d: 'en 7 días', dailyTitle: 'Pronóstico del día', dailyDesc: 'Señal gratuita', dailyEmpty: 'Aún no disponible', sportFootball: 'Fútbol', sportBasketball: 'Baloncesto', idLowNote: 'ID inferior a 168 — cuenta antigua, la precisión puede ser menor.', howToFindId: '¿Dónde está mi ID?'
     }
   },
   arabic: {
@@ -115,7 +115,7 @@ export const THEMES = {
       newsRead: 'اقرأ ←', newsUnavailable: 'الأخبار غير متوفرة مؤقتًا', newsTryLater: 'حاول لاحقًا',
       loading: 'جارٍ تحميل التطبيق...',
       statOnline: 'متصل', idError: 'معرف غير صالح',
-      single: 'فردي', express: 'إكسبريس', expressTitle: 'إكسبريس', combined: 'الثقة المجمعة', howToBet: 'كيف تضع الرهان', videoSoon: 'الفيديو التعليمي قريبًا', statsCapper: 'إحصائيات التوقعات', predictionsWord: 'توقعات', accuracyWord: 'دقة', per7d: 'خلال 7 أيام', dailyTitle: 'توقع اليوم', dailyDesc: 'إشارة مجانية', dailyEmpty: 'غير متاح بعد', sportFootball: 'كرة القدم', sportBasketball: 'كرة السلة'
+      single: 'فردي', express: 'إكسبريس', expressTitle: 'إكسبريس', combined: 'الثقة المجمعة', howToBet: 'كيف تضع الرهان', videoSoon: 'الفيديو التعليمي قريبًا', statsCapper: 'إحصائيات التوقعات', predictionsWord: 'توقعات', accuracyWord: 'دقة', per7d: 'خلال 7 أيام', dailyTitle: 'توقع اليوم', dailyDesc: 'إشارة مجانية', dailyEmpty: 'غير متاح بعد', sportFootball: 'كرة القدم', sportBasketball: 'كرة السلة', idLowNote: 'المعرف أقل من 168 — حساب قديم، قد تكون الدقة أقل.', howToFindId: 'أين أجد المعرف؟'
     }
   }
 };
