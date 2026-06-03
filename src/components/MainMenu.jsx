@@ -99,7 +99,14 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
           <div className="daily-box" onClick={(e) => e.stopPropagation()}>
             <button className="daily-close" onClick={() => setDailyOpen(false)}>✕</button>
             <div className="daily-head"><IconStar /> {ui.dailyTitle}</div>
-            {dailyLoading && <div className="daily-loading">…</div>}
+            {dailyLoading && (
+              <div className="skeleton-card" style={{ marginTop: '12px' }}>
+                <div className="skel-tag shimmer"></div>
+                <div className="skel-title shimmer"></div>
+                <div className="skel-bar shimmer"></div>
+                <div className="skel-text shimmer"></div>
+              </div>
+            )}
             {!dailyLoading && daily && (daily.error ? (
               <div className="daily-empty">{ui.dailyEmpty}</div>
             ) : (
