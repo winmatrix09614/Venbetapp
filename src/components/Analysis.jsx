@@ -19,6 +19,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const [photoPreview, setPhotoPreview] = useState(null);
   const fileInputRef = useRef();
   const [mode, setMode] = useState('single');
+  const [sport, setSport] = useState('football');
   const [videoOpen, setVideoOpen] = useState(false);
   const videoUrl = (theme && theme.videoUrl) || '';
 
@@ -69,6 +70,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       if (text) formData.append('text', text);
       formData.append('lang', lang);
       formData.append('mode', mode);
+      formData.append('sport', sport);
       if (file) formData.append('photo', file);
       
       const response = await axios.post(`${API_BASE}/webapp/predict`, formData);
@@ -210,6 +212,10 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
             </div>
           )}
           
+          <div className="mode-toggle">
+            <button className={sport === 'football' ? 'active' : ''} onClick={() => setSport('football')}>⚽ {ui.sportFootball}</button>
+            <button className={sport === 'basketball' ? 'active' : ''} onClick={() => setSport('basketball')}>🏀 {ui.sportBasketball}</button>
+          </div>
           <div className="mode-toggle">
             <button className={mode === 'single' ? 'active' : ''} onClick={() => setMode('single')}>{ui.single}</button>
             <button className={mode === 'express' ? 'active' : ''} onClick={() => setMode('express')}>{ui.express}</button>
