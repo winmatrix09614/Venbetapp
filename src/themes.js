@@ -42,7 +42,7 @@ export const THEMES = {
       statsCapper: 'Статистика прогнозов', predictionsWord: 'прогнозов', accuracyWord: 'точность', per7d: 'за 7 дней',
       dailyTitle: 'Прогноз дня', dailyDesc: 'Бесплатный сигнал', dailyEmpty: 'Прогноз дня пока не задан',
       sportFootball: 'Футбол', sportBasketball: 'Баскетбол',
-      idLowNote: 'ID ниже 168 — старый аккаунт, точность прогнозов может быть ниже.', howToFindId: 'Где взять ID?'
+      idLowNote: 'ID ниже 168 — старый аккаунт, точность прогнозов может быть ниже.', howToFindId: 'Где взять ID?', singleNote: 'Это одиночная ставка — рекомендуем ставить отдельно.', expressNote: 'Готовый экспресс — ставьте его целиком, как составлен.', disclaimer: 'Это AI-аналитика, а не гарантия. Решение о ставке принимаете вы.'
     }
   },
 
@@ -84,7 +84,7 @@ export const THEMES = {
       statsCapper: 'Estadísticas de pronósticos', predictionsWord: 'pronósticos', accuracyWord: 'precisión', per7d: 'en 7 días',
       dailyTitle: 'Pronóstico del día', dailyDesc: 'Señal gratuita', dailyEmpty: 'Aún no disponible',
       sportFootball: 'Fútbol', sportBasketball: 'Baloncesto',
-      idLowNote: 'ID inferior a 168 — cuenta antigua, la precisión puede ser menor.', howToFindId: '¿Dónde está mi ID?'
+      idLowNote: 'ID inferior a 168 — cuenta antigua, la precisión puede ser menor.', howToFindId: '¿Dónde está mi ID?', singleNote: 'Es una apuesta simple — recomendamos apostarla por separado.', expressNote: 'Combinada lista — apuéstala completa, tal como está.', disclaimer: 'Esto es análisis de IA, no una garantía. La decisión de apostar es tuya.'
     }
   },
 
@@ -126,7 +126,7 @@ export const THEMES = {
       statsCapper: 'Estatísticas de palpites', predictionsWord: 'palpites', accuracyWord: 'precisão', per7d: 'em 7 dias',
       dailyTitle: 'Palpite do dia', dailyDesc: 'Sinal gratuito', dailyEmpty: 'Ainda não disponível',
       sportFootball: 'Futebol', sportBasketball: 'Basquete',
-      idLowNote: 'ID inferior a 168 — conta antiga, a precisão pode ser menor.', howToFindId: 'Onde está meu ID?'
+      idLowNote: 'ID inferior a 168 — conta antiga, a precisão pode ser menor.', howToFindId: 'Onde está meu ID?', singleNote: 'É uma aposta simples — recomendamos apostá-la separadamente.', expressNote: 'Múltipla pronta — aposte-a inteira, como está montada.', disclaimer: 'Isto é análise de IA, não uma garantia. A decisão de apostar é sua.'
     }
   },
 
@@ -168,7 +168,7 @@ export const THEMES = {
       statsCapper: 'Statistiques des pronostics', predictionsWord: 'pronostics', accuracyWord: 'précision', per7d: 'sur 7 jours',
       dailyTitle: 'Pronostic du jour', dailyDesc: 'Signal gratuit', dailyEmpty: 'Pas encore disponible',
       sportFootball: 'Football', sportBasketball: 'Basket',
-      idLowNote: 'ID inférieur à 168 — ancien compte, la précision peut être moindre.', howToFindId: 'Où trouver mon ID ?'
+      idLowNote: 'ID inférieur à 168 — ancien compte, la précision peut être moindre.', howToFindId: 'Où trouver mon ID ?', singleNote: 'C’est un pari simple — nous recommandons de le jouer séparément.', expressNote: 'Combiné prêt — jouez-le en entier, tel quel.', disclaimer: 'Ceci est une analyse IA, pas une garantie. La décision de parier vous appartient.'
     }
   },
 
@@ -210,7 +210,7 @@ export const THEMES = {
       statsCapper: 'Tahmin istatistikleri', predictionsWord: 'tahmin', accuracyWord: 'isabet', per7d: '7 günde',
       dailyTitle: 'Günün tahmini', dailyDesc: 'Ücretsiz sinyal', dailyEmpty: 'Henüz mevcut değil',
       sportFootball: 'Futbol', sportBasketball: 'Basketbol',
-      idLowNote: 'ID 168’in altında — eski hesap, isabet oranı düşük olabilir.', howToFindId: 'ID nerede?'
+      idLowNote: 'ID 168’in altında — eski hesap, isabet oranı düşük olabilir.', howToFindId: 'ID nerede?', singleNote: 'Bu tekli bahis — ayrı oynamanızı öneririz.', expressNote: 'Hazır kombine — olduğu gibi bütün halinde oynayın.', disclaimer: 'Bu bir yapay zekâ analizidir, garanti değildir. Bahis kararı size aittir.'
     }
   },
 
@@ -252,7 +252,7 @@ export const THEMES = {
       statsCapper: 'Proqnoz statistikası', predictionsWord: 'proqnoz', accuracyWord: 'dəqiqlik', per7d: '7 gündə',
       dailyTitle: 'Günün proqnozu', dailyDesc: 'Pulsuz siqnal', dailyEmpty: 'Hələ mövcud deyil',
       sportFootball: 'Futbol', sportBasketball: 'Basketbol',
-      idLowNote: 'ID 168-dən aşağıdır — köhnə hesab, dəqiqlik aşağı ola bilər.', howToFindId: 'ID haradadır?'
+      idLowNote: 'ID 168-dən aşağıdır — köhnə hesab, dəqiqlik aşağı ola bilər.', howToFindId: 'ID haradadır?', singleNote: 'Bu tək mərcdir — ayrıca oynamağı tövsiyə edirik.', expressNote: 'Hazır ekspress — olduğu kimi bütöv oynayın.', disclaimer: 'Bu süni intellekt təhlilidir, zəmanət deyil. Mərc qərarı sizindir.'
     }
   }
 };

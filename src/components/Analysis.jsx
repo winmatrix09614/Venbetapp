@@ -90,6 +90,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         additional: data.additional,
         express: data.express,
         mode: data.mode,
+        disclaimer: data.disclaimer,
         timestamp: new Date(),
       };
       
@@ -157,6 +158,9 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     {msg.additional && (
                       <div className="pred-additional">{msg.additional}</div>
                     )}
+                    {(!msg.express) && (
+                      <div className="pred-mode-note">{ui.singleNote}</div>
+                    )}
                   </div>
                 )}
 
@@ -171,7 +175,12 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     <div className="conf-labels" style={{ marginTop: '10px', fontWeight: 700, color: 'var(--primary-theme-color)' }}>
                       <span>{ui.combined}</span><span>{msg.express.combined}%</span>
                     </div>
+                    <div className="pred-mode-note">{ui.expressNote}</div>
                   </div>
+                )}
+
+                {msg.prediction && (msg.disclaimer || ui.disclaimer) && (
+                  <div className="pred-disclaimer">⚠️ {msg.disclaimer || ui.disclaimer}</div>
                 )}
 
                 {msg.prediction && (
