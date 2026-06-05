@@ -11,9 +11,8 @@ function News({ onBack, theme }) {
   const [error, setError] = useState(false);
 
   // Тема → язык запроса новостей и локаль дат
-  const themeId = (theme && theme.id) || 'default';
-  const lang = themeId === 'arabic' ? 'ar' : themeId === 'latam' ? 'es' : 'ru';
-  const locale = lang === 'ar' ? 'ar-EG' : lang === 'es' ? 'es-ES' : 'ru-RU';
+  const lang = (theme && theme.lang) || 'ru';
+  const locale = (theme && theme.locale) || 'ru-RU';
   const ui = (theme && theme.ui) || {};
   const title = (theme && theme.menu && theme.menu.newsTitle) || 'СВОДКА';
 

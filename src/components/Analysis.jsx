@@ -11,7 +11,7 @@ const IconClose = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentCol
 
 function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const ui = theme.ui;
-  const lang = theme.id === 'arabic' ? 'ar' : theme.id === 'latam' ? 'es' : 'ru';
+  const lang = theme.lang || 'ru';
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);

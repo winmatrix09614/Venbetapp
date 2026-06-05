@@ -33,7 +33,7 @@ const theme = getTheme(sourceParam, languageCode)
 
 const root = document.documentElement
 root.setAttribute('dir', theme.dir)
-root.setAttribute('lang', theme.id === 'arabic' ? 'ar' : theme.id === 'latam' ? 'es' : 'ru')
+root.setAttribute('lang', theme.lang || 'ru')
 root.style.setProperty('--primary-theme-color', theme.primaryColor)
 document.title = theme.brandName
 

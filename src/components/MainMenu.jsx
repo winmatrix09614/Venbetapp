@@ -12,7 +12,7 @@ const IconStar = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColo
 
 function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
   const ui = theme.ui;
-  const lang = theme.id === 'arabic' ? 'ar' : theme.id === 'latam' ? 'es' : 'ru';
+  const lang = theme.lang || 'ru';
   const openManager = () => window.open('https://t.me/Gggrymka', '_blank');
 
   const [stats, setStats] = useState(null);

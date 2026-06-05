@@ -29,7 +29,7 @@ function History({ userId, onBack, theme }) {
   // Функция для красивого форматирования даты (ДД.ММ.ГГГГ, ЧЧ:ММ)
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const loc = theme.id === 'arabic' ? 'ar-EG' : theme.id === 'latam' ? 'es-ES' : 'ru-RU';
+    const loc = theme.locale || 'ru-RU';
     return date.toLocaleDateString(loc, {
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit'
