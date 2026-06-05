@@ -179,10 +179,6 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                   </div>
                 )}
 
-                {msg.prediction && (msg.disclaimer || ui.disclaimer) && (
-                  <div className="pred-disclaimer">⚠️ {msg.disclaimer || ui.disclaimer}</div>
-                )}
-
                 {msg.prediction && (
                   <button className="howto-btn" onClick={() => setVideoOpen(true)}>📹 {ui.howToBet}</button>
                 )}
