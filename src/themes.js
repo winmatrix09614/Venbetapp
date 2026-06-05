@@ -7,7 +7,7 @@ export const THEMES = {
   // ===== Русский (демо/тест) =====
   default: {
     id: 'default', lang: 'ru', locale: 'ru-RU', dir: 'ltr',
-    brandName: '727 AI · RU',
+    brandName: 'VenBet AI',
     subtitle: 'Нейросеть для анализа спорта',
     inputLabel: 'Ваш ID 1xBet',
     inputPlaceholder: 'Например: 10000000',
@@ -49,7 +49,7 @@ export const THEMES = {
   // ===== Español =====
   es: {
     id: 'es', lang: 'es', locale: 'es-ES', dir: 'ltr',
-    brandName: '727 AI · ES',
+    brandName: 'VenBet AI',
     subtitle: 'Inteligencia Artificial Deportiva',
     inputLabel: 'Tu ID de 1xBet',
     inputPlaceholder: 'Ejemplo: 10000000',
@@ -91,7 +91,7 @@ export const THEMES = {
   // ===== Português =====
   pt: {
     id: 'pt', lang: 'pt', locale: 'pt-BR', dir: 'ltr',
-    brandName: '727 AI · PT',
+    brandName: 'PortuBet AI',
     subtitle: 'Inteligência Artificial Esportiva',
     inputLabel: 'Seu ID da 1xBet',
     inputPlaceholder: 'Exemplo: 10000000',
@@ -133,7 +133,7 @@ export const THEMES = {
   // ===== Français =====
   fr: {
     id: 'fr', lang: 'fr', locale: 'fr-FR', dir: 'ltr',
-    brandName: '727 AI · FR',
+    brandName: 'FranBet AI',
     subtitle: 'Intelligence Artificielle Sportive',
     inputLabel: 'Votre ID 1xBet',
     inputPlaceholder: 'Exemple : 10000000',
@@ -175,7 +175,7 @@ export const THEMES = {
   // ===== Türkçe =====
   tr: {
     id: 'tr', lang: 'tr', locale: 'tr-TR', dir: 'ltr',
-    brandName: '727 AI · TR',
+    brandName: 'TurBet AI',
     subtitle: 'Spor Analizi için Yapay Zekâ',
     inputLabel: '1xBet ID’niz',
     inputPlaceholder: 'Örnek: 10000000',
@@ -217,7 +217,7 @@ export const THEMES = {
   // ===== Azərbaycan =====
   az: {
     id: 'az', lang: 'az', locale: 'az-AZ', dir: 'ltr',
-    brandName: '727 AI · AZ',
+    brandName: 'AzBet AI',
     subtitle: 'İdman təhlili üçün Süni İntellekt',
     inputLabel: '1xBet ID-niz',
     inputPlaceholder: 'Məsələn: 10000000',
