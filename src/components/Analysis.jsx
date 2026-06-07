@@ -155,7 +155,12 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     <div style={{ textAlign: 'center', margin: '14px 0' }}>
                       <div style={{ fontSize: '12px', opacity: 0.6 }}>{msg.played.played_result_label}</div>
                       <div style={{ fontSize: '34px', fontWeight: 800, letterSpacing: '2px' }}>{msg.played.score}</div>
-                      {msg.played.date && <div style={{ fontSize: '12px', opacity: 0.5 }}>{msg.played.date}</div>}
+                      {msg.played.winner_name && msg.played.match_note && (
+                        <div style={{ fontSize: '13px', color: '#FF8C00', fontWeight: 700, marginTop: '2px' }}>
+                          {msg.played.winner_name} — {msg.played.match_note}
+                        </div>
+                      )}
+                      {msg.played.date && <div style={{ fontSize: '12px', opacity: 0.5, marginTop: '2px' }}>{msg.played.date}</div>}
                     </div>
                     <div className="pred-additional" style={{ opacity: 0.75 }}>{msg.played.note}</div>
                   </div>
