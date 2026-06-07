@@ -81,7 +81,18 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         setLoading(false);
         return;
       }
-      
+
+      // Матч уже сыгран — показываем результат, попытку НЕ списываем
+      if (data.already_played) {
+        setMessages((prev) => [...prev, {
+          id: Date.now(), type: 'bot', played: data, timestamp: new Date(),
+        }]);
+        setLoading(false);
+        removePhoto();
+        setInputText('');
+        return;
+      }
+
       const botMsg = {
         id: Date.now(),
         type: 'bot',
@@ -136,20 +147,41 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                   </div>
                 )}
 
+                {/* Карточка «матч уже сыгран» — результат, попытка не списана */}
+                {msg.played && (
+                  <div className="bento-prediction" style={{ marginTop: msg.text ? '12px' : '0' }}>
+                    <div className="pred-tag">{msg.played.played_title}</div>
+                    <div className="pred-winner" style={{ fontSize: '15px', opacity: 0.85 }}>{msg.played.match}</div>
+                    <div style={{ textAlign: 'center', margin: '14px 0' }}>
+                      <div style={{ fontSize: '12px', opacity: 0.6 }}>{msg.played.played_result_label}</div>
+                      <div style={{ fontSize: '34px', fontWeight: 800, letterSpacing: '2px' }}>{msg.played.score}</div>
+                      {msg.played.date && <div style={{ fontSize: '12px', opacity: 0.5 }}>{msg.played.date}</div>}
+                    </div>
+                    <div className="pred-additional" style={{ opacity: 0.75 }}>{msg.played.note}</div>
+                  </div>
+                )}
+
                 {/* Карточка прогноза (рисуется под текстом, если пришла от ИИ) */}
                 {msg.prediction && (
                   <div className="bento-prediction" style={{ marginTop: msg.text ? '12px' : '0' }}>
                     <div className="pred-tag">{ui.verdictTag}</div>
                     <div className="pred-winner">{msg.prediction.winner}</div>
-                    
+
+                    {/* Базовая оценка от данных → наш итоговый % (эффект усиления) */}
+                    {msg.prediction.base_confidence != null && (
+                      <div className="pred-base-conf" style={{ fontSize: '12px', opacity: 0.6, marginBottom: '4px' }}>
+                        {ui.baseConf || 'Базовая оценка'}: {msg.prediction.base_confidence}% → <b style={{ opacity: 1 }}>AI: {msg.prediction.confidence}%</b>
+                      </div>
+                    )}
+
                     <div className="pred-confidence">
                       <div className="conf-labels">
                         <span>{ui.confidence}</span>
                         <span>{msg.prediction.confidence}%</span>
                       </div>
                       <div className="conf-bar-bg">
-                        <div 
-                          className="conf-bar-fill" 
+                        <div
+                          className="conf-bar-fill"
                           style={{ width: `${msg.prediction.confidence}%` }}
                         ></div>
                       </div>
