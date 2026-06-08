@@ -43,14 +43,26 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
       <Header title={theme.brandName} userId={userId} attempts={attempts} onBack={onLogout} theme={theme} />
 
       {stats && (
-        <div className="capper-stats">
-          <span className="cs-label">{ui.statsCapper}</span>
-          <span className="cs-val">{stats.count} {ui.predictionsWord}</span>
-          <span className="cs-dot">·</span>
-          <span className="cs-acc">~{stats.winrate}% {ui.accuracyWord}</span>
-          <span className="cs-period">{ui.per7d}</span>
+        <div className="metric-row">
+          <div className="metric-card">
+            <div className="metric-label">{ui.accuracyWord} · {ui.per7d}</div>
+            <div className="metric-value metric-acc">~{stats.winrate}%</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-label">{ui.predictionsWord}</div>
+            <div className="metric-value">{stats.count}</div>
+          </div>
         </div>
       )}
+
+      <div className="promo-banner" onClick={() => onNavigate('analysis')}>
+        <div className="promo-icon"><IconPulse /></div>
+        <div className="promo-text">
+          <div className="promo-title">{ui.promoTitle || 'Сделай свой AI-прогноз'}</div>
+          <div className="promo-sub">{ui.promoSub || 'Узнай, кто победит — за секунды'}</div>
+        </div>
+        <div className="promo-btn">{ui.promoBtn || 'Начать'}</div>
+      </div>
 
       <div className="bento-grid">
         <div className="bento-card primary-card" onClick={() => onNavigate('analysis')} style={{ borderColor: 'var(--primary-theme-color)' }}>
@@ -111,7 +123,17 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
               <div className="daily-empty">{ui.dailyEmpty}</div>
             ) : (
               <div>
-                <div className="daily-match">{daily.match}</div>
+                <div className="daily-teams">
+                  <div className="daily-team">
+                    {daily.logo1 ? <img src={daily.logo1} alt="" className="daily-logo" /> : <div className="daily-logo-ph" />}
+                    <span className="daily-team-name">{daily.team1 || ''}</span>
+                  </div>
+                  <span className="daily-vs">VS</span>
+                  <div className="daily-team">
+                    {daily.logo2 ? <img src={daily.logo2} alt="" className="daily-logo" /> : <div className="daily-logo-ph" />}
+                    <span className="daily-team-name">{daily.team2 || ''}</span>
+                  </div>
+                </div>
                 <div className="bento-prediction" style={{ marginTop: '12px' }}>
                   <div className="pred-tag">{ui.verdictTag}</div>
                   <div className="pred-winner">{daily.prediction.winner}</div>

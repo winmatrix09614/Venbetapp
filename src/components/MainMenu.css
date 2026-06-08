@@ -145,3 +145,107 @@
 .daily-match { font-size: 15px; font-weight: 600; color: #fff; }
 .daily-text { margin-top: 12px; font-size: 13.5px; line-height: 1.6; color: #d0d0d5; }
 .daily-empty, .daily-loading { padding: 30px 10px; text-align: center; color: #9a9aa0; }
+
+/* === Визуальный апгрейд: метрики + промо-баннер === */
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+.metric-card {
+  background: linear-gradient(135deg, #13161b, #0e1116);
+  border: 0.5px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.metric-label {
+  font-size: 11px;
+  color: #6b7178;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 3px;
+}
+.metric-value.metric-acc { color: #34d27b; }
+
+.promo-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #1c1407, #120d05);
+  border: 0.5px solid rgba(255,140,0,0.3);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.promo-banner:active { transform: scale(0.98); }
+.promo-icon {
+  width: 40px; height: 40px; flex: 0 0 40px;
+  border-radius: 10px;
+  background: rgba(255,140,0,0.15);
+  color: var(--primary-theme-color);
+  display: flex; align-items: center; justify-content: center;
+}
+.promo-icon svg { width: 22px; height: 22px; }
+.promo-text { flex: 1; }
+.promo-title { font-size: 14px; font-weight: 600; color: #fff; }
+.promo-sub { font-size: 12px; color: #9aa0a8; margin-top: 2px; }
+.promo-btn {
+  background: var(--primary-theme-color);
+  color: #0B0D10;
+  font-size: 13px; font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+/* === Ставка дня: команды с логотипами === */
+.daily-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  background: linear-gradient(135deg, #15202e, #0e1620);
+  border: 0.5px solid rgba(80,140,220,0.18);
+  border-radius: 14px;
+  padding: 16px 12px;
+  margin-top: 4px;
+}
+.daily-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.daily-logo, .daily-logo-ph {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.daily-logo-ph { background: rgba(255,255,255,0.06); }
+.daily-team-name {
+  font-size: 12px;
+  color: #cfd3d8;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.daily-vs {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b7178;
+  flex: 0 0 auto;
+}

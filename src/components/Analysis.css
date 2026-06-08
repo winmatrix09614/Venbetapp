@@ -316,3 +316,19 @@
   border-radius: 8px;
   padding: 8px 10px;
 }
+
+/* === Визуальный апгрейд карточки прогноза === */
+.bento-prediction {
+  border-color: rgba(255,140,0,0.35);
+  box-shadow: 0 8px 32px rgba(255,140,0,0.07);
+}
+.pred-tag { color: #ff8c00; }
+.conf-bar-fill { background: linear-gradient(90deg, #ff8c00, #ffb347); }
+
+/* Базовая оценка → AI (эффект усиления) */
+.pred-base-conf {
+  font-size: 12px;
+  color: #8a9098;
+  margin-bottom: 8px;
+}
+.pred-base-conf b { color: #ff8c00; }
