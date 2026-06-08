@@ -281,3 +281,18 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+/* === Разгон сжатости: поднять контент выше + воздух между блоками === */
+.id-screen {
+  justify-content: flex-start;   /* контент идёт сверху, не распирается по краям */
+  gap: 18px;
+}
+.top-section { margin-top: 2vh; }   /* чуть выше */
+.center-section {
+  margin: 0;                        /* убираем авто-центрирование (прижимало блоки) */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;                        /* воздух между метриками / шагами / лентой */
+}
+.center-section .hiw-label { margin-top: 4px; }  /* лёгкий отступ заголовков */
+.bottom-section { margin-top: auto; margin-bottom: 2vh; }  /* блок ID прижат к низу, но с воздухом */
