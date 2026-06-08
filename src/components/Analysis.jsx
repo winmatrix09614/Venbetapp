@@ -254,10 +254,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
             </div>
           )}
           
-          <div className="mode-toggle">
-            <button className={sport === 'football' ? 'active' : ''} onClick={() => setSport('football')}>⚽ {ui.sportFootball}</button>
-            <button className={sport === 'basketball' ? 'active' : ''} onClick={() => setSport('basketball')}>🏀 {ui.sportBasketball}</button>
-          </div>
+          {/* Выбор спорта убран — фокус только на футболе. sport='football' по умолчанию. */}
           <div className="mode-toggle">
             <button className={mode === 'single' ? 'active' : ''} onClick={() => setMode('single')}>{ui.single}</button>
             <button className={mode === 'express' ? 'active' : ''} onClick={() => setMode('express')}>{ui.express}</button>
