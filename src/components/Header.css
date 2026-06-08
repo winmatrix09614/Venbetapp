@@ -58,7 +58,7 @@
 .header-title {
   font-size: 22px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ff6b35, #ffb347);
+  background: linear-gradient(135deg, var(--primary-theme-color), var(--primary-theme-light));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

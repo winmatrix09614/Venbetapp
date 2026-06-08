@@ -172,7 +172,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                       <div style={{ fontSize: '12px', opacity: 0.6 }}>{msg.played.played_result_label}</div>
                       <div style={{ fontSize: '34px', fontWeight: 800, letterSpacing: '2px' }}>{msg.played.score}</div>
                       {msg.played.winner_name && msg.played.match_note && (
-                        <div style={{ fontSize: '13px', color: '#FF8C00', fontWeight: 700, marginTop: '2px' }}>
+                        <div style={{ fontSize: '13px', color: 'var(--primary-theme-color)', fontWeight: 700, marginTop: '2px' }}>
                           {msg.played.winner_name} — {msg.played.match_note}
                         </div>
                       )}

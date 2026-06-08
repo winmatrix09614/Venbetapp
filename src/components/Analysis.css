@@ -95,7 +95,7 @@
 .pred-tag {
   font-size: 10px;
   font-weight: 700;
-  color: #ff6b35;
+  color: var(--primary-theme-color);
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
@@ -135,7 +135,7 @@
 
 .conf-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff6b35, #ffb347);
+  background: linear-gradient(90deg, var(--primary-theme-color), var(--primary-theme-light));
   border-radius: 4px;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -267,7 +267,7 @@
 
 .send-btn.active {
   background: rgba(255, 107, 53, 0.15);
-  color: #ff6b35;
+  color: var(--primary-theme-color);
 }
 .send-btn.active:active { transform: scale(0.9); }
 /* --- Режим прогноза, видео-обучение --- */
@@ -322,8 +322,8 @@
   border-color: rgba(255,140,0,0.35);
   box-shadow: 0 8px 32px rgba(255,140,0,0.07);
 }
-.pred-tag { color: #ff8c00; }
-.conf-bar-fill { background: linear-gradient(90deg, #ff8c00, #ffb347); }
+.pred-tag { color: var(--primary-theme-color); }
+.conf-bar-fill { background: linear-gradient(90deg, var(--primary-theme-color), var(--primary-theme-light)); }
 
 /* Базовая оценка → AI (эффект усиления) */
 .pred-base-conf {
@@ -331,7 +331,7 @@
   color: #8a9098;
   margin-bottom: 8px;
 }
-.pred-base-conf b { color: #ff8c00; }
+.pred-base-conf b { color: var(--primary-theme-color); }
 
 /* === Глубокий тёмный фон экрана прогноза + логотипы команд === */
 .analysis-page {
@@ -368,7 +368,7 @@
 }
 .send-btn.active {
   background: rgba(255,140,0,0.18);
-  color: #ff8c00;
+  color: var(--primary-theme-color);
 }
 /* убираем «съезд» иконки самолётика — ровно по центру кнопки */
 .send-btn svg { transform: translateX(1px); }
@@ -382,7 +382,7 @@
   margin-top: 12px;
 }
 .stat-card-title {
-  font-size: 11px; color: #ff8c00; font-weight: 700;
+  font-size: 11px; color: var(--primary-theme-color); font-weight: 700;
   letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
 }
 .stat-row-block { margin-bottom: 14px; }
@@ -405,6 +405,6 @@
 .bp-label { font-size: 11px; color: #9aa0a8; text-align: center; margin-bottom: 4px; }
 .bp-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: rgba(255,255,255,0.06); }
 .bp-fill-l { background: #4da3ff; height: 100%; }
-.bp-fill-r { background: #ff8c00; height: 100%; }
+.bp-fill-r { background: var(--primary-theme-color); height: 100%; }
 
 .stat-h2h { font-size: 13px; color: #cfd3d8; }

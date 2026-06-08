@@ -58,7 +58,7 @@
 
 /* Акцентная иконка (Оранжевая) */
 .active-icon {
-  color: #ff6b35;
+  color: var(--primary-theme-color);
   background: rgba(255, 107, 53, 0.1);
 }
 
