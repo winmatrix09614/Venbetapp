@@ -220,3 +220,64 @@
   font-size: 11px;
   text-align: center;
 }
+/* === Как это работает + лента прогнозов (экран входа) === */
+.hiw-label {
+  font-size: 11px;
+  color: #6b7178;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 18px 4px 8px;
+}
+.hiw-row {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+.hiw-step {
+  flex: 1;
+  background: #101319;
+  border: 0.5px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 12px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.hiw-ic { color: var(--primary-theme-color); }
+.hiw-ic svg { width: 22px; height: 22px; }
+.hiw-step span {
+  font-size: 11px;
+  color: #cfd3d8;
+  line-height: 1.25;
+}
+.hiw-arrow {
+  display: flex;
+  align-items: center;
+  color: #3a3f47;
+  font-size: 18px;
+}
+
+.ticker-wrap {
+  overflow: hidden;
+  background: #101319;
+  border: 0.5px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 10px 0;
+}
+.ticker-track {
+  display: flex;
+  gap: 18px;
+  white-space: nowrap;
+  padding-left: 12px;
+  width: max-content;
+  animation: ticker-scroll 30s linear infinite;
+}
+.ticker-item { font-size: 12px; color: #cfd3d8; }
+.tk-ok { color: #34d27b; }
+.tk-no { color: #e05656; }
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
