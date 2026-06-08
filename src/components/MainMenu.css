@@ -1,8 +1,16 @@
 .main-menu {
-  padding: 0 16px 30px;
+  padding: 0 0 30px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+/* Боковой отступ переносим на контент-блоки, чтобы шапка стояла как на остальных экранах */
+.main-menu > .metric-row,
+.main-menu > .promo-banner,
+.main-menu > .bento-grid {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 /* Модульная сетка Bento Box */

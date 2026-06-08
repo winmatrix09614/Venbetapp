@@ -2,7 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
+  /* Фиксированный единый паддинг — шапка не зависит от паддинга родителя,
+     чтобы стрелка "назад" стояла одинаково на всех экранах. */
+  padding: 12px 16px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
   background: transparent;
   border-bottom: none;
 }
