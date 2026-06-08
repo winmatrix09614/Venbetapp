@@ -53,7 +53,14 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
 
   const sendPrediction = async (text, file = null) => {
     setLoading(true);
-    
+    // Минимальное время "анализа" для эффекта работы AI (даже если ответ из кэша).
+    const _t0 = Date.now();
+    const _minDelay = 3200 + Math.floor(Math.random() * 1800); // 3.2-5.0 сек, с разбросом
+    const _holdMinDelay = async () => {
+      const left = _minDelay - (Date.now() - _t0);
+      if (left > 0) await new Promise(r => setTimeout(r, left));
+    };
+
     const userMsg = {
       id: Date.now(),
       type: 'user',
@@ -75,7 +82,10 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       
       const response = await axios.post(`${API_BASE}/webapp/predict`, formData);
       const data = response.data;
-      
+
+      // Держим "анализ" минимум _minDelay сек, даже если сервер ответил из кэша мгновенно.
+      await _holdMinDelay();
+
       if (data.error) {
         setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: `${ui.errorPrefix}: ${data.error}`, timestamp: new Date() }]);
         setLoading(false);
@@ -115,6 +125,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       
     } catch (err) {
       console.error(err);
+      await _holdMinDelay();
       setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: ui.connError, timestamp: new Date() }]);
     } finally {
       setLoading(false);
