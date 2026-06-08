@@ -102,6 +102,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         team2: data.team2,
         logo1: data.logo1,
         logo2: data.logo2,
+        stats: data.stats,
         additional: data.additional,
         express: data.express,
         mode: data.mode,
@@ -214,6 +215,53 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     )}
                     {(!msg.express) && (
                       <div className="pred-mode-note">{ui.singleNote}</div>
+                    )}
+                  </div>
+                )}
+
+                {msg.stats && (
+                  <div className="stat-card">
+                    <div className="stat-card-title">{ui.statBlockTitle || 'Статистика команд'}</div>
+                    {(msg.stats.form1 || msg.stats.form2) && (
+                      <div className="stat-row-block">
+                        <div className="stat-row-label">{ui.statForm || 'Форма'}</div>
+                        <div className="stat-form-line">
+                          <span className="stat-side">{(msg.stats.form1 || '').split(' ').map((r,i)=>(<span key={i} className={`form-dot fd-${r}`}>{r}</span>))}</span>
+                          <span className="stat-side stat-side-r">{(msg.stats.form2 || '').split(' ').map((r,i)=>(<span key={i} className={`form-dot fd-${r}`}>{r}</span>))}</span>
+                        </div>
+                      </div>
+                    )}
+                    {[
+                      {label: ui.statGoalsFor || 'Голы в среднем', a: msg.stats.gs1, b: msg.stats.gs2},
+                      {label: ui.statGoalsAg || 'Пропускает', a: msg.stats.gc1, b: msg.stats.gc2},
+                      ...(msg.stats.adv1 && msg.stats.adv2 ? [
+                        {label: ui.statPoss || 'Владение %', a: msg.stats.adv1.possession, b: msg.stats.adv2.possession},
+                        {label: ui.statShots || 'Удары', a: msg.stats.adv1.shots, b: msg.stats.adv2.shots},
+                        {label: ui.statShotsOn || 'В створ', a: msg.stats.adv1.shots_on, b: msg.stats.adv2.shots_on},
+                        {label: ui.statCorners || 'Угловые', a: msg.stats.adv1.corners, b: msg.stats.adv2.corners},
+                      ] : [])
+                    ].filter(r => r.a != null && r.b != null).map((r, i) => {
+                      const total = (Number(r.a) + Number(r.b)) || 1;
+                      const pa = Math.round(Number(r.a) / total * 100);
+                      return (
+                        <div className="stat-bipolar" key={i}>
+                          <span className="bp-val">{r.a}</span>
+                          <div className="bp-mid">
+                            <div className="bp-label">{r.label}</div>
+                            <div className="bp-bar">
+                              <div className="bp-fill-l" style={{ width: `${pa}%` }}></div>
+                              <div className="bp-fill-r" style={{ width: `${100-pa}%` }}></div>
+                            </div>
+                          </div>
+                          <span className="bp-val bp-val-r">{r.b}</span>
+                        </div>
+                      );
+                    })}
+                    {msg.stats.h2h_str && (
+                      <div className="stat-row-block">
+                        <div className="stat-row-label">{ui.statH2H || 'Очные встречи'}</div>
+                        <div className="stat-h2h">{msg.stats.h2h_str}</div>
+                      </div>
                     )}
                   </div>
                 )}
