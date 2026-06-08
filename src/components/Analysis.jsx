@@ -98,6 +98,10 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         type: 'bot',
         text: data.prediction_text,
         prediction: data.prediction,
+        team1: data.team1,
+        team2: data.team2,
+        logo1: data.logo1,
+        logo2: data.logo2,
         additional: data.additional,
         express: data.express,
         mode: data.mode,
@@ -169,6 +173,19 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                 {/* Карточка прогноза (рисуется под текстом, если пришла от ИИ) */}
                 {msg.prediction && (
                   <div className="bento-prediction" style={{ marginTop: msg.text ? '12px' : '0' }}>
+                    {(msg.logo1 || msg.logo2 || msg.team1) && (
+                      <div className="daily-teams" style={{ marginBottom: '14px' }}>
+                        <div className="daily-team">
+                          {msg.logo1 ? <img src={msg.logo1} alt="" className="daily-logo" /> : <div className="daily-logo-ph" />}
+                          <span className="daily-team-name">{msg.team1 || ''}</span>
+                        </div>
+                        <span className="daily-vs">VS</span>
+                        <div className="daily-team">
+                          {msg.logo2 ? <img src={msg.logo2} alt="" className="daily-logo" /> : <div className="daily-logo-ph" />}
+                          <span className="daily-team-name">{msg.team2 || ''}</span>
+                        </div>
+                      </div>
+                    )}
                     <div className="pred-tag">{ui.verdictTag}</div>
                     <div className="pred-winner">{msg.prediction.winner}</div>
 

@@ -332,3 +332,31 @@
   margin-bottom: 8px;
 }
 .pred-base-conf b { color: #ff8c00; }
+
+/* === Глубокий тёмный фон экрана прогноза + логотипы команд === */
+.analysis-page {
+  background: linear-gradient(180deg, #0d1016 0%, #07090d 100%);
+}
+.daily-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  background: linear-gradient(135deg, #15202e, #0e1620);
+  border: 0.5px solid rgba(80,140,220,0.18);
+  border-radius: 14px;
+  padding: 14px 12px;
+}
+.daily-team {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  flex: 1; min-width: 0;
+}
+.daily-logo, .daily-logo-ph {
+  width: 44px; height: 44px; object-fit: contain; border-radius: 8px;
+}
+.daily-logo-ph { background: rgba(255,255,255,0.06); }
+.daily-team-name {
+  font-size: 12px; color: #cfd3d8; text-align: center; line-height: 1.2;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.daily-vs { font-size: 13px; font-weight: 700; color: #6b7178; flex: 0 0 auto; }
