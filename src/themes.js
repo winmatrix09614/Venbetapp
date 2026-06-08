@@ -254,6 +254,48 @@ export const THEMES = {
       sportFootball: 'Futbol', sportBasketball: 'Basketbol',
       idLowNote: 'ID 168-dən aşağıdır — köhnə hesab, dəqiqlik aşağı ola bilər.', howToFindId: 'ID haradadır?', singleNote: 'Bu tək mərcdir — ayrıca oynamağı tövsiyə edirik.', expressNote: 'Hazır ekspress — olduğu kimi bütöv oynayın.', disclaimer: 'Bu süni intellekt təhlilidir, zəmanət deyil. Mərc qərarı sizindir.'
     }
+  },
+
+  // ===== English (фоллбэк для неопознанных языков) =====
+  en: {
+    id: 'en', lang: 'en', locale: 'en-US', dir: 'ltr',
+    brandName: 'VenBet AI',
+    subtitle: 'AI Sports Analytics',
+    inputLabel: 'Your 1xBet ID',
+    inputPlaceholder: 'e.g. 10000000',
+    inputDesc: 'Find your ID in the 1xBet app → Profile',
+    btnText: 'Continue',
+    waitingTitle: 'Awaiting confirmation',
+    waitingDesc: 'Your ID was sent to a manager. Please wait for activation.',
+    primaryColor: '#ff8c00', icon: ICON_BOLT,
+    menu: {
+      analysisTitle: 'AI Analysis', analysisDesc: 'Deep match breakdown',
+      historyTitle: 'History', historyDesc: 'Session log',
+      newsTitle: 'Digest', newsDesc: 'Sports news',
+      supportTitle: 'Support', supportDesc: 'Contact a specialist'
+    },
+    ui: {
+      back: 'Back', idLabel: 'ID', attemptsLeft: 'Predictions left',
+      bannedTitle: 'Access blocked', bannedBtn: 'Log out',
+      logoutConfirm: 'Are you sure you want to log out?',
+      analysisTitle: 'AI ANALYSIS',
+      analysisInit: 'System initialized. Upload a match screenshot or enter team names to start the AI analysis.',
+      verdictTag: 'AI VERDICT', confidence: 'Confidence', baseConf: 'Base estimate',
+      inputPlaceholder: 'Teams or screenshot...', errorPrefix: 'Error',
+      connError: 'Server connection error.',
+      historyTitle: 'HISTORY', historyLoading: 'Loading archive...',
+      historyEmpty: 'History is empty', historyEmptySub: 'You haven\'t made any predictions yet',
+      archiveTag: 'ARCHIVE', undefinedResult: 'Undecided', draw: 'Draw',
+      newsMainTag: 'TOP', newsLatestTag: 'Latest news', newsActualTag: 'TRENDING',
+      newsRead: 'Read →', newsUnavailable: 'News temporarily unavailable', newsTryLater: 'Try again later',
+      loading: 'Loading app...', statOnline: 'Online', idError: 'Invalid ID',
+      single: 'Single', express: 'Express', expressTitle: 'EXPRESS', combined: 'Combined confidence',
+      howToBet: 'How to place a bet', videoSoon: 'Tutorial video coming soon',
+      statsCapper: 'Prediction stats', predictionsWord: 'predictions', accuracyWord: 'accuracy', per7d: 'last 7 days',
+      dailyTitle: 'Pick of the day', dailyDesc: 'Free signal', dailyEmpty: 'No pick of the day yet',
+      sportFootball: 'Football', sportBasketball: 'Basketball',
+      idLowNote: 'ID below 168 — old account, prediction accuracy may be lower.', howToFindId: 'Where to find ID?', singleNote: 'This is a single bet — we recommend placing it separately.', expressNote: 'Ready-made express — place it as a whole.', disclaimer: 'This is AI analytics, not a guarantee. The betting decision is yours.'
+    }
   }
 };
 
@@ -283,5 +325,6 @@ export const getThemeByLanguage = (lang) => {
 };
 
 export const getTheme = (source, lang) => {
-  return getThemeBySource(source) || getThemeByLanguage(lang) || THEMES.default;
+  // Фоллбэк для неопознанных языков — английский (русский только для команды/демо).
+  return getThemeBySource(source) || getThemeByLanguage(lang) || THEMES.en;
 };
