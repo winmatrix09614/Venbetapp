@@ -3,7 +3,9 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #07090d;
 }
+html { background: #07090d; }
 /* На ПК/широком экране показываем приложение как «коробку» телефона по центру */
 @media (min-width: 600px) {
   #root {

@@ -360,3 +360,15 @@
   max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .daily-vs { font-size: 13px; font-weight: 700; color: #6b7178; flex: 0 0 auto; }
+
+/* === Фикс: панель ввода под цвет глубокого фона + send-кнопка === */
+.chat-input-area {
+  background: #07090d;                /* совпадает с низом градиента .analysis-page */
+  border-top: 0.5px solid rgba(255,255,255,0.06);
+}
+.send-btn.active {
+  background: rgba(255,140,0,0.18);
+  color: #ff8c00;
+}
+/* убираем «съезд» иконки самолётика — ровно по центру кнопки */
+.send-btn svg { transform: translateX(1px); }
