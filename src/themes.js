@@ -327,6 +327,7 @@ export const getThemeBySource = (source) => {
 export const getThemeByLanguage = (lang) => {
   if (!lang) return null;
   const l = lang.toLowerCase();
+  if (l.startsWith('ru')) return THEMES.default;
   if (l.startsWith('es')) return THEMES.es;
   if (l.startsWith('pt')) return THEMES.pt;
   if (l.startsWith('fr')) return THEMES.fr;
