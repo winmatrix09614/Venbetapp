@@ -305,11 +305,22 @@ THEMES.latam = THEMES.es;
 export const getThemeBySource = (source) => {
   if (!source) return null;
   const s = source.toLowerCase();
-  if (s.includes('latam') || s.includes('peru') || s.includes('mx') || s.includes('co') || s.includes('_es') || s.includes('es_') || s.includes('spain')) return THEMES.es;
-  if (s.includes('pt') || s.includes('brazil') || s.includes('brasil') || s.includes('portug')) return THEMES.pt;
-  if (s.includes('fr') || s.includes('france') || s.includes('french')) return THEMES.fr;
-  if (s.includes('tr') || s.includes('turk') || s.includes('türk')) return THEMES.tr;
-  if (s.includes('az') || s.includes('azer') || s.includes('baku')) return THEMES.az;
+  // Разбиваем метку на части (buyer_geo_campaign_creative) — ГЕО распознаём по «словам»,
+  // плюс по подстрокам для длинных названий. Коды стран сопоставлены с языком приложения.
+  const parts = s.split(/[_\-\s.]+/).filter(Boolean);
+  const hasCode = (codes) => parts.some(p => codes.some(c => p === c || p.startsWith(c)));
+
+  // Испанский (LATAM + Испания): пример стран — Перу, Мексика, Колумбия, Чили, Аргентина, Эквадор...
+  if (hasCode(['es','latam','pe','mx','co','cl','ar','ec','bo','pa','do','gt','sv','hn','ni','cr','py','uy','ve']) ||
+      s.includes('latam') || s.includes('spain') || s.includes('peru') || s.includes('mexic')) return THEMES.es;
+  // Португальский (Бразилия, Португалия)
+  if (hasCode(['pt','br','bra']) || s.includes('brazil') || s.includes('brasil') || s.includes('portug')) return THEMES.pt;
+  // Французский (Франция + франкофон. Африка: Сенегал, Кот-д'Ивуар, Камерун, Габон, Конго...)
+  if (hasCode(['fr','sn','ci','cm','ga','cg','ml','bj','tg','ne','bf','gn','cd']) || s.includes('france') || s.includes('french')) return THEMES.fr;
+  // Турецкий
+  if (hasCode(['tr','tur']) || s.includes('turk') || s.includes('türk')) return THEMES.tr;
+  // Азербайджанский
+  if (hasCode(['az','aze']) || s.includes('azer') || s.includes('baku')) return THEMES.az;
   return null;
 };
 

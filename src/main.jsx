@@ -17,7 +17,8 @@ function resolveSource() {
 
 function resolveLanguage() {
   const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null
-  return (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code) || ''
+  const params = new URLSearchParams(window.location.search)
+  return params.get('lng') || (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.language_code) || ''
 }
 
 if (window.Telegram && window.Telegram.WebApp) {
