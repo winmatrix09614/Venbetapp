@@ -252,7 +252,7 @@ export const THEMES = {
       statsCapper: 'Proqnoz statistikası', predictionsWord: 'proqnoz', accuracyWord: 'dəqiqlik', per7d: '7 gündə',
       dailyTitle: 'Günün proqnozu', dailyDesc: 'Pulsuz siqnal', dailyEmpty: 'Hələ mövcud deyil',
       sportFootball: 'Futbol', sportBasketball: 'Basketbol',
-      idLowNote: 'ID 168-dən aşağıdır — köhnə hesab, dəqiqlik aşağı ola bilər.', howToFindId: 'ID haradadır?', singleNote: 'Bu tək mərcdir — ayrıca oynamağı tövsiyə edirik.', expressNote: 'Hazır ekspress — olduğu kimi bütöv oynayın.', liveBadge: '🔴 CANLI {score}, {minute}′ · oyunöncesi proqnoz', disclaimer: 'Bu süni intellekt təhlilidir, zəmanət deyil. Mərc qərarı sizindir.'
+      idLowNote: 'ID 168-dən aşağıdır — köhnə hesab, dəqiqlik aşağı ola bilər.', howToFindId: 'ID haradadır?', singleNote: 'Bu tək mərcdir — ayrıca oynamağı tövsiyə edirik.', expressNote: 'Hazır ekspress — olduğu kimi bütöv oynayın.', liveBadge: '🔴 CANLI {score}, {minute}′ · oyun öncəsi proqnoz', disclaimer: 'Bu süni intellekt təhlilidir, zəmanət deyil. Mərc qərarı sizindir.'
     }
   },
 
