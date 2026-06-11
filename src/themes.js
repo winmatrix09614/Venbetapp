@@ -59,7 +59,7 @@ export const THEMES = {
     waitingDesc: 'Tu ID ha sido enviado al gestor. Espera la activación.',
     primaryColor: '#00f2fe', icon: ICON_STAR,
     menu: {
-      analysisTitle: 'Análisis AI', analysisDesc: 'Análisis profundo del partido',
+      analysisTitle: 'Análisis IA', analysisDesc: 'Análisis profundo del partido',
       historyTitle: 'Historial', historyDesc: 'Registro de sesiones',
       newsTitle: 'Noticias', newsDesc: 'Novedades deportivas',
       supportTitle: 'Soporte', supportDesc: 'Contactar especialista'
@@ -68,8 +68,8 @@ export const THEMES = {
       back: 'Atrás', idLabel: 'ID', attemptsLeft: 'Pronósticos restantes',
       bannedTitle: 'Acceso bloqueado', bannedBtn: 'Salir',
       logoutConfirm: '¿Seguro que quieres salir?',
-      analysisTitle: 'ANÁLISIS AI',
-      analysisInit: 'Sistema inicializado. Sube una captura del partido o escribe los nombres de los equipos para iniciar el análisis AI.',
+      analysisTitle: 'ANÁLISIS IA',
+      analysisInit: 'Sistema inicializado. Sube una captura del partido o escribe los nombres de los equipos para iniciar el análisis IA.',
       verdictTag: 'VEREDICTO DE LA IA', confidence: 'Confianza', baseConf: 'Evaluación base', promoTitle: 'Haz tu pronóstico con IA', promoSub: 'Descubre quién gana en segundos', promoBtn: 'Empezar', hiwTitle: 'Cómo funciona', hiwStep1: 'Ingresa tu 1xBet ID', hiwStep2: 'La IA analiza', hiwStep3: 'Apuestas con confianza', tickerTitle: 'Últimos pronósticos IA', statBlockTitle: 'Estadísticas', statForm: 'Forma', statGoalsFor: 'Goles (prom.)', statGoalsAg: 'Recibe', statPoss: 'Posesión %', statShots: 'Tiros', statShotsOn: 'A puerta', statCorners: 'Córners', statH2H: 'Enfrentamientos',
       inputPlaceholder: 'Equipos o captura...', errorPrefix: 'Error',
       connError: 'Error de conexión con el servidor.',
@@ -101,7 +101,7 @@ export const THEMES = {
     waitingDesc: 'Seu ID foi enviado ao gestor. Aguarde a ativação.',
     primaryColor: '#22c55e', icon: ICON_STAR,
     menu: {
-      analysisTitle: 'Análise AI', analysisDesc: 'Análise profunda da partida',
+      analysisTitle: 'Análise IA', analysisDesc: 'Análise profunda da partida',
       historyTitle: 'Histórico', historyDesc: 'Registro de sessões',
       newsTitle: 'Notícias', newsDesc: 'Novidades esportivas',
       supportTitle: 'Suporte', supportDesc: 'Falar com especialista'
@@ -110,8 +110,8 @@ export const THEMES = {
       back: 'Voltar', idLabel: 'ID', attemptsLeft: 'Palpites restantes',
       bannedTitle: 'Acesso bloqueado', bannedBtn: 'Sair',
       logoutConfirm: 'Tem certeza de que deseja sair?',
-      analysisTitle: 'ANÁLISE AI',
-      analysisInit: 'Sistema inicializado. Envie uma captura da partida ou digite os nomes dos times para iniciar a análise AI.',
+      analysisTitle: 'ANÁLISE IA',
+      analysisInit: 'Sistema inicializado. Envie uma captura da partida ou digite os nomes dos times para iniciar a análise IA.',
       verdictTag: 'VEREDITO DA IA', confidence: 'Confiança', baseConf: 'Avaliação base', promoTitle: 'Faça seu palpite com IA', promoSub: 'Descubra quem vence em segundos', promoBtn: 'Começar', hiwTitle: 'Como funciona', hiwStep1: 'Insira seu 1xBet ID', hiwStep2: 'A IA analisa', hiwStep3: 'Aposta com confiança', tickerTitle: 'Últimos palpites IA', statBlockTitle: 'Estatísticas', statForm: 'Forma', statGoalsFor: 'Gols (méd.)', statGoalsAg: 'Sofre', statPoss: 'Posse %', statShots: 'Chutes', statShotsOn: 'No gol', statCorners: 'Escanteios', statH2H: 'Confrontos',
       inputPlaceholder: 'Times ou captura...', errorPrefix: 'Erro',
       connError: 'Erro de conexão com o servidor.',
@@ -143,7 +143,7 @@ export const THEMES = {
     waitingDesc: 'Votre ID a été envoyé au gestionnaire. Attendez l’activation.',
     primaryColor: '#6366f1', icon: ICON_STAR,
     menu: {
-      analysisTitle: 'Analyse AI', analysisDesc: 'Analyse approfondie du match',
+      analysisTitle: 'Analyse IA', analysisDesc: 'Analyse approfondie du match',
       historyTitle: 'Historique', historyDesc: 'Journal des sessions',
       newsTitle: 'Actualités', newsDesc: 'Actualités sportives',
       supportTitle: 'Support', supportDesc: 'Contacter un spécialiste'
@@ -152,8 +152,8 @@ export const THEMES = {
       back: 'Retour', idLabel: 'ID', attemptsLeft: 'Pronostics restants',
       bannedTitle: 'Accès bloqué', bannedBtn: 'Quitter',
       logoutConfirm: 'Êtes-vous sûr de vouloir quitter ?',
-      analysisTitle: 'ANALYSE AI',
-      analysisInit: 'Système initialisé. Téléchargez une capture du match ou saisissez les noms des équipes pour lancer l’analyse AI.',
+      analysisTitle: 'ANALYSE IA',
+      analysisInit: 'Système initialisé. Téléchargez une capture du match ou saisissez les noms des équipes pour lancer l’analyse IA.',
       verdictTag: 'VERDICT DE L’IA', confidence: 'Confiance', baseConf: 'Évaluation de base', promoTitle: 'Fais ton pronostic IA', promoSub: 'Découvre qui gagne en quelques secondes', promoBtn: 'Commencer', hiwTitle: 'Comment ça marche', hiwStep1: 'Entre ton 1xBet ID', hiwStep2: "L'IA analyse", hiwStep3: 'Parie en confiance', tickerTitle: 'Derniers pronostics IA', statBlockTitle: 'Statistiques', statForm: 'Forme', statGoalsFor: 'Buts (moy.)', statGoalsAg: 'Encaisse', statPoss: 'Possession %', statShots: 'Tirs', statShotsOn: 'Cadrés', statCorners: 'Corners', statH2H: 'Confrontations',
       inputPlaceholder: 'Équipes ou capture...', errorPrefix: 'Erreur',
       connError: 'Erreur de connexion au serveur.',
@@ -185,7 +185,7 @@ export const THEMES = {
     waitingDesc: 'ID’niz yöneticiye gönderildi. Aktivasyonu bekleyin.',
     primaryColor: '#ef4444', icon: ICON_STAR,
     menu: {
-      analysisTitle: 'AI Analiz', analysisDesc: 'Derinlemesine maç analizi',
+      analysisTitle: 'Yapay Zekâ Analizi', analysisDesc: 'Derinlemesine maç analizi',
       historyTitle: 'Geçmiş', historyDesc: 'Oturum kaydı',
       newsTitle: 'Haberler', newsDesc: 'Spor haberleri',
       supportTitle: 'Destek', supportDesc: 'Uzmanla iletişim'
@@ -194,9 +194,9 @@ export const THEMES = {
       back: 'Geri', idLabel: 'ID', attemptsLeft: 'Kalan tahmin',
       bannedTitle: 'Erişim engellendi', bannedBtn: 'Çıkış',
       logoutConfirm: 'Çıkmak istediğinizden emin misiniz?',
-      analysisTitle: 'AI ANALİZ',
-      analysisInit: 'Sistem başlatıldı. Maç ekran görüntüsünü yükleyin veya AI analizini başlatmak için takım adlarını girin.',
-      verdictTag: 'YAPAY ZEKÂ KARARI', confidence: 'Güven', baseConf: 'Temel değerlendirme', promoTitle: 'Yapay zekâ tahminini yap', promoSub: 'Kim kazanır saniyeler içinde öğren', promoBtn: 'Başla', hiwTitle: 'Nasıl çalışır', hiwStep1: '1xBet ID gir', hiwStep2: 'AI analiz eder', hiwStep3: 'Güvenle bahis yap', tickerTitle: 'Son AI tahminleri', statBlockTitle: 'İstatistikler', statForm: 'Form', statGoalsFor: 'Gol (ort.)', statGoalsAg: 'Yer', statPoss: 'Topla oynama %', statShots: 'Şutlar', statShotsOn: 'İsabetli', statCorners: 'Kornerler', statH2H: 'Karşılaşmalar',
+      analysisTitle: 'YAPAY ZEKÂ ANALİZİ',
+      analysisInit: 'Sistem başlatıldı. Maç ekran görüntüsünü yükleyin veya yapay zekâ analizini başlatmak için takım adlarını girin.',
+      verdictTag: 'YAPAY ZEKÂ KARARI', confidence: 'Güven', baseConf: 'Temel değerlendirme', promoTitle: 'Yapay zekâ tahminini yap', promoSub: 'Kim kazanır saniyeler içinde öğren', promoBtn: 'Başla', hiwTitle: 'Nasıl çalışır', hiwStep1: '1xBet ID gir', hiwStep2: 'Yapay zekâ analiz eder', hiwStep3: 'Güvenle bahis yap', tickerTitle: 'Son yapay zekâ tahminleri', statBlockTitle: 'İstatistikler', statForm: 'Form', statGoalsFor: 'Gol (ort.)', statGoalsAg: 'Yer', statPoss: 'Topla oynama %', statShots: 'Şutlar', statShotsOn: 'İsabetli', statCorners: 'Kornerler', statH2H: 'Karşılaşmalar',
       inputPlaceholder: 'Takımlar veya ekran görüntüsü...', errorPrefix: 'Hata',
       connError: 'Sunucu bağlantı hatası.',
       historyTitle: 'GEÇMİŞ', historyLoading: 'Arşiv yükleniyor...',
@@ -227,7 +227,7 @@ export const THEMES = {
     waitingDesc: 'ID-niz menecerə göndərildi. Aktivləşməni gözləyin.',
     primaryColor: '#14b8a6', icon: ICON_GLOBE,
     menu: {
-      analysisTitle: 'AI Təhlil', analysisDesc: 'Matçın dərin təhlili',
+      analysisTitle: 'Süni İntellekt Təhlili', analysisDesc: 'Matçın dərin təhlili',
       historyTitle: 'Tarixçə', historyDesc: 'Sessiya jurnalı',
       newsTitle: 'Xəbərlər', newsDesc: 'İdman xəbərləri',
       supportTitle: 'Dəstək', supportDesc: 'Mütəxəssislə əlaqə'
@@ -236,9 +236,9 @@ export const THEMES = {
       back: 'Geri', idLabel: 'ID', attemptsLeft: 'Qalan proqnoz',
       bannedTitle: 'Giriş bloklandı', bannedBtn: 'Çıxış',
       logoutConfirm: 'Çıxmaq istədiyinizə əminsiniz?',
-      analysisTitle: 'AI TƏHLİL',
-      analysisInit: 'Sistem işə salındı. Matçın ekran görüntüsünü yükləyin və ya AI təhlilini başlatmaq üçün komanda adlarını daxil edin.',
-      verdictTag: 'SÜNİ İNTELLEKT QƏRARI', confidence: 'Əminlik', baseConf: 'Baza qiymət', promoTitle: 'AI proqnozunu et', promoSub: 'Kimin qazanacağını saniyələrdə öyrən', promoBtn: 'Başla', hiwTitle: 'Necə işləyir', hiwStep1: '1xBet ID daxil et', hiwStep2: 'AI təhlil edir', hiwStep3: 'Əminliklə mərc et', tickerTitle: 'Son AI proqnozları', statBlockTitle: 'Komanda statistikası', statForm: 'Forma', statGoalsFor: 'Qol (orta)', statGoalsAg: 'Buraxır', statPoss: 'Topa sahiblik %', statShots: 'Zərbələr', statShotsOn: 'Dəqiq', statCorners: 'Künc', statH2H: 'Qarşılaşmalar',
+      analysisTitle: 'SÜNİ İNTELLEKT TƏHLİLİ',
+      analysisInit: 'Sistem işə salındı. Matçın ekran görüntüsünü yükləyin və ya süni intellekt təhlilini başlatmaq üçün komanda adlarını daxil edin.',
+      verdictTag: 'SÜNİ İNTELLEKT QƏRARI', confidence: 'Əminlik', baseConf: 'Baza qiymət', promoTitle: 'Süni intellekt proqnozunu et', promoSub: 'Kimin qazanacağını saniyələrdə öyrən', promoBtn: 'Başla', hiwTitle: 'Necə işləyir', hiwStep1: '1xBet ID daxil et', hiwStep2: 'Süni intellekt təhlil edir', hiwStep3: 'Əminliklə mərc et', tickerTitle: 'Son süni intellekt proqnozları', statBlockTitle: 'Komanda statistikası', statForm: 'Forma', statGoalsFor: 'Qol (orta)', statGoalsAg: 'Buraxır', statPoss: 'Topa sahiblik %', statShots: 'Zərbələr', statShotsOn: 'Dəqiq', statCorners: 'Künc', statH2H: 'Qarşılaşmalar',
       inputPlaceholder: 'Komandalar və ya ekran görüntüsü...', errorPrefix: 'Xəta',
       connError: 'Server bağlantı xətası.',
       historyTitle: 'TARİXÇƏ', historyLoading: 'Arxiv yüklənir...',
@@ -333,6 +333,7 @@ export const getThemeByLanguage = (lang) => {
   if (l.startsWith('fr')) return THEMES.fr;
   if (l.startsWith('tr')) return THEMES.tr;
   if (l.startsWith('az')) return THEMES.az;
+  if (l.startsWith('en')) return THEMES.en;
   return null;
 };
 
