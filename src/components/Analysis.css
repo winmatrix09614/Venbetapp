@@ -408,3 +408,25 @@
 .bp-fill-r { background: var(--primary-theme-color); height: 100%; }
 
 .stat-h2h { font-size: 13px; color: #cfd3d8; }
+
+/* LIVE-плашка прогноза (счёт + минута). Прогноз остаётся предматчевым. */
+.pred-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(229, 57, 53, 0.16);
+  border: 1px solid rgba(229, 57, 53, 0.55);
+  border-radius: 8px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
+  animation: predLivePulse 2s ease-in-out infinite;
+}
+
+@keyframes predLivePulse {
+  0%, 100% { border-color: rgba(229, 57, 53, 0.55); }
+  50% { border-color: rgba(229, 57, 53, 0.95); }
+}

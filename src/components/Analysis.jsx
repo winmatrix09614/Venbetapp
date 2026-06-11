@@ -117,6 +117,9 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         express: data.express,
         mode: data.mode,
         disclaimer: data.disclaimer,
+        is_live: data.is_live,
+        live_score: data.live_score,
+        live_minute: data.live_minute,
         timestamp: new Date(),
       };
       
@@ -199,6 +202,13 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                       </div>
                     )}
                     <div className="pred-tag">{ui.verdictTag}</div>
+                    {msg.is_live && (
+                      <div className="pred-live-badge">
+                        {(ui.liveBadge || '\uD83D\uDD34 LIVE {score}, {minute}\u2032 \u00B7 prematch prediction')
+                          .replace('{score}', msg.live_score || '')
+                          .replace('{minute}', msg.live_minute != null ? msg.live_minute : '')}
+                      </div>
+                    )}
                     <div className="pred-winner">{msg.prediction.winner}</div>
 
                     {/* Базовая оценка от данных → наш итоговый % (эффект усиления) */}
