@@ -231,7 +231,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                       </div>
                     </div>
                     
-                    {msg.additional && (
+                    {msg.additional && msg.mode === 'express' && (
                       <div className="pred-additional">{msg.additional}</div>
                     )}
                     {(!msg.express) && (
