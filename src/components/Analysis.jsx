@@ -52,6 +52,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   };
 
   const sendPrediction = async (text, file = null) => {
+    if (loading) return;  // защита от двойной отправки (двойной клик/Enter -> двойное списание попытки)
     setLoading(true);
     // Минимальное время "анализа" для эффекта работы AI (даже если ответ из кэша).
     const _t0 = Date.now();
@@ -124,7 +125,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       };
       
       setMessages((prev) => [...prev, botMsg]);
-      updateAttempts(attempts - 1);
+      updateAttempts((prev) => Math.max(0, prev - 1));  // функц. обновление — без рассинхрона при гонках
       
     } catch (err) {
       console.error(err);
@@ -138,6 +139,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   };
 
   const handleSend = () => {
+    if (loading) return;
     if (!inputText.trim() && !photo) return;
     sendPrediction(inputText, photo);
   };

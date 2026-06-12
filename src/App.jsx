@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import IdInput from './components/IdInput';
 import MainMenu from './components/MainMenu';
 import Analysis from './components/Analysis';
@@ -16,6 +16,7 @@ function App({ initialTheme, sourceParam }) {
   const [userStatus, setUserStatus] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
+  const pollRef = useRef(null);
 
   // Тема зафиксирована с самого старта приложения
   const theme = initialTheme;
@@ -34,6 +35,8 @@ function App({ initialTheme, sourceParam }) {
     } else {
       setIsLoading(false);
     }
+    // Очистка опроса статуса при размонтировании — таймер не переживёт уход со страницы.
+    return () => { if (pollRef.current) clearInterval(pollRef.current); };
   }, []);
 
   const checkUserStatus = async (id) => {
@@ -52,29 +55,42 @@ function App({ initialTheme, sourceParam }) {
 
   const handleLogin = async (id, initData = null) => {
     localStorage.setItem('venbet_user_id', id);
-    
-    // 3. ПЕРЕДАЕМ ИСТОЧНИК (UTM) НА БЭКЕНД ПРИ РЕГИСТРАЦИИ!
+
+    // Регистрация лида с UTM-меткой. Ошибку сети не роняем — статус всё равно опросим.
     let url = `${API_BASE}/register_request?bet_id=${id}&source=${sourceParam}`;
     if (initData) url += `&init_data=${encodeURIComponent(initData)}`;
-    
-    await fetch(url);
+    try {
+      await fetch(url);
+    } catch (e) { /* регистрация могла не пройти из-за сети — статус опросим ниже */ }
+
     const isActive = await checkUserStatus(id);
     if (!isActive) {
-      const interval = setInterval(async () => {
-        const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
-        const data = await res.json();
-        if (data.status === 'active') {
-          clearInterval(interval); setUserStatus('active'); setAttempts(data.attempts);
-        } else if (data.status === 'banned') {
-          clearInterval(interval); setUserStatus('banned');
+      // Очищаем предыдущий опрос (если был) — не плодим таймеры при повторном входе.
+      if (pollRef.current) clearInterval(pollRef.current);
+      let ticks = 0;
+      pollRef.current = setInterval(async () => {
+        ticks += 1;
+        if (ticks > 120) {  // лимит ~10 минут, потом перестаём опрашивать
+          clearInterval(pollRef.current); pollRef.current = null; return;
         }
+        try {
+          const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
+          const data = await res.json();
+          if (data.status === 'active') {
+            clearInterval(pollRef.current); pollRef.current = null;
+            setUserStatus('active'); setAttempts(data.attempts);
+          } else if (data.status === 'banned') {
+            clearInterval(pollRef.current); pollRef.current = null;
+            setUserStatus('banned');
+          }
+        } catch (e) { /* временный сбой сети — следующий тик повторит */ }
       }, 5000);
-      return () => clearInterval(interval);
     }
   };
 
   const handleLogout = () => {
     if (window.confirm(theme.ui.logoutConfirm)) {
+      if (pollRef.current) { clearInterval(pollRef.current); pollRef.current = null; }
       localStorage.removeItem('venbet_user_id'); setUserId(null); setUserStatus(null); setAttempts(0); setCurrentScreen('main');
     }
   };
