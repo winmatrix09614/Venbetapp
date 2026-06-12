@@ -13,7 +13,10 @@ const IconStar = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentColo
 function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
   const ui = theme.ui;
   const lang = theme.lang || 'ru';
-  const openManager = () => window.open('https://t.me/Gggrymka', '_blank');
+  // Ссылка на менеджера приходит с бэкенда по языку (управляется из админки).
+  // Дефолт-резерв на случай, если запрос не успел/не удался — кнопка всегда рабочая.
+  const [managerUrl, setManagerUrl] = useState('https://t.me/Gggrymka');
+  const openManager = () => window.open(managerUrl, '_blank');
 
   const [stats, setStats] = useState(null);
   const [dailyOpen, setDailyOpen] = useState(false);
@@ -22,7 +25,10 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme }) {
 
   useEffect(() => {
     axios.get(`${API_BASE}/webapp/stats`).then(r => setStats(r.data)).catch(() => {});
-  }, []);
+    axios.get(`${API_BASE}/webapp/manager?lang=${lang}`)
+      .then(r => { if (r.data && r.data.url) setManagerUrl(r.data.url); })
+      .catch(() => {});
+  }, [lang]);
 
   const openDaily = async () => {
     setDailyOpen(true);
