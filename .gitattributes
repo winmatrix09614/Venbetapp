@@ -1,0 +1,13 @@
+# Нормализация переносов строк: в репозитории всегда LF, чтобы Windows-Git
+# не создавал «фантомных» изменений (CRLF<->LF) в файлах, которые не менялись.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+*.woff binary
+*.woff2 binary
+*.ttf binary
