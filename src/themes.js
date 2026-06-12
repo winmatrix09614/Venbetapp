@@ -302,25 +302,39 @@ export const THEMES = {
 // Алиас для совместимости со старым кодом (latam → es)
 THEMES.latam = THEMES.es;
 
+// Точная карта ГЕО/языкового кода -> тема. ТОЛЬКО полное совпадение сегмента,
+// без startsWith (раньше "cr2"->Коста-Рика->испанский ломал az/прочие). Ключ -
+// это явный код в метке (обычно 2-й сегмент: buyer_GEO_campaign_creative).
+const _GEO_LANG = {
+  // русский
+  ru: 'default', rus: 'default',
+  // испанский (Испания + LATAM)
+  es: 'es', spain: 'es', latam: 'es', latampromo: 'es',
+  pe: 'es', mx: 'es', mex: 'es', co: 'es', col: 'es', cl: 'es', ar: 'es', arg: 'es',
+  ec: 'es', bo: 'es', pa: 'es', do: 'es', gt: 'es', sv: 'es', hn: 'es', ni: 'es',
+  cr: 'es', py: 'es', uy: 'es', ve: 'es', peru: 'es',
+  // португальский (Бразилия, Португалия)
+  pt: 'pt', br: 'pt', bra: 'pt', brazil: 'pt', brasil: 'pt', portugal: 'pt',
+  // французский (Франция + франкофонная Африка)
+  fr: 'fr', france: 'fr', sn: 'fr', ci: 'fr', cm: 'fr', ga: 'fr', cg: 'fr',
+  ml: 'fr', bj: 'fr', tg: 'fr', ne: 'fr', bf: 'fr', gn: 'fr', cd: 'fr',
+  // турецкий
+  tr: 'tr', tur: 'tr', turkey: 'tr',
+  // азербайджанский
+  az: 'az', aze: 'az', baku: 'az',
+  // английский (явный)
+  en: 'en', eng: 'en', uk: 'en', us: 'en', gb: 'en',
+};
+
 export const getThemeBySource = (source) => {
   if (!source) return null;
   const s = source.toLowerCase();
-  // Разбиваем метку на части (buyer_geo_campaign_creative) — ГЕО распознаём по «словам»,
-  // плюс по подстрокам для длинных названий. Коды стран сопоставлены с языком приложения.
+  // Метка: buyer_GEO_campaign_creative. Разбиваем и ищем ТОЧНОЕ совпадение
+  // сегмента с кодом языка/гео. Точное совпадение исключает ложные срабатывания.
   const parts = s.split(/[_\-\s.]+/).filter(Boolean);
-  const hasCode = (codes) => parts.some(p => codes.some(c => p === c || p.startsWith(c)));
-
-  // Испанский (LATAM + Испания): пример стран — Перу, Мексика, Колумбия, Чили, Аргентина, Эквадор...
-  if (hasCode(['es','latam','pe','mx','co','cl','ar','ec','bo','pa','do','gt','sv','hn','ni','cr','py','uy','ve']) ||
-      s.includes('latam') || s.includes('spain') || s.includes('peru') || s.includes('mexic')) return THEMES.es;
-  // Португальский (Бразилия, Португалия)
-  if (hasCode(['pt','br','bra']) || s.includes('brazil') || s.includes('brasil') || s.includes('portug')) return THEMES.pt;
-  // Французский (Франция + франкофон. Африка: Сенегал, Кот-д'Ивуар, Камерун, Габон, Конго...)
-  if (hasCode(['fr','sn','ci','cm','ga','cg','ml','bj','tg','ne','bf','gn','cd']) || s.includes('france') || s.includes('french')) return THEMES.fr;
-  // Турецкий
-  if (hasCode(['tr','tur']) || s.includes('turk') || s.includes('türk')) return THEMES.tr;
-  // Азербайджанский
-  if (hasCode(['az','aze']) || s.includes('azer') || s.includes('baku')) return THEMES.az;
+  for (const p of parts) {
+    if (_GEO_LANG[p]) return THEMES[_GEO_LANG[p]];
+  }
   return null;
 };
 
