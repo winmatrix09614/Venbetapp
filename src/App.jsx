@@ -90,7 +90,16 @@ function App({ initialTheme, sourceParam }) {
     let url = `${API_BASE}/register_request?bet_id=${id}&source=${sourceParam}`;
     if (initData) url += `&init_data=${encodeURIComponent(initData)}`;
     try {
-      await fetch(url);
+      const r = await fetch(url);
+      const reg = await r.json().catch(() => ({}));
+      // Если бэк подтвердил, что лид в БД (pending/exists) — сразу уходим с формы
+      // ввода на экран ожидания, чтобы лид не жал «вход» повторно (был баг с
+      // зацикливанием register_request, когда лид не создавался по конфликту tg_id).
+      if (reg && (reg.status === 'pending' || reg.status === 'exists')) {
+        setUserId(id);
+        setUserStatus(reg.active ? 'active' : 'pending');
+        setIsLoading(false);
+      }
     } catch (e) { /* регистрация могла не пройти из-за сети — статус опросим ниже */ }
 
     const isActive = await checkUserStatus(id);
