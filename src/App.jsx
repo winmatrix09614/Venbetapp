@@ -92,16 +92,21 @@ function App({ initialTheme, sourceParam }) {
     try {
       const r = await fetch(url);
       const reg = await r.json().catch(() => ({}));
-      // Если бэк подтвердил, что лид в БД (pending/exists) — сразу уходим с формы
-      // ввода на экран ожидания, чтобы лид не жал «вход» повторно (был баг с
-      // зацикливанием register_request, когда лид не создавался по конфликту tg_id).
-      if (reg && (reg.status === 'pending' || reg.status === 'exists')) {
-        setUserId(id);
-        setUserStatus(reg.active ? 'active' : 'pending');
-        setIsLoading(false);
+      // ПРАВИЛО: один Telegram = один ID. Если этот Telegram уже привязан к другому
+      // bet_id — бэк вернёт already_registered. Тогда НЕ пускаем по новому ID:
+      // возвращаем лида на его СУЩЕСТВУЮЩИЙ ID и его реальный статус.
+      if (reg && reg.status === 'already_registered' && reg.existing_bet_id) {
+        const realId = String(reg.existing_bet_id);
+        localStorage.setItem('venbet_user_id', realId);
+        // дальше опрашиваем статус именно существующего ID
+        await checkUserStatus(realId);
+        return;
       }
     } catch (e) { /* регистрация могла не пройти из-за сети — статус опросим ниже */ }
 
+    // ВАЖНО: внутрь приложения пускает ТОЛЬКО реальный статус active из user_status
+    // (лид активирован менеджером). pending -> экран ожидания. Никаких «входов» по
+    // факту регистрации — подтверждение обязательно.
     const isActive = await checkUserStatus(id);
     if (!isActive) {
       // Очищаем предыдущий опрос (если был) — не плодим таймеры при повторном входе.
