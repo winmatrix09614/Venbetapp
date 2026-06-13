@@ -16,7 +16,9 @@ function App({ initialTheme, sourceParam }) {
   const [userStatus, setUserStatus] = useState(null);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
+  const [offline, setOffline] = useState(false);
   const pollRef = useRef(null);
+  const retryRef = useRef(null);
 
   // Тема зафиксирована с самого старта приложения
   const theme = initialTheme;
@@ -35,14 +37,22 @@ function App({ initialTheme, sourceParam }) {
     } else {
       setIsLoading(false);
     }
-    // Очистка опроса статуса при размонтировании — таймер не переживёт уход со страницы.
-    return () => { if (pollRef.current) clearInterval(pollRef.current); };
+    // Очистка таймеров при размонтировании — не переживут уход со страницы.
+    return () => {
+      if (pollRef.current) clearInterval(pollRef.current);
+      if (retryRef.current) clearInterval(retryRef.current);
+    };
   }, []);
 
+  // checkUserStatus возвращает true/false по статусу. Третий исход — сеть упала:
+  // тогда (если у лида есть сохранённый ID) показываем offline-экран с автоповтором,
+  // чтобы лид не застрял на белом/входном экране при временном обрыве связи.
   const checkUserStatus = async (id) => {
     try {
       const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
       const data = await res.json();
+      setOffline(false);
+      if (retryRef.current) { clearInterval(retryRef.current); retryRef.current = null; }
       if (data.status === 'active') {
         setUserId(id); setUserStatus('active'); setAttempts(data.attempts); setIsLoading(false); return true;
       } else if (data.status === 'pending') {
@@ -50,7 +60,27 @@ function App({ initialTheme, sourceParam }) {
       } else {
         localStorage.removeItem('venbet_user_id'); setIsLoading(false); return false;
       }
-    } catch (err) { setIsLoading(false); return false; }
+    } catch (err) {
+      // Сетевой сбой. Есть сохранённый ID -> это не «новый» лид, а потеря связи.
+      if (localStorage.getItem('venbet_user_id')) {
+        setOffline(true); setIsLoading(false);
+        if (!retryRef.current) {
+          retryRef.current = setInterval(() => {
+            const sid = localStorage.getItem('venbet_user_id');
+            if (sid) checkUserStatus(sid);
+          }, 5000);
+        }
+      } else {
+        setIsLoading(false);
+      }
+      return false;
+    }
+  };
+
+  // Ручной повтор (кнопка на offline-экране).
+  const retryConnection = () => {
+    const sid = localStorage.getItem('venbet_user_id');
+    if (sid) { setIsLoading(true); checkUserStatus(sid); }
   };
 
   const handleLogin = async (id, initData = null) => {
@@ -94,6 +124,21 @@ function App({ initialTheme, sourceParam }) {
       localStorage.removeItem('venbet_user_id'); setUserId(null); setUserStatus(null); setAttempts(0); setCurrentScreen('main');
     }
   };
+
+  // Offline-экран: связь потеряна. Текст на языке лида (тема зафиксирована по метке).
+  // Автоповтор каждые 5с крутится в фоне; кнопка — мгновенный ручной повтор.
+  if (offline) {
+    return (
+      <div className="pending-screen">
+        <div className="pending-card">
+          <div className="offline-spinner" />
+          <h2>{theme.ui.offlineTitle}</h2>
+          <p>{theme.ui.offlineDesc}</p>
+          <button onClick={retryConnection} className="gradient-btn">{theme.ui.offlineRetry}</button>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) return <LoadingScreen theme={theme} />;
   
