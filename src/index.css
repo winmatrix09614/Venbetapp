@@ -16,3 +16,30 @@ html { background: #07090d; }
     border-right: 1px solid rgba(255, 255, 255, 0.07);
   }
 }
+
+
+/* ============ RTL (арабский) — зеркалим критичные позиционированные элементы ============
+   Применяется ТОЛЬКО при dir="rtl" (язык ar). Остальные языки НЕ затронуты.
+   Браузер сам зеркалит text-align/flex/inline-отступы; здесь только абсолютные
+   кнопки и индикаторы, привязанные к одной стороне жёстким left/right. */
+[dir="rtl"] { text-align: right; }
+
+/* Кнопка удаления вложения (скриншота) в углу -> на левую сторону */
+[dir="rtl"] .remove-attach-btn { right: auto; left: 4px; }
+
+/* Кнопка закрытия видео -> влево */
+[dir="rtl"] .video-close { right: auto; left: 0; }
+
+/* Крестик закрытия «прогноза дня» -> влево */
+[dir="rtl"] .daily-close { right: auto; left: 14px; }
+
+/* margin-left:auto (отодвигал период вправо) -> margin-right:auto */
+[dir="rtl"] .capper-stats .cs-period { margin-left: 0; margin-right: auto; }
+
+/* Индикатор свежей новости (полоса) слева -> справа + отступ контента */
+[dir="rtl"] .unread-indicator { left: auto; right: 0; border-radius: 4px 0 0 4px; }
+[dir="rtl"] .news-content { padding-left: 0; padding-right: 12px; }
+
+/* Левые отступы у подписей ввода ID -> правые */
+[dir="rtl"] .input-description,
+[dir="rtl"] .howto-btn { padding-left: 0; padding-right: 4px; }

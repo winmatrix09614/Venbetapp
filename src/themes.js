@@ -263,6 +263,48 @@ export const THEMES = {
   },
 
   // ===== English (фоллбэк для неопознанных языков) =====
+  ar: {
+    id: 'ar', lang: 'ar', locale: 'ar-JO', dir: 'rtl',
+    brandName: 'VenBet AI',
+    subtitle: 'تحليلات رياضية بالذكاء الاصطناعي',
+    inputLabel: 'معرّف 1xBet الخاص بك',
+    inputPlaceholder: 'مثال: 10000000',
+    inputDesc: 'ابحث عن معرّفك في تطبيق 1xBet ← الملف الشخصي',
+    btnText: 'متابعة',
+    waitingTitle: 'بانتظار التأكيد',
+    waitingDesc: 'تم إرسال معرّفك إلى المدير. يرجى انتظار التفعيل.',
+    primaryColor: '#ff8c00', icon: ICON_BOLT,
+    menu: {
+      analysisTitle: 'تحليل الذكاء الاصطناعي', analysisDesc: 'تحليل معمّق للمباراة',
+      historyTitle: 'السجل', historyDesc: 'سجل الجلسات',
+      newsTitle: 'الأخبار', newsDesc: 'أخبار رياضية',
+      supportTitle: 'الدعم', supportDesc: 'تواصل مع مختص'
+    },
+    ui: {
+      back: 'رجوع', idLabel: 'المعرّف', attemptsLeft: 'التوقعات المتبقية',
+      bannedTitle: 'تم حظر الوصول', bannedBtn: 'تسجيل الخروج',
+      logoutConfirm: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+      analysisTitle: 'تحليل الذكاء الاصطناعي',
+      analysisInit: 'تمت تهيئة النظام. ارفع لقطة شاشة للمباراة أو أدخل أسماء الفرق لبدء التحليل بالذكاء الاصطناعي.',
+      verdictTag: 'قرار الذكاء الاصطناعي', confidence: 'نسبة الثقة', baseConf: 'التقدير الأساسي', promoTitle: 'احصل على توقعك بالذكاء الاصطناعي', promoSub: 'اعرف الفائز خلال ثوانٍ', promoBtn: 'ابدأ', hiwTitle: 'كيف يعمل', hiwStep1: 'أدخل معرّف 1xBet', hiwStep2: 'الذكاء الاصطناعي يحلّل', hiwStep3: 'راهن بثقة', tickerTitle: 'أحدث توقعات الذكاء الاصطناعي', statBlockTitle: 'إحصائيات الفريق', statForm: 'الأداء', statGoalsFor: 'الأهداف (المعدل)', statGoalsAg: 'يستقبل', statPoss: 'الاستحواذ %', statShots: 'التسديدات', statShotsOn: 'على المرمى', statCorners: 'الركنيات', statH2H: 'المواجهات المباشرة',
+      inputPlaceholder: 'الفرق أو لقطة شاشة...', errorPrefix: 'خطأ',
+      connError: 'خطأ في الاتصال بالخادم.',
+      offlineTitle: 'لا يوجد اتصال', offlineDesc: 'تحقق من اتصالك بالإنترنت — سنعيد الاتصال تلقائياً.', offlineRetry: 'إعادة المحاولة',
+      historyTitle: 'السجل', historyLoading: 'جارٍ تحميل الأرشيف...',
+      historyEmpty: 'السجل فارغ', historyEmptySub: 'لم تقم بأي توقعات بعد',
+      archiveTag: 'الأرشيف', undefinedResult: 'غير محسوم', draw: 'تعادل',
+      newsMainTag: 'الأبرز', newsLatestTag: 'آخر الأخبار', newsActualTag: 'الرائج',
+      newsRead: 'اقرأ ←', newsUnavailable: 'الأخبار غير متوفرة مؤقتاً', newsTryLater: 'حاول مرة أخرى لاحقاً',
+      loading: 'جارٍ تحميل التطبيق...', statOnline: 'متصل', idError: 'معرّف غير صالح',
+      single: 'فردي', express: 'مجمّع', expressTitle: 'مجمّع', combined: 'الثقة الإجمالية',
+      howToBet: 'كيفية وضع الرهان', videoSoon: 'فيديو تعليمي قريباً',
+      statsCapper: 'إحصائيات التوقعات', predictionsWord: 'توقعات', accuracyWord: 'الدقة', per7d: 'آخر 7 أيام',
+      dailyTitle: 'توقع اليوم', dailyDesc: 'إشارة مجانية', dailyEmpty: 'لا يوجد توقع لليوم بعد',
+      sportFootball: 'كرة القدم', sportBasketball: 'كرة السلة',
+      idLowNote: 'المعرّف أقل من 168 — حساب قديم، قد تكون دقة التوقعات أقل.', howToFindId: 'أين أجد المعرّف؟', singleNote: 'هذا رهان فردي — ننصح بوضعه بشكل منفصل.', expressNote: 'مجمّع جاهز — ضعه كاملاً كما هو.', liveBadge: '🔴 مباشر {score}، {minute}′ · توقع قبل المباراة', disclaimer: 'هذا تحليل بالذكاء الاصطناعي وليس ضماناً. قرار الرهان يعود إليك.'
+    }
+  },
+
   en: {
     id: 'en', lang: 'en', locale: 'en-US', dir: 'ltr',
     brandName: 'VenBet AI',
@@ -331,6 +373,9 @@ const _GEO_LANG = {
   az: 'az', aze: 'az', baku: 'az',
   // английский (явный)
   en: 'en', eng: 'en', uk: 'en', us: 'en', gb: 'en',
+  za: 'en', rsa: 'en', ke: 'en', kenya: 'en',
+  // арабский (Иордания)
+  jo: 'ar', jordan: 'ar', amman: 'ar', arab: 'ar',
 };
 
 export const getThemeBySource = (source) => {
