@@ -88,6 +88,9 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       await _holdMinDelay();
 
       if (data.error) {
+        // Синхронизируем счётчик с реальностью (напр. менеджер обнулил в CRM —
+        // бэк присылает актуальный attempts_left даже в ошибке no_attempts).
+        if (typeof data.attempts_left === 'number') updateAttempts(data.attempts_left);
         setMessages((prev) => [...prev, { id: Date.now(), type: 'bot', text: `${ui.errorPrefix}: ${data.error}`, timestamp: new Date() }]);
         setLoading(false);
         return;
@@ -125,7 +128,9 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
       };
       
       setMessages((prev) => [...prev, botMsg]);
-      updateAttempts((prev) => Math.max(0, prev - 1));  // функц. обновление — без рассинхрона при гонках
+      // Берём ТОЧНЫЙ остаток с бэка (синхрон с CRM-правками); фолбэк — локальное -1.
+      if (typeof data.attempts_left === 'number') updateAttempts(data.attempts_left);
+      else updateAttempts((prev) => Math.max(0, prev - 1));
       
     } catch (err) {
       console.error(err);
