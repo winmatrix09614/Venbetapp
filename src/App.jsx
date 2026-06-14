@@ -186,7 +186,7 @@ function App({ initialTheme, sourceParam }) {
   return (
     <div className="app-container">
       {currentScreen === 'main' && (
-        <MainMenu userId={userId} attempts={attempts} onNavigate={setCurrentScreen} onLogout={handleLogout} theme={theme} />
+        <MainMenu userId={userId} attempts={attempts} onNavigate={setCurrentScreen} onLogout={handleLogout} theme={theme} sourceParam={sourceParam} />
       )}
       {currentScreen === 'analysis' && (
         <Analysis userId={userId} attempts={attempts} updateAttempts={setAttempts} onBack={() => setCurrentScreen('main')} theme={theme} />

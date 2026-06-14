@@ -348,6 +348,35 @@ export const THEMES = {
   }
 };
 
+// ===== Варианты тем по байеру (Способ А: вариант зашит в сегмент метки) =====
+// Полные темы-варианты = копия базовой через spread + свой визуал. lang остаётся
+// базовым (tr2 -> язык tr), чтобы локализация фронта НЕ свалилась в EN-фолбэк.
+THEMES.tr2 = {
+  ...THEMES.tr,
+  id: 'tr2', lang: 'tr',
+  brandName: 'TurBet AI',
+  primaryColor: '#8b5cf6',  // вариант 2: фиолетовый
+};
+THEMES.es2 = {
+  ...THEMES.es,
+  id: 'es2', lang: 'es',
+  brandName: 'VenBet AI',
+  primaryColor: '#22c55e',  // вариант 2: зелёный
+};
+
+// Карта СЕГМЕНТ-метки -> КЛЮЧ ТЕМЫ. Только варианты: проверяется ДО _GEO_LANG,
+// чтобы сегмент tr2 дал тему-вариант tr2, а не базовую tr. Базовые гео (es, tr,
+// en ...) и алиасы (ar=Аргентина=es и пр.) идут прежним путём через _GEO_LANG.
+const _SEG_THEME = { tr2: 'tr2', es2: 'es2' };
+
+// Опции для выпадашки генератора (байер выбирает базу или вариант фронта).
+export const THEME_OPTIONS = [
+  { key: 'tr',  label: 'Турция — баз. (красный)' },
+  { key: 'tr2', label: 'Турция — вар.2 (фиолетовый)' },
+  { key: 'es',  label: 'Испания — баз. (циан)' },
+  { key: 'es2', label: 'Испания — вар.2 (зелёный)' },
+];
+
 // Алиас для совместимости со старым кодом (latam → es)
 THEMES.latam = THEMES.es;
 
@@ -369,6 +398,8 @@ const _GEO_LANG = {
   ml: 'fr', bj: 'fr', tg: 'fr', ne: 'fr', bf: 'fr', gn: 'fr', cd: 'fr',
   // турецкий
   tr: 'tr', tur: 'tr', turkey: 'tr',
+  // варианты тем (Способ А): ЯЗЫК базовый, ТЕМА — вариант (см. _SEG_THEME / getThemeBySource)
+  tr2: 'tr', es2: 'es',
   // азербайджанский
   az: 'az', aze: 'az', baku: 'az',
   // английский (явный)
@@ -385,6 +416,7 @@ export const getThemeBySource = (source) => {
   // сегмента с кодом языка/гео. Точное совпадение исключает ложные срабатывания.
   const parts = s.split(/[_\-\s.]+/).filter(Boolean);
   for (const p of parts) {
+    if (_SEG_THEME[p]) return THEMES[_SEG_THEME[p]];  // вариант темы (tr2/es2) — приоритет
     if (_GEO_LANG[p]) return THEMES[_GEO_LANG[p]];
   }
   return null;
