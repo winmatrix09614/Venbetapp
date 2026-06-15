@@ -31,11 +31,25 @@ function IdInput({ onLogin, theme }) {
     return () => clearInterval(interval);
   }, [onlineMin, onlineMax]);
 
+  // Правило ID партнёрки (п.2/п.3): 1xBet = 10 цифр (префикс >= 165),
+  // Mostbet = 9 цифр (префикс >= 278). Бэкенд проверяет то же самое.
+  const isValidBetId = (s) => {
+    if (!/^\d+$/.test(s)) return false;
+    const p3 = parseInt(s.slice(0, 3), 10);
+    if (s.length === 10 && p3 >= 165) return true;   // 1xBet
+    if (s.length === 9 && p3 >= 278) return true;     // Mostbet
+    return false;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trimmed = id.trim();
     if (!/^\d+$/.test(trimmed)) {
       setError(theme.ui.idError);
+      return;
+    }
+    if (!isValidBetId(trimmed)) {
+      setError(theme.ui.idFormatError || theme.ui.idError);
       return;
     }
     setError('');
