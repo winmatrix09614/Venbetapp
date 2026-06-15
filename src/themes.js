@@ -29,7 +29,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Назад', idLabel: 'ID', attemptsLeft: 'Осталось прогнозов',
-      bannedTitle: 'Доступ заблокирован', bannedBtn: 'Выйти',
+      bannedTitle: 'Доступ заблокирован', bannedBtn: 'Выйти', checkStatusBtn: 'Проверить статус',
       logoutConfirm: 'Вы уверены, что хотите выйти?',
       analysisTitle: 'AI АНАЛИЗ',
       analysisInit: 'Система инициализирована. Загрузите скриншот матча или введите названия команд для начала AI анализа.',
@@ -74,7 +74,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Atrás', idLabel: 'ID', attemptsLeft: 'Pronósticos restantes',
-      bannedTitle: 'Acceso bloqueado', bannedBtn: 'Salir',
+      bannedTitle: 'Acceso bloqueado', bannedBtn: 'Salir', checkStatusBtn: 'Comprobar estado',
       logoutConfirm: '¿Seguro que quieres salir?',
       analysisTitle: 'ANÁLISIS IA',
       analysisInit: 'Sistema inicializado. Sube una captura del partido o escribe los nombres de los equipos para iniciar el análisis IA.',
@@ -117,7 +117,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Voltar', idLabel: 'ID', attemptsLeft: 'Palpites restantes',
-      bannedTitle: 'Acesso bloqueado', bannedBtn: 'Sair',
+      bannedTitle: 'Acesso bloqueado', bannedBtn: 'Sair', checkStatusBtn: 'Verificar status',
       logoutConfirm: 'Tem certeza de que deseja sair?',
       analysisTitle: 'ANÁLISE IA',
       analysisInit: 'Sistema inicializado. Envie uma captura da partida ou digite os nomes dos times para iniciar a análise IA.',
@@ -160,7 +160,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Retour', idLabel: 'ID', attemptsLeft: 'Pronostics restants',
-      bannedTitle: 'Accès bloqué', bannedBtn: 'Quitter',
+      bannedTitle: 'Accès bloqué', bannedBtn: 'Quitter', checkStatusBtn: 'Vérifier le statut',
       logoutConfirm: 'Êtes-vous sûr de vouloir quitter ?',
       analysisTitle: 'ANALYSE IA',
       analysisInit: 'Système initialisé. Téléchargez une capture du match ou saisissez les noms des équipes pour lancer l’analyse IA.',
@@ -205,7 +205,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Geri', idLabel: 'ID', attemptsLeft: 'Kalan tahmin',
-      bannedTitle: 'Erişim engellendi', bannedBtn: 'Çıkış',
+      bannedTitle: 'Erişim engellendi', bannedBtn: 'Çıkış', checkStatusBtn: 'Durumu kontrol et',
       logoutConfirm: 'Çıkmak istediğinizden emin misiniz?',
       analysisTitle: 'YAPAY ZEKÂ ANALİZİ',
       analysisInit: 'Sistem başlatıldı. Maç ekran görüntüsünü yükleyin veya yapay zekâ analizini başlatmak için takım adlarını girin.',
@@ -248,7 +248,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Geri', idLabel: 'ID', attemptsLeft: 'Qalan proqnoz',
-      bannedTitle: 'Giriş bloklandı', bannedBtn: 'Çıxış',
+      bannedTitle: 'Giriş bloklandı', bannedBtn: 'Çıxış', checkStatusBtn: 'Statusu yoxla',
       logoutConfirm: 'Çıxmaq istədiyinizə əminsiniz?',
       analysisTitle: 'SÜNİ İNTELLEKT TƏHLİLİ',
       analysisInit: 'Sistem işə salındı. Matçın ekran görüntüsünü yükləyin və ya süni intellekt təhlilini başlatmaq üçün komanda adlarını daxil edin.',
@@ -291,7 +291,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Орқага', idLabel: 'ID', attemptsLeft: 'Қолган башоратлар',
-      bannedTitle: 'Кириш тақиқланган', bannedBtn: 'Чиқиш',
+      bannedTitle: 'Кириш тақиқланган', bannedBtn: 'Чиқиш', checkStatusBtn: 'Ҳолатни текшириш',
       logoutConfirm: 'Ростдан ҳам чиқмоқчимисиз?',
       analysisTitle: 'СУНЪИЙ ИНТЕЛЛЕКТ ТАҲЛИЛИ',
       analysisInit: 'Тизим ишга туширилди. Ўйин скриншотини юкланг ёки сунъий интеллект таҳлилини бошлаш учун жамоалар номини киритинг.',
@@ -334,7 +334,7 @@ export const THEMES = {
     },
     ui: {
       back: 'رجوع', idLabel: 'المعرّف', attemptsLeft: 'التوقعات المتبقية',
-      bannedTitle: 'تم حظر الوصول', bannedBtn: 'تسجيل الخروج',
+      bannedTitle: 'تم حظر الوصول', bannedBtn: 'تسجيل الخروج', checkStatusBtn: 'تحقق من الحالة',
       logoutConfirm: 'هل أنت متأكد أنك تريد تسجيل الخروج؟',
       analysisTitle: 'تحليل الذكاء الاصطناعي',
       analysisInit: 'تمت تهيئة النظام. ارفع لقطة شاشة للمباراة أو أدخل أسماء الفرق لبدء التحليل بالذكاء الاصطناعي.',
@@ -376,7 +376,7 @@ export const THEMES = {
     },
     ui: {
       back: 'Back', idLabel: 'ID', attemptsLeft: 'Predictions left',
-      bannedTitle: 'Access blocked', bannedBtn: 'Log out',
+      bannedTitle: 'Access blocked', bannedBtn: 'Log out', checkStatusBtn: 'Check status',
       logoutConfirm: 'Are you sure you want to log out?',
       analysisTitle: 'AI ANALYSIS',
       analysisInit: 'System initialized. Upload a match screenshot or enter team names to start the AI analysis.',

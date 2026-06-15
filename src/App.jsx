@@ -14,6 +14,7 @@ function App({ initialTheme, sourceParam }) {
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState(null);
   const [userStatus, setUserStatus] = useState(null);
+  const [checking, setChecking] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [currentScreen, setCurrentScreen] = useState('main');
   const [offline, setOffline] = useState(false);
@@ -56,7 +57,9 @@ function App({ initialTheme, sourceParam }) {
       if (data.status === 'active') {
         setUserId(id); setUserStatus('active'); setAttempts(data.attempts); setIsLoading(false); return true;
       } else if (data.status === 'pending') {
-        setUserId(id); setUserStatus('pending'); setIsLoading(false); return false;
+        setUserId(id); setUserStatus('pending'); setIsLoading(false);
+        startStatusPolling(id);  // экран ожидания сам обновится при активации
+        return false;
       } else {
         localStorage.removeItem('venbet_user_id'); setIsLoading(false); return false;
       }
@@ -108,28 +111,37 @@ function App({ initialTheme, sourceParam }) {
     // (лид активирован менеджером). pending -> экран ожидания. Никаких «входов» по
     // факту регистрации — подтверждение обязательно.
     const isActive = await checkUserStatus(id);
-    if (!isActive) {
-      // Очищаем предыдущий опрос (если был) — не плодим таймеры при повторном входе.
-      if (pollRef.current) clearInterval(pollRef.current);
-      let ticks = 0;
-      pollRef.current = setInterval(async () => {
-        ticks += 1;
-        if (ticks > 120) {  // лимит ~10 минут, потом перестаём опрашивать
-          clearInterval(pollRef.current); pollRef.current = null; return;
+    if (!isActive) startStatusPolling(id);
+  };
+
+  // Опрос статуса на экране ожидания: как только менеджер активирует лида —
+  // аппка сама пускает внутрь (без ручной перезагрузки). Лимит ~10 минут.
+  const startStatusPolling = (id) => {
+    if (pollRef.current) clearInterval(pollRef.current);  // не плодим таймеры
+    let ticks = 0;
+    pollRef.current = setInterval(async () => {
+      ticks += 1;
+      if (ticks > 120) { clearInterval(pollRef.current); pollRef.current = null; return; }
+      try {
+        const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
+        const data = await res.json();
+        if (data.status === 'active') {
+          clearInterval(pollRef.current); pollRef.current = null;
+          setUserStatus('active'); setAttempts(data.attempts);
+        } else if (data.status === 'banned') {
+          clearInterval(pollRef.current); pollRef.current = null;
+          setUserStatus('banned');
         }
-        try {
-          const res = await fetch(`${API_BASE}/user_status?bet_id=${id}`);
-          const data = await res.json();
-          if (data.status === 'active') {
-            clearInterval(pollRef.current); pollRef.current = null;
-            setUserStatus('active'); setAttempts(data.attempts);
-          } else if (data.status === 'banned') {
-            clearInterval(pollRef.current); pollRef.current = null;
-            setUserStatus('banned');
-          }
-        } catch (e) { /* временный сбой сети — следующий тик повторит */ }
-      }, 5000);
-    }
+      } catch (e) { /* временный сбой сети — следующий тик повторит */ }
+    }, 5000);
+  };
+
+  // Ручная проверка статуса (кнопка на экране ожидания).
+  const manualCheck = async () => {
+    const sid = userId || localStorage.getItem('venbet_user_id');
+    if (!sid || checking) return;
+    setChecking(true);
+    try { await checkUserStatus(sid); } finally { setChecking(false); }
   };
 
   const handleLogout = () => {
@@ -166,6 +178,9 @@ function App({ initialTheme, sourceParam }) {
           <div className="logo-icon">⏳</div>
           <h2>{theme.waitingTitle}</h2>
           <p>{theme.waitingDesc}</p>
+          <button onClick={manualCheck} disabled={checking} className="gradient-btn" style={{ marginBottom: 10 }}>
+            {checking ? '…' : (theme.ui.checkStatusBtn || 'Проверить статус')}
+          </button>
           <button onClick={handleLogout} className="gradient-btn">{theme.btnText}</button>
         </div>
       </div>
