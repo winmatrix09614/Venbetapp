@@ -271,6 +271,49 @@ export const THEMES = {
     }
   },
 
+  // ===== Ўзбекча (узбекский, кириллица) =====
+  uz: {
+    id: 'uz', lang: 'uz', locale: 'uz-UZ', dir: 'ltr',
+    brandName: 'UZbet AI',
+    subtitle: 'Спорт таҳлили учун Сунъий Интеллект',
+    inputLabel: '1xBet ID рақамингиз',
+    inputPlaceholder: 'Масалан: 10000000',
+    inputDesc: 'ID рақамингизни 1xBet иловасида → Профил бўлимида топасиз',
+    btnText: 'Давом этиш',
+    waitingTitle: 'Тасдиқ кутилмоқда',
+    waitingDesc: 'ID рақамингиз администраторга юборилди. Фаоллаштиришни кутинг.',
+    primaryColor: '#19e3c0', icon: ICON_STAR,
+    menu: {
+      analysisTitle: 'Сунъий интеллект таҳлили', analysisDesc: 'Чуқур ўйин таҳлили',
+      historyTitle: 'Тарих', historyDesc: 'Сеанслар журнали',
+      newsTitle: 'Янгиликлар', newsDesc: 'Спорт янгиликлари',
+      supportTitle: 'Ёрдам', supportDesc: 'Мутахассис билан алоқа'
+    },
+    ui: {
+      back: 'Орқага', idLabel: 'ID', attemptsLeft: 'Қолган башоратлар',
+      bannedTitle: 'Кириш тақиқланган', bannedBtn: 'Чиқиш',
+      logoutConfirm: 'Ростдан ҳам чиқмоқчимисиз?',
+      analysisTitle: 'СУНЪИЙ ИНТЕЛЛЕКТ ТАҲЛИЛИ',
+      analysisInit: 'Тизим ишга туширилди. Ўйин скриншотини юкланг ёки сунъий интеллект таҳлилини бошлаш учун жамоалар номини киритинг.',
+      verdictTag: 'СУНЪИЙ ИНТЕЛЛЕКТ ҚАРОРИ', confidence: 'Ишонч', baseConf: 'Асосий баҳолаш', promoTitle: 'Сунъий интеллект башоратини олинг', promoSub: 'Ким ютишини бир неча сонияда билинг', promoBtn: 'Бошлаш', hiwTitle: 'Қандай ишлайди', hiwStep1: '1xBet ID киритинг', hiwStep2: 'Сунъий интеллект таҳлил қилади', hiwStep3: 'Ишонч билан тикинг', tickerTitle: 'Сўнгги сунъий интеллект башоратлари', statBlockTitle: 'Статистика', statForm: 'Шакл', statGoalsFor: 'Голлар (ўрт.)', statGoalsAg: 'Жой', statPoss: 'Тўпга эгалик %', statShots: 'Зарбалар', statShotsOn: 'Аниқ', statCorners: 'Бурчаклар', statH2H: 'Учрашувлар',
+      inputPlaceholder: 'Жамоалар ёки скриншот...', errorPrefix: 'Хато',
+      connError: 'Сервер билан алоқа хатоси.',
+      offlineTitle: 'Алоқа йўқ', offlineDesc: 'Интернетингизни текширинг — биз автоматик қайта уланамиз.', offlineRetry: 'Қайта уриниш',
+      historyTitle: 'ТАРИХ', historyLoading: 'Архив юкланмоқда...',
+      historyEmpty: 'Тарих бўш', historyEmptySub: 'Ҳали башорат қилмагансиз',
+      archiveTag: 'АРХИВ', undefinedResult: 'Аниқланмаган', draw: 'Дуранг',
+      newsMainTag: 'ТАНЛАНГАН', newsLatestTag: 'Сўнгги янгиликлар', newsActualTag: 'ДОЛЗАРБ',
+      newsRead: 'Ўқиш →', newsUnavailable: 'Янгиликлар ҳозирча мавжуд эмас', newsTryLater: 'Кейинроқ уриниб кўринг',
+      loading: 'Илова юкланмоқда...', statOnline: 'Онлайн', idError: 'Нотўғри ID',
+      single: 'Якка', express: 'Экспресс', expressTitle: 'ЭКСПРЕСС', combined: 'Умумий ишонч',
+      howToBet: 'Қандай тикиш керак', videoSoon: 'Ўқув видеоси тез орада қўшилади',
+      statsCapper: 'Башорат статистикаси', predictionsWord: 'башорат', accuracyWord: 'аниқлик', per7d: '7 кунда',
+      dailyTitle: 'Куннинг башорати', dailyDesc: 'Бепул сигнал', dailyEmpty: 'Ҳали мавжуд эмас',
+      sportFootball: 'Футбол', sportBasketball: 'Баскетбол',
+      idLowNote: 'ID 168 дан паст — эски ҳисоб, аниқлик паст бўлиши мумкин.', howToFindId: 'ID қаерда?', singleNote: 'Бу якка тикиш — алоҳида ўйнашни тавсия қиламиз.', expressNote: 'Тайёр экспресс — қандай бўлса шундай тўлиқ ўйнанг.', liveBadge: '🔴 ЖОНЛИ {score}, {minute}′ · ўйин олди башорати', disclaimer: 'Бу сунъий интеллект таҳлили, кафолат эмас. Тикиш қарори сизга боғлиқ.'
+    }
+  },
+
   // ===== English (фоллбэк для неопознанных языков) =====
   ar: {
     id: 'ar', lang: 'ar', locale: 'ar-JO', dir: 'rtl',
@@ -415,6 +458,8 @@ const _GEO_LANG = {
   tr2: 'tr', es2: 'es',
   // азербайджанский
   az: 'az', aze: 'az', baku: 'az',
+  // узбекский (кириллица)
+  uz: 'uz', uzb: 'uz', tashkent: 'uz', uzbekistan: 'uz',
   // английский (явный)
   en: 'en', eng: 'en', uk: 'en', us: 'en', gb: 'en',
   za: 'en', rsa: 'en', ke: 'en', kenya: 'en',
@@ -444,6 +489,7 @@ export const getThemeByLanguage = (lang) => {
   if (l.startsWith('fr')) return THEMES.fr;
   if (l.startsWith('tr')) return THEMES.tr;
   if (l.startsWith('az')) return THEMES.az;
+  if (l.startsWith('uz')) return THEMES.uz;
   if (l.startsWith('en')) return THEMES.en;
   return null;
 };
