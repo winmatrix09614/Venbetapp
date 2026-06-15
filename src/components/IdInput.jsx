@@ -8,7 +8,10 @@ function IdInput({ onLogin, theme }) {
   const ui = theme.ui;
   const [id, setId] = useState('');
   const [error, setError] = useState('');
-  const [onlineCount, setOnlineCount] = useState(4123);
+  // Плитки главной можно переопределять в теме (theme.*). Фолбэк — прежние значения.
+  const onlineMin = (theme && theme.onlineMin) || 3000;
+  const onlineMax = (theme && theme.onlineMax) || 7000;
+  const [onlineCount, setOnlineCount] = useState(Math.round((onlineMin + onlineMax) / 2));
   const [vid, setVid] = useState(false);
   const [ticker, setTicker] = useState([]);
   const idVideoUrl = (theme && theme.idVideoUrl) || '';
@@ -22,11 +25,11 @@ function IdInput({ onLogin, theme }) {
       setOnlineCount(prev => {
         let delta = Math.floor(Math.random() * 5) + 1;
         let newVal = prev + (Math.random() > 0.5 ? delta : -delta);
-        return Math.min(7000, Math.max(3000, newVal));
+        return Math.min(onlineMax, Math.max(onlineMin, newVal));
       });
     }, 10000);
     return () => clearInterval(interval);
-  }, []);
+  }, [onlineMin, onlineMax]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,8 +73,8 @@ function IdInput({ onLogin, theme }) {
 
       <div className="center-section">
         <div className="bento-stats-row">
-          <div className="stat-tile"><span className="stat-num">92%</span><span className="stat-txt">AI</span></div>
-          <div className="stat-tile"><span className="stat-num">21.5K</span><span className="stat-txt">PRO</span></div>
+          <div className="stat-tile"><span className="stat-num">{(theme && theme.statAcc) || '92%'}</span><span className="stat-txt">AI</span></div>
+          <div className="stat-tile"><span className="stat-num">{(theme && theme.statPro) || '21.5K'}</span><span className="stat-txt">PRO</span></div>
           <div className="stat-tile"><span className="stat-num online-pulse">{onlineCount}</span><span className="stat-txt">{ui.statOnline}</span></div>
         </div>
 

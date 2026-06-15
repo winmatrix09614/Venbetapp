@@ -56,6 +56,7 @@ export const THEMES = {
   es: {
     id: 'es', lang: 'es', locale: 'es-ES', dir: 'ltr',
     logo: LOGO_PREDICT_AI,  // картинка вместо текстового brandName
+    statAcc: '89%', statPro: '69.1K', onlineMin: 10000, onlineMax: 10580,  // плитки главной
     brandName: 'VenBet AI',
     subtitle: 'Inteligencia Artificial Deportiva',
     inputLabel: 'Tu ID de 1xBet',
@@ -186,6 +187,7 @@ export const THEMES = {
   tr: {
     id: 'tr', lang: 'tr', locale: 'tr-TR', dir: 'ltr',
     logo: LOGO_PREDICT_AI,  // картинка вместо текстового brandName
+    statAcc: '89%', statPro: '69.1K', onlineMin: 10000, onlineMax: 10580,  // плитки главной
     brandName: 'TurBet AI',
     subtitle: 'Spor Analizi için Yapay Zekâ',
     inputLabel: '1xBet ID’niz',
@@ -364,6 +366,7 @@ THEMES.tr2 = {
   logo: LOGO_MAC_TAHMIN,         // свой логотип (картинка = иконка + название)
   brandName: 'Maç Tahmin AI',
   primaryColor: '#3ddc5c',       // акцент под лого: зелёно-голубой градиент -> зелёный
+  statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,  // вариант — свои (дефолтные) цифры
 };
 THEMES.es2 = {
   ...THEMES.es,
@@ -371,6 +374,7 @@ THEMES.es2 = {
   logo: null,  // вариант 2 — свой бренд (текст), НЕ логотип базовой темы
   brandName: 'VenBet AI',
   primaryColor: '#22c55e',  // вариант 2: зелёный
+  statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,  // вариант — свои (дефолтные) цифры
 };
 
 // Карта СЕГМЕНТ-метки -> КЛЮЧ ТЕМЫ. Только варианты: проверяется ДО _GEO_LANG,
