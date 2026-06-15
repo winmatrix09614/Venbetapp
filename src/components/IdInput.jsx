@@ -155,7 +155,7 @@ function IdInput({ onLogin, theme }) {
             />
             <span className="input-description">{theme.inputDesc}</span>
             <span className="input-description" style={{ opacity: 0.7, marginTop: '4px' }}>{theme.ui.idLowNote}</span>
-            {!idVideoHidden && (<button type="button" className="howto-btn" style={{ marginTop: '10px' }} onClick={() => setVid(true)}>📹 {theme.ui.howToFindId}</button>)}
+            {!idVideoHidden ? (<button type="button" className="howto-btn" style={{ marginTop: '10px' }} onClick={() => setVid(true)}>{"📹 " + theme.ui.howToFindId}</button>) : null}
           </div>
 
           {error && <div className="form-error">{error}</div>}

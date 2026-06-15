@@ -319,7 +319,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                 )}
 
                 {msg.prediction && (
-                  {!videoHidden && (<button className="howto-btn" onClick={() => setVideoOpen(true)}>📹 {ui.howToBet}</button>)}
+                  {!videoHidden ? (<button className="howto-btn" onClick={() => setVideoOpen(true)}>{"📹 " + ui.howToBet}</button>) : null}
                 )}
                 
                 {/* Время сообщения */}
