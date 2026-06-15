@@ -415,7 +415,8 @@ THEMES.es2 = {
   ...THEMES.es,
   id: 'es2', lang: 'es',
   logo: null,  // вариант 2 — свой бренд (текст), НЕ логотип базовой темы
-  brandName: 'VenBet AI',
+  brandName: 'Pronóstico Elite',
+  subtitle: 'Análisis Deportivo con Inteligencia Artificial',  // вариант 2: переформулировка (тот же смысл)
   primaryColor: '#22c55e',  // вариант 2: зелёный
   statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,  // вариант — свои (дефолтные) цифры
 };
