@@ -21,7 +21,15 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const [mode, setMode] = useState('single');
   const [sport, setSport] = useState('football');
   const [videoOpen, setVideoOpen] = useState(false);
-  const videoUrl = (theme && theme.videoUrl) || '';
+  const [videoUrl, setVideoUrl] = useState((theme && theme.videoUrl) || '');
+
+  // Видео-инструкция «Как поставить ставку» — грузится из CRM по варианту темы.
+  useEffect(() => {
+    const tk = (theme && theme.id) || '';
+    axios.get(`${API_BASE}/webapp/video?theme=${encodeURIComponent(tk)}&type=bet`)
+      .then(r => { if (r.data && r.data.url) setVideoUrl(r.data.url); })
+      .catch(() => {});
+  }, [theme && theme.id]);
 
   // Инициализация чата
   useEffect(() => {

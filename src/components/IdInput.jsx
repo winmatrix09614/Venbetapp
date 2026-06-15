@@ -14,11 +14,19 @@ function IdInput({ onLogin, theme }) {
   const [onlineCount, setOnlineCount] = useState(Math.round((onlineMin + onlineMax) / 2));
   const [vid, setVid] = useState(false);
   const [ticker, setTicker] = useState([]);
-  const idVideoUrl = (theme && theme.idVideoUrl) || '';
+  const [idVideoUrl, setIdVideoUrl] = useState((theme && theme.idVideoUrl) || '');
 
   useEffect(() => {
     axios.get(`${API_BASE}/webapp/ticker`).then(r => setTicker(r.data.items || [])).catch(() => {});
   }, []);
+
+  // Видео-инструкция «Где взять ID» — грузится из CRM по варианту темы.
+  useEffect(() => {
+    const tk = (theme && theme.id) || '';
+    axios.get(`${API_BASE}/webapp/video?theme=${encodeURIComponent(tk)}&type=id`)
+      .then(r => { if (r.data && r.data.url) setIdVideoUrl(r.data.url); })
+      .catch(() => {});
+  }, [theme && theme.id]);
 
   useEffect(() => {
     const interval = setInterval(() => {
