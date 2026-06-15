@@ -62,7 +62,7 @@ export const THEMES = {
     btnText: 'Continuar',
     waitingTitle: 'Esperando confirmación',
     waitingDesc: 'Tu ID ha sido enviado al gestor. Espera la activación.',
-    primaryColor: '#00f2fe', icon: ICON_STAR,
+    primaryColor: '#19e3c0', icon: ICON_STAR,
     menu: {
       analysisTitle: 'Análisis IA', analysisDesc: 'Análisis profundo del partido',
       historyTitle: 'Historial', historyDesc: 'Registro de sesiones',
@@ -192,7 +192,7 @@ export const THEMES = {
     btnText: 'Devam',
     waitingTitle: 'Onay bekleniyor',
     waitingDesc: 'ID’niz yöneticiye gönderildi. Aktivasyonu bekleyin.',
-    primaryColor: '#ef4444', icon: ICON_STAR,
+    primaryColor: '#19e3c0', icon: ICON_STAR,
     menu: {
       analysisTitle: 'Yapay Zekâ Analizi', analysisDesc: 'Derinlemesine maç analizi',
       historyTitle: 'Geçmiş', historyDesc: 'Oturum kaydı',
