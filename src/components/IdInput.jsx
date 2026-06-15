@@ -15,6 +15,7 @@ function IdInput({ onLogin, theme }) {
   const [vid, setVid] = useState(false);
   const [ticker, setTicker] = useState([]);
   const [idVideoUrl, setIdVideoUrl] = useState((theme && theme.idVideoUrl) || '');
+  const [idVideoHidden, setIdVideoHidden] = useState(false);
 
   useEffect(() => {
     axios.get(`${API_BASE}/webapp/ticker`).then(r => setTicker(r.data.items || [])).catch(() => {});
@@ -24,7 +25,7 @@ function IdInput({ onLogin, theme }) {
   useEffect(() => {
     const tk = (theme && theme.id) || '';
     axios.get(`${API_BASE}/webapp/video?theme=${encodeURIComponent(tk)}&type=id`)
-      .then(r => { if (r.data && r.data.url) setIdVideoUrl(r.data.url); })
+      .then(r => { if (r.data) { if (r.data.url) setIdVideoUrl(r.data.url); setIdVideoHidden(!!r.data.hidden); } })
       .catch(() => {});
   }, [theme && theme.id]);
 
@@ -154,7 +155,7 @@ function IdInput({ onLogin, theme }) {
             />
             <span className="input-description">{theme.inputDesc}</span>
             <span className="input-description" style={{ opacity: 0.7, marginTop: '4px' }}>{theme.ui.idLowNote}</span>
-            <button type="button" className="howto-btn" style={{ marginTop: '10px' }} onClick={() => setVid(true)}>📹 {theme.ui.howToFindId}</button>
+            {!idVideoHidden && (<button type="button" className="howto-btn" style={{ marginTop: '10px' }} onClick={() => setVid(true)}>📹 {theme.ui.howToFindId}</button>)}
           </div>
 
           {error && <div className="form-error">{error}</div>}

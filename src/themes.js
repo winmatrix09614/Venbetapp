@@ -276,9 +276,9 @@ export const THEMES = {
     id: 'uz', lang: 'uz', locale: 'uz-UZ', dir: 'ltr',
     brandName: 'UZbet AI',
     subtitle: 'Спорт таҳлили учун Сунъий Интеллект',
-    inputLabel: '1xBet ID рақамингиз',
+    inputLabel: 'Mostbet ID рақамингиз',
     inputPlaceholder: 'Масалан: 10000000',
-    inputDesc: 'ID рақамингизни 1xBet иловасида → Профил бўлимида топасиз',
+    inputDesc: 'ID рақамингизни Mostbet иловасида → Профил бўлимида топасиз',
     btnText: 'Давом этиш',
     waitingTitle: 'Тасдиқ кутилмоқда',
     waitingDesc: 'ID рақамингиз администраторга юборилди. Фаоллаштиришни кутинг.',
@@ -295,7 +295,7 @@ export const THEMES = {
       logoutConfirm: 'Ростдан ҳам чиқмоқчимисиз?',
       analysisTitle: 'СУНЪИЙ ИНТЕЛЛЕКТ ТАҲЛИЛИ',
       analysisInit: 'Тизим ишга туширилди. Ўйин скриншотини юкланг ёки сунъий интеллект таҳлилини бошлаш учун жамоалар номини киритинг.',
-      verdictTag: 'СУНЪИЙ ИНТЕЛЛЕКТ ҚАРОРИ', confidence: 'Ишонч', baseConf: 'Асосий баҳолаш', promoTitle: 'Сунъий интеллект башоратини олинг', promoSub: 'Ким ютишини бир неча сонияда билинг', promoBtn: 'Бошлаш', hiwTitle: 'Қандай ишлайди', hiwStep1: '1xBet ID киритинг', hiwStep2: 'Сунъий интеллект таҳлил қилади', hiwStep3: 'Ишонч билан тикинг', tickerTitle: 'Сўнгги сунъий интеллект башоратлари', statBlockTitle: 'Статистика', statForm: 'Шакл', statGoalsFor: 'Голлар (ўрт.)', statGoalsAg: 'Жой', statPoss: 'Тўпга эгалик %', statShots: 'Зарбалар', statShotsOn: 'Аниқ', statCorners: 'Бурчаклар', statH2H: 'Учрашувлар',
+      verdictTag: 'СУНЪИЙ ИНТЕЛЛЕКТ ҚАРОРИ', confidence: 'Ишонч', baseConf: 'Асосий баҳолаш', promoTitle: 'Сунъий интеллект башоратини олинг', promoSub: 'Ким ютишини бир неча сонияда билинг', promoBtn: 'Бошлаш', hiwTitle: 'Қандай ишлайди', hiwStep1: 'Mostbet ID киритинг', hiwStep2: 'Сунъий интеллект таҳлил қилади', hiwStep3: 'Ишонч билан тикинг', tickerTitle: 'Сўнгги сунъий интеллект башоратлари', statBlockTitle: 'Статистика', statForm: 'Шакл', statGoalsFor: 'Голлар (ўрт.)', statGoalsAg: 'Жой', statPoss: 'Тўпга эгалик %', statShots: 'Зарбалар', statShotsOn: 'Аниқ', statCorners: 'Бурчаклар', statH2H: 'Учрашувлар',
       inputPlaceholder: 'Жамоалар ёки скриншот...', errorPrefix: 'Хато',
       connError: 'Сервер билан алоқа хатоси.',
       offlineTitle: 'Алоқа йўқ', offlineDesc: 'Интернетингизни текширинг — биз автоматик қайта уланамиз.', offlineRetry: 'Қайта уриниш',
@@ -310,7 +310,7 @@ export const THEMES = {
       statsCapper: 'Башорат статистикаси', predictionsWord: 'башорат', accuracyWord: 'аниқлик', per7d: '7 кунда',
       dailyTitle: 'Куннинг башорати', dailyDesc: 'Бепул сигнал', dailyEmpty: 'Ҳали мавжуд эмас',
       sportFootball: 'Футбол', sportBasketball: 'Баскетбол',
-      idLowNote: 'ID 168 дан паст — эски ҳисоб, аниқлик паст бўлиши мумкин.', howToFindId: 'ID қаерда?', singleNote: 'Бу якка тикиш — алоҳида ўйнашни тавсия қиламиз.', expressNote: 'Тайёр экспресс — қандай бўлса шундай тўлиқ ўйнанг.', liveBadge: '🔴 ЖОНЛИ {score}, {minute}′ · ўйин олди башорати', disclaimer: 'Бу сунъий интеллект таҳлили, кафолат эмас. Тикиш қарори сизга боғлиқ.'
+      idLowNote: '', howToFindId: 'ID қаерда?', singleNote: 'Бу якка тикиш — алоҳида ўйнашни тавсия қиламиз.', expressNote: 'Тайёр экспресс — қандай бўлса шундай тўлиқ ўйнанг.', liveBadge: '🔴 ЖОНЛИ {score}, {minute}′ · ўйин олди башорати', disclaimer: 'Бу сунъий интеллект таҳлили, кафолат эмас. Тикиш қарори сизга боғлиқ.'
     }
   },
 

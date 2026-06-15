@@ -22,12 +22,13 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const [sport, setSport] = useState('football');
   const [videoOpen, setVideoOpen] = useState(false);
   const [videoUrl, setVideoUrl] = useState((theme && theme.videoUrl) || '');
+  const [videoHidden, setVideoHidden] = useState(false);
 
   // Видео-инструкция «Как поставить ставку» — грузится из CRM по варианту темы.
   useEffect(() => {
     const tk = (theme && theme.id) || '';
     axios.get(`${API_BASE}/webapp/video?theme=${encodeURIComponent(tk)}&type=bet`)
-      .then(r => { if (r.data && r.data.url) setVideoUrl(r.data.url); })
+      .then(r => { if (r.data) { if (r.data.url) setVideoUrl(r.data.url); setVideoHidden(!!r.data.hidden); } })
       .catch(() => {});
   }, [theme && theme.id]);
 
@@ -318,7 +319,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                 )}
 
                 {msg.prediction && (
-                  <button className="howto-btn" onClick={() => setVideoOpen(true)}>📹 {ui.howToBet}</button>
+                  {!videoHidden && (<button className="howto-btn" onClick={() => setVideoOpen(true)}>📹 {ui.howToBet}</button>)}
                 )}
                 
                 {/* Время сообщения */}
