@@ -2,6 +2,8 @@
 // Логотип PREDICT AI (картинка = иконка + название). Используется в базовых
 // темах es/tr вместо текстового brandName. Положи файл по этому пути.
 import LOGO_PREDICT_AI from './assets/logo-predict-ai.png';
+// Логотип турецкого варианта 2 «Maç Tahmin AI» (картинка = иконка + название).
+import LOGO_MAC_TAHMIN from './assets/logo-mac-tahmin.png';
 const ICON_BOLT = '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>';
 const ICON_STAR = '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>';
 const ICON_GLOBE = '<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>';
@@ -359,9 +361,9 @@ export const THEMES = {
 THEMES.tr2 = {
   ...THEMES.tr,
   id: 'tr2', lang: 'tr',
-  logo: null,  // вариант 2 — свой бренд (текст), НЕ логотип базовой темы
-  brandName: 'TurBet AI',
-  primaryColor: '#8b5cf6',  // вариант 2: фиолетовый
+  logo: LOGO_MAC_TAHMIN,         // свой логотип (картинка = иконка + название)
+  brandName: 'Maç Tahmin AI',
+  primaryColor: '#3ddc5c',       // акцент под лого: зелёно-голубой градиент -> зелёный
 };
 THEMES.es2 = {
   ...THEMES.es,
