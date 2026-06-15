@@ -19,7 +19,9 @@ function Header({ title, onBack, userId, attempts, theme }) {
         )}
       </div>
       <div className="header-center">
-        <div className="header-title">{title}</div>
+        {theme && theme.logo
+          ? <img src={theme.logo} alt={title} className="header-logo" style={{ height: 28, width: 'auto', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
+          : <div className="header-title">{title}</div>}
         {userId && <div className="user-id">{ui.idLabel}: {userId}</div>}
         {attempts !== undefined && <div className="attempts-count">{ui.attemptsLeft}: {attempts}</div>}
       </div>

@@ -47,14 +47,25 @@ function IdInput({ onLogin, theme }) {
   return (
     <div className="id-screen">
       <div className="top-section">
-        <div className="brand-logo" style={{ color: 'var(--primary-theme-color)' }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: theme.icon }} />
-        </div>
-        <div className="brand-meta">
-          {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
-          <h1>{theme.brandName}</h1>
-          <p>{theme.subtitle}</p>
-        </div>
+        {theme.logo ? (
+          /* Логотип PREDICT AI = иконка + название одной картинкой (базовые es/tr) */
+          <div className="brand-meta brand-meta--logo">
+            <img src={theme.logo} alt={theme.brandName} className="brand-logo-img"
+                 style={{ maxWidth: 220, width: '70%', height: 'auto', objectFit: 'contain', margin: '0 auto 6px' }} />
+            <p>{theme.subtitle}</p>
+          </div>
+        ) : (
+          <>
+            <div className="brand-logo" style={{ color: 'var(--primary-theme-color)' }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: theme.icon }} />
+            </div>
+            <div className="brand-meta">
+              {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
+              <h1>{theme.brandName}</h1>
+              <p>{theme.subtitle}</p>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="center-section">
