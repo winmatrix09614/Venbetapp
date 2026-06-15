@@ -275,7 +275,7 @@
   animation: ticker-scroll 30s linear infinite;
 }
 .ticker-item { font-size: 12px; color: #cfd3d8; }
-.tk-ok { color: #34d27b; }
+.tk-ok { color: var(--primary-theme-color, #34d27b); }  /* под цвет темы/лого */
 .tk-no { color: #e05656; }
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
