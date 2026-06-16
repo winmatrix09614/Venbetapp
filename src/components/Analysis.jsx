@@ -294,10 +294,10 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                         </div>
                       );
                     })}
-                    {msg.stats.h2h_str && (
+                    {(msg.stats.h2h_str !== undefined && msg.stats.h2h_str !== null) && (
                       <div className="stat-row-block">
                         <div className="stat-row-label">{ui.statH2H || 'Очные встречи'}</div>
-                        <div className="stat-h2h">{msg.stats.h2h_str}</div>
+                        <div className="stat-h2h">{msg.stats.h2h_str || (ui.noH2H || 'No recent head-to-head')}</div>
                       </div>
                     )}
                   </div>
