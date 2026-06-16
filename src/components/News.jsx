@@ -52,7 +52,25 @@ function News({ onBack, theme }) {
     return (
       <div className="news-screen">
         <Header title={title} onBack={onBack} />
-        <div className="news-loading">…</div>
+        <div className="news-list">
+          <div className="news-skel news-skel-main">
+            <div className="skel-img" />
+            <div className="skel-line skel-tag" />
+            <div className="skel-line skel-title" />
+            <div className="skel-line skel-title short" />
+            <div className="skel-line skel-text" />
+          </div>
+          {[0, 1, 2].map((i) => (
+            <div className="news-skel news-skel-row" key={i}>
+              <div className="skel-thumb" />
+              <div className="skel-row-body">
+                <div className="skel-line skel-tag" />
+                <div className="skel-line skel-title" />
+                <div className="skel-line skel-text short" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

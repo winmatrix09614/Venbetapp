@@ -280,6 +280,7 @@ export const THEMES = {
     id: 'uz', lang: 'uz', locale: 'uz-UZ', dir: 'ltr',
     logo: LOGO_AI_TAHLILCHI,
     brandName: 'AI Tahlilchi',
+    botHandle: 'getaisport_bot',
     subtitle: 'Sport oyinlarini analiz qiluvchi AI',
     inputLabel: 'Mostbet ID raqamingiz',
     inputPlaceholder: 'Masalan: 278000000',
@@ -431,6 +432,7 @@ THEMES.uz2 = {
   id: 'uz2', lang: 'uz',
   logo: LOGO_VIP,
   brandName: 'VIP',
+  botHandle: 'vipuzexpert_bot',
   subtitle: 'Sport tahlili uchun neyrotarmoq ⚽️📊',
   primaryColor: '#e8b923',  // золото/янтарь (под VIP-лого, не ядовитый)
   inputLabel: 'Mostbet\'dagi ID raqamingiz 🔑',

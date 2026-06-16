@@ -168,7 +168,7 @@ function IdInput({ onLogin, theme }) {
         </form>
 
         <div className="app-version">
-          {theme.brandName} v3.1.6 · @usefulappbot
+          {theme.brandName} v3.1.6{theme.botHandle ? ` · @${theme.botHandle}` : ''}
         </div>
       </div>
 
