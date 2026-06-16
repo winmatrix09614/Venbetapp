@@ -104,3 +104,52 @@ body {
 @keyframes offlineSpin {
   to { transform: rotate(360deg); }
 }
+/* ====== Кнопки экранов ожидания/статуса (pending/offline/banned) ====== */
+/* Главная кнопка: акцент темы (--primary-theme-color подставляется под язык). */
+.gradient-btn {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary-theme-color);
+  color: #0a0e12;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease, opacity 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.gradient-btn:hover { filter: brightness(1.06); }
+.gradient-btn:active { transform: scale(0.97); }
+.gradient-btn:disabled { opacity: 0.6; cursor: default; }
+
+/* Вторичная кнопка (Выход/Devam): контурная, не конкурирует с главной. */
+.ghost-btn {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ghost-btn:hover { border-color: rgba(255, 255, 255, 0.32); background: rgba(255, 255, 255, 0.04); }
+.ghost-btn:active { transform: scale(0.97); }
+
+/* Отступ между двумя кнопками на карточке ожидания. */
+.pending-card .gradient-btn + .ghost-btn,
+.pending-card .ghost-btn + .gradient-btn { margin-top: 12px; }

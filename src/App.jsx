@@ -178,10 +178,10 @@ function App({ initialTheme, sourceParam }) {
           <div className="logo-icon">⏳</div>
           <h2>{theme.waitingTitle}</h2>
           <p>{theme.waitingDesc}</p>
-          <button onClick={manualCheck} disabled={checking} className="gradient-btn" style={{ marginBottom: 10 }}>
+          <button onClick={manualCheck} disabled={checking} className="gradient-btn">
             {checking ? '…' : (theme.ui.checkStatusBtn || 'Проверить статус')}
           </button>
-          <button onClick={handleLogout} className="gradient-btn">{theme.btnText}</button>
+          <button onClick={handleLogout} className="ghost-btn">{theme.btnText}</button>
         </div>
       </div>
     );
@@ -192,7 +192,7 @@ function App({ initialTheme, sourceParam }) {
         <div className="pending-card">
           <div className="logo-icon">🚫</div>
           <h2>{theme.ui.bannedTitle}</h2>
-          <button onClick={handleLogout} className="gradient-btn">{theme.ui.bannedBtn}</button>
+          <button onClick={handleLogout} className="ghost-btn">{theme.ui.bannedBtn}</button>
         </div>
       </div>
     );
