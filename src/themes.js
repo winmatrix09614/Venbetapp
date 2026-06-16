@@ -4,6 +4,10 @@
 import LOGO_PREDICT_AI from './assets/logo-predict-ai.png';
 // Логотип турецкого варианта 2 «Maç Tahmin AI» (картинка = иконка + название).
 import LOGO_MAC_TAHMIN from './assets/logo-mac-tahmin.png';
+// Логотип узбекского вар.1 «AI Tahlilchi» (зелёная звезда + название).
+import LOGO_AI_TAHLILCHI from './assets/logo-ai-tahlilchi.png';
+// Логотип узбекского вар.2 «VIP» (золотой VIP $).
+import LOGO_VIP from './assets/logo-vip.png';
 const ICON_BOLT = '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>';
 const ICON_STAR = '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>';
 const ICON_GLOBE = '<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>';
@@ -274,43 +278,44 @@ export const THEMES = {
   // ===== Ўзбекча (узбекский, кириллица) =====
   uz: {
     id: 'uz', lang: 'uz', locale: 'uz-UZ', dir: 'ltr',
-    brandName: 'UZbet AI',
-    subtitle: 'Спорт таҳлили учун Сунъий Интеллект',
-    inputLabel: 'Mostbet ID рақамингиз',
-    inputPlaceholder: 'Масалан: 10000000',
-    inputDesc: 'ID рақамингизни Mostbet иловасида → Профил бўлимида топасиз',
-    btnText: 'Давом этиш',
-    waitingTitle: 'Тасдиқ кутилмоқда',
-    waitingDesc: 'ID рақамингиз администраторга юборилди. Фаоллаштиришни кутинг.',
-    primaryColor: '#19e3c0', icon: ICON_STAR,
+    logo: LOGO_AI_TAHLILCHI,
+    brandName: 'AI Tahlilchi',
+    subtitle: 'Sport oyinlarini analiz qiluvchi AI',
+    inputLabel: 'Mostbet ID raqamingiz',
+    inputPlaceholder: 'Masalan: 278000000',
+    inputDesc: 'ID raqamingizni Mostbet saytida → Profil bo\'limida topasiz',
+    btnText: 'Davom ettirish',
+    waitingTitle: 'Tasdiq kutilmoqda',
+    waitingDesc: 'ID raqamingiz administratorga yuborildi. Faollashtirishni kuting.',
+    primaryColor: '#3ddc5c', icon: ICON_STAR,
     menu: {
-      analysisTitle: 'Сунъий интеллект таҳлили', analysisDesc: 'Чуқур ўйин таҳлили',
-      historyTitle: 'Тарих', historyDesc: 'Сеанслар журнали',
-      newsTitle: 'Янгиликлар', newsDesc: 'Спорт янгиликлари',
-      supportTitle: 'Ёрдам', supportDesc: 'Мутахассис билан алоқа'
+      analysisTitle: 'AI Tahlil', analysisDesc: 'Batafsil o\'yin tahlili',
+      historyTitle: 'Tarix', historyDesc: 'Sessiyalar jurnali',
+      newsTitle: 'Yangiliklar', newsDesc: 'Sport yangiliklari',
+      supportTitle: 'Qollab quvvatlash', supportDesc: 'Mutaxassis bilan bog\'lanish'
     },
     ui: {
-      back: 'Орқага', idLabel: 'ID', attemptsLeft: 'Қолган башоратлар',
-      bannedTitle: 'Кириш тақиқланган', bannedBtn: 'Чиқиш', checkStatusBtn: 'Ҳолатни текшириш',
-      logoutConfirm: 'Ростдан ҳам чиқмоқчимисиз?',
-      analysisTitle: 'СУНЪИЙ ИНТЕЛЛЕКТ ТАҲЛИЛИ',
-      analysisInit: 'Тизим ишга туширилди. Ўйин скриншотини юкланг ёки сунъий интеллект таҳлилини бошлаш учун жамоалар номини киритинг.',
-      verdictTag: 'СУНЪИЙ ИНТЕЛЛЕКТ ҚАРОРИ', confidence: 'Ишонч', baseConf: 'Асосий баҳолаш', promoTitle: 'Сунъий интеллект башоратини олинг', promoSub: 'Ким ютишини бир неча сонияда билинг', promoBtn: 'Бошлаш', hiwTitle: 'Қандай ишлайди', hiwStep1: 'Mostbet ID киритинг', hiwStep2: 'Сунъий интеллект таҳлил қилади', hiwStep3: 'Ишонч билан тикинг', tickerTitle: 'Сўнгги сунъий интеллект башоратлари', statBlockTitle: 'Статистика', statForm: 'Шакл', statGoalsFor: 'Голлар (ўрт.)', statGoalsAg: 'Жой', statPoss: 'Тўпга эгалик %', statShots: 'Зарбалар', statShotsOn: 'Аниқ', statCorners: 'Бурчаклар', statH2H: 'Учрашувлар', noH2H: 'Сўнгги учрашувлар йўқ',
-      inputPlaceholder: 'Жамоалар ёки скриншот...', errorPrefix: 'Хато',
-      connError: 'Сервер билан алоқа хатоси.',
-      offlineTitle: 'Алоқа йўқ', offlineDesc: 'Интернетингизни текширинг — биз автоматик қайта уланамиз.', offlineRetry: 'Қайта уриниш',
-      historyTitle: 'ТАРИХ', historyLoading: 'Архив юкланмоқда...',
-      historyEmpty: 'Тарих бўш', historyEmptySub: 'Ҳали башорат қилмагансиз',
-      archiveTag: 'АРХИВ', undefinedResult: 'Аниқланмаган', draw: 'Дуранг',
-      newsMainTag: 'ТАНЛАНГАН', newsLatestTag: 'Сўнгги янгиликлар', newsActualTag: 'ДОЛЗАРБ',
-      newsRead: 'Ўқиш →', newsUnavailable: 'Янгиликлар ҳозирча мавжуд эмас', newsTryLater: 'Кейинроқ уриниб кўринг',
-      loading: 'Илова юкланмоқда...', statOnline: 'Онлайн', idError: 'Нотўғри ID',
-      single: 'Якка', express: 'Экспресс', expressTitle: 'ЭКСПРЕСС', combined: 'Умумий ишонч',
-      howToBet: 'Қандай тикиш керак', videoSoon: 'Ўқув видеоси тез орада қўшилади',
-      statsCapper: 'Башорат статистикаси', predictionsWord: 'башорат', accuracyWord: 'аниқлик', per7d: '7 кунда',
-      dailyTitle: 'Куннинг башорати', dailyDesc: 'Бепул сигнал', dailyEmpty: 'Ҳали мавжуд эмас',
-      sportFootball: 'Футбол', sportBasketball: 'Баскетбол',
-      idLowNote: '', howToFindId: 'ID қаерда?', singleNote: 'Бу якка тикиш — алоҳида ўйнашни тавсия қиламиз.', expressNote: 'Тайёр экспресс — қандай бўлса шундай тўлиқ ўйнанг.', liveBadge: '🔴 ЖОНЛИ {score}, {minute}′ · ўйин олди башорати', disclaimer: 'Бу сунъий интеллект таҳлили, кафолат эмас. Тикиш қарори сизга боғлиқ.'
+      back: 'Orqaga', idLabel: 'ID', attemptsLeft: 'Qolgan prognozlar',
+      bannedTitle: 'Kirish taqiqlangan', bannedBtn: 'Chiqish', checkStatusBtn: 'Holatni tekshirish',
+      logoutConfirm: 'Rostdan ham chiqmoqchimisiz?',
+      analysisTitle: 'AI TAHLIL',
+      analysisInit: 'Tizim muvaffaqiyatli ishga tushirildi. AI tahlilini boshlash uchun o\'yin skrinshotini yuboring yoki jamoalar nomini kiriting.',
+      verdictTag: 'AI QARORI', confidence: 'Ishonch', baseConf: 'Asosiy baholash', promoTitle: 'Ozingizning AI-prognozizni boshlang', promoSub: 'Kim yutishini 1 daqiqada bilib oling', promoBtn: 'Boshlash', hiwTitle: 'Bu qanday ishlaydi', hiwStep1: 'Mostbet ID sini yozing', hiwStep2: 'AI analiz qiladi', hiwStep3: 'Ishonchli stavka qilasiz', tickerTitle: 'Songi prognozlar', statBlockTitle: 'Statistika', statForm: 'Shakl', statGoalsFor: 'Gollar (o\'rt.)', statGoalsAg: 'Joy', statPoss: 'Topga egalik %', statShots: 'Zarbalar', statShotsOn: 'Aniq', statCorners: 'Burchaklar', statH2H: 'Uchrashuvlar', noH2H: 'Songi uchrashuvlar yo\'q',
+      inputPlaceholder: 'Jamoalar nomi yoki skrinshot...', errorPrefix: 'Xato',
+      connError: 'Server bilan aloqa xatosi.',
+      offlineTitle: 'Aloqa yo\'q', offlineDesc: 'Internetingizni tekshiring — biz avtomatik qayta ulanamiz.', offlineRetry: 'Qayta urinish',
+      historyTitle: 'TARIX', historyLoading: 'Arxiv yuklanmoqda...',
+      historyEmpty: 'Tarix bo\'sh', historyEmptySub: 'Hali prognoz qilmagansiz',
+      archiveTag: 'ARXIV', undefinedResult: 'Aniqlanmagan', draw: 'Durang',
+      newsMainTag: 'TANLANGAN', newsLatestTag: 'Songi yangiliklar', newsActualTag: 'DOLZARB',
+      newsRead: 'O\'qish →', newsUnavailable: 'Yangiliklar hozircha mavjud emas', newsTryLater: 'Keyinroq urinib ko\'ring',
+      loading: 'Ilova yuklanmoqda...', statOnline: 'Onlayn', idError: 'Noto\'g\'ri ID',
+      single: 'Yakka', express: 'Ekspress', expressTitle: 'EKSPRESS', combined: 'Umumiy ishonch',
+      howToBet: 'Qanday stavka qilish', videoSoon: 'O\'quv videosi tez orada qo\'shiladi',
+      statsCapper: 'Prognoz statistikasi', predictionsWord: 'prognoz', accuracyWord: 'aniqlik', per7d: 'Oxirgi 7 kun natijasi',
+      dailyTitle: 'Bugungi prognoz', dailyDesc: 'Bepul prognoz', dailyEmpty: 'Hali mavjud emas',
+      sportFootball: 'Futbol', sportBasketball: 'Basketbol',
+      idLowNote: '278 dan kam ID - eski akkaunt. Bu yutish ehtimolligini kamaytiradi.', howToFindId: 'ID ni qaerdan olaman?', singleNote: 'Bu yakka stavka — alohida o\'ynashni tavsiya qilamiz.', expressNote: 'Tayyor ekspress — qanday bo\'lsa shunday to\'liq o\'ynang.', liveBadge: '🔴 JONLI {score}, {minute}′ · o\'yin oldi prognozi', disclaimer: 'Bu AI tahlili, kafolat emas. Stavka qarori sizga bog\'liq.'
     }
   },
 
@@ -420,11 +425,47 @@ THEMES.es2 = {
   primaryColor: '#22c55e',  // вариант 2: зелёный
   statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,  // вариант — свои (дефолтные) цифры
 };
+// Узбекский вариант 2 «VIP» (золотой логотип, тексты с эмодзи, латиница).
+THEMES.uz2 = {
+  ...THEMES.uz,
+  id: 'uz2', lang: 'uz',
+  logo: LOGO_VIP,
+  brandName: 'VIP',
+  subtitle: 'Sport tahlili uchun neyrotarmoq ⚽️📊',
+  primaryColor: '#e8b923',  // золото/янтарь (под VIP-лого, не ядовитый)
+  inputLabel: 'Mostbet\'dagi ID raqamingiz 🔑',
+  inputPlaceholder: 'Masalan: 278000000',
+  inputDesc: 'ID\'ni Mostbet ilovasida topishingiz mumkin → Profil 👤',
+  btnText: 'Davom etish →',
+  menu: {
+    ...THEMES.uz.menu,
+    analysisTitle: 'AI Tahlil 🤖📊', analysisDesc: 'Uchrashuvning chuqur tahlili',
+    historyTitle: 'Tarix', historyDesc: 'Sessiyalar jurnali 📒',
+    newsTitle: 'Hisobot 📋', newsDesc: 'Sport yangiliklari 📰⚽️',
+    supportTitle: 'Qo\'llab-quvvatlash 🛠️', supportDesc: 'Mutaxassis bilan bog\'lanish'
+  },
+  ui: {
+    ...THEMES.uz.ui,
+    promoTitle: 'O\'zingizning AI prognozingizni yarating 🤖📈',
+    promoSub: 'Kim g\'alaba qozonishini soniyalar ichida bilib oling ⚡️🏆',
+    promoBtn: 'Boshlash 🚀',
+    hiwStep1: 'Mostbet ID sini yozing', hiwStep2: 'AI analiz qiladi', hiwStep3: 'Ishonchli stavka qilasiz',
+    statH2H: 'Uchrashuvlar', noH2H: 'Songi uchrashuvlar yo\'q',
+    dailyTitle: 'Kun prognozi 🔥📊', dailyDesc: 'Bepul signal 🎯📈',
+    single: 'Yakka 🎯', express: 'Ekspress ⚡️📊',
+    accuracyWord: 'aniqlik', per7d: 'ANIQLIK • 7 KUN ICHIDA', predictionsWord: 'PROGNOZLAR 📊',
+    analysisInit: 'Tizim ishga tushirildi. AI tahlilni boshlash uchun match skrinshotini yuklang yoki jamoalar nomini kiriting 🤖⚽️',
+    idLowNote: '278 dan past ID — eski akkaunt hisoblanadi, prognozlar aniqligi pastroq bo\'lishi mumkin.',
+    howToFindId: 'ID qayerdan olinadi?'
+  },
+  subtitle2: undefined,
+  statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,
+};
 
 // Карта СЕГМЕНТ-метки -> КЛЮЧ ТЕМЫ. Только варианты: проверяется ДО _GEO_LANG,
 // чтобы сегмент tr2 дал тему-вариант tr2, а не базовую tr. Базовые гео (es, tr,
 // en ...) и алиасы (ar=Аргентина=es и пр.) идут прежним путём через _GEO_LANG.
-const _SEG_THEME = { tr2: 'tr2', es2: 'es2' };
+const _SEG_THEME = { tr2: 'tr2', es2: 'es2', uz2: 'uz2' };
 
 // Опции для выпадашки генератора (байер выбирает базу или вариант фронта).
 export const THEME_OPTIONS = [
@@ -432,6 +473,8 @@ export const THEME_OPTIONS = [
   { key: 'tr2', label: 'Турция — вар.2 (фиолетовый)' },
   { key: 'es',  label: 'Испания — баз. (циан)' },
   { key: 'es2', label: 'Испания — вар.2 (зелёный)' },
+  { key: 'uz',  label: 'Узбекистан — AI Tahlilchi (зелёный)' },
+  { key: 'uz2', label: 'Узбекистан — VIP (золото)' },
 ];
 
 // Алиас для совместимости со старым кодом (latam → es)
@@ -456,7 +499,7 @@ const _GEO_LANG = {
   // турецкий
   tr: 'tr', tur: 'tr', turkey: 'tr',
   // варианты тем (Способ А): ЯЗЫК базовый, ТЕМА — вариант (см. _SEG_THEME / getThemeBySource)
-  tr2: 'tr', es2: 'es',
+  tr2: 'tr', es2: 'es', uz2: 'uz',
   // азербайджанский
   az: 'az', aze: 'az', baku: 'az',
   // узбекский (кириллица)
