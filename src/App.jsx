@@ -189,24 +189,10 @@ function App({ initialTheme, sourceParam }) {
 
   if (isLoading) return <LoadingScreen theme={theme} />;
   
-  // ПЕРЕДАЕМ ТЕМУ В ID INPUT
-  // Испания (es/es2): вход без ID — экран с кнопкой «Entrar» (Betmen, сразу доступ).
-  if (!userId && theme.loginMode === 'button') {
-    return (
-      <div className="pending-screen">
-        <div className="pending-card">
-          {theme.logo
-            ? <img src={theme.logo} alt={theme.brandName} style={{ maxWidth: 200, width: '70%', height: 'auto', margin: '0 auto 12px', display: 'block' }} />
-            : <h2 style={{ marginBottom: 8 }}>{theme.brandName}</h2>}
-          <p style={{ marginBottom: 24 }}>{theme.subtitle}</p>
-          <button onClick={handleQuickLogin} className="gradient-btn">
-            {theme.ui.entrarBtn || 'Entrar'}
-          </button>
-        </div>
-      </div>
-    );
-  }
-  if (!userId) return <IdInput onLogin={handleLogin} theme={theme} />;
+  // ПЕРЕДАЕМ ТЕМУ В ID INPUT.
+  // Испания (es/es2): тот же богатый экран, но вместо поля ID — кнопка «Entrar»
+  // (Betmen, сразу доступ). Флаг loginMode='button' + onQuickLogin внутри IdInput.
+  if (!userId) return <IdInput onLogin={handleLogin} onQuickLogin={handleQuickLogin} theme={theme} />;
   
   if (userStatus === 'pending') {
     return (

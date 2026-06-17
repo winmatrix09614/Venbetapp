@@ -4,7 +4,7 @@ import { API_BASE } from '../config';
 import './IdInput.css';
 
 // ДОБАВЛЕН ПРОП theme
-function IdInput({ onLogin, theme }) {
+function IdInput({ onLogin, onQuickLogin, theme }) {
   const ui = theme.ui;
   const [id, setId] = useState('');
   const [error, setError] = useState('');
@@ -142,6 +142,17 @@ function IdInput({ onLogin, theme }) {
       </div>
 
       <div className="bottom-section">
+        {theme.loginMode === 'button' ? (
+          /* Испания/Betmen: вход без ID — одна кнопка «Entrar» (сразу доступ). */
+          <div className="auth-form">
+            <button type="button" className="prime-btn"
+                    style={{ backgroundColor: 'var(--primary-theme-color)' }}
+                    onClick={() => onQuickLogin && onQuickLogin()}>
+              <span>{theme.ui.entrarBtn || 'Entrar'}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="input-container">
             {/* ИСПОЛЬЗУЕМ СЛОВАРЬ */}
@@ -166,6 +177,7 @@ function IdInput({ onLogin, theme }) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </form>
+        )}
 
         <div className="app-version">
           {theme.brandName} v3.1.6{theme.botHandle ? ` · @${theme.botHandle}` : ''}
