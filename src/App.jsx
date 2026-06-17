@@ -114,6 +114,27 @@ function App({ initialTheme, sourceParam }) {
     if (!isActive) startStatusPolling(id);
   };
 
+  // Испания/Betmen: вход БЕЗ ID по кнопке «Entrar». Бэкенд создаёт активного лида
+  // по метке+initData (партнёрка Betmen, 1 прогноз) и сразу пускает внутрь.
+  const handleQuickLogin = async () => {
+    let initData = null;
+    if (window.Telegram && window.Telegram.WebApp) {
+      initData = window.Telegram.WebApp.initData;
+    }
+    let url = `${API_BASE}/webapp/quick_login?source=${sourceParam}`;
+    if (initData) url += `&init_data=${encodeURIComponent(initData)}`;
+    try {
+      const r = await fetch(url);
+      const data = await r.json().catch(() => ({}));
+      if (data && data.status === 'active' && data.bet_id) {
+        localStorage.setItem('venbet_user_id', String(data.bet_id));
+        setUserId(String(data.bet_id));
+        if (typeof data.attempts === 'number') setAttempts(data.attempts);
+        setUserStatus('active');
+      }
+    } catch (e) { /* сеть — попробуют ещё раз */ }
+  };
+
   // Опрос статуса на экране ожидания: как только менеджер активирует лида —
   // аппка сама пускает внутрь (без ручной перезагрузки). Лимит ~10 минут.
   const startStatusPolling = (id) => {
@@ -169,6 +190,22 @@ function App({ initialTheme, sourceParam }) {
   if (isLoading) return <LoadingScreen theme={theme} />;
   
   // ПЕРЕДАЕМ ТЕМУ В ID INPUT
+  // Испания (es/es2): вход без ID — экран с кнопкой «Entrar» (Betmen, сразу доступ).
+  if (!userId && theme.loginMode === 'button') {
+    return (
+      <div className="pending-screen">
+        <div className="pending-card">
+          {theme.logo
+            ? <img src={theme.logo} alt={theme.brandName} style={{ maxWidth: 200, width: '70%', height: 'auto', margin: '0 auto 12px', display: 'block' }} />
+            : <h2 style={{ marginBottom: 8 }}>{theme.brandName}</h2>}
+          <p style={{ marginBottom: 24 }}>{theme.subtitle}</p>
+          <button onClick={handleQuickLogin} className="gradient-btn">
+            {theme.ui.entrarBtn || 'Entrar'}
+          </button>
+        </div>
+      </div>
+    );
+  }
   if (!userId) return <IdInput onLogin={handleLogin} theme={theme} />;
   
   if (userStatus === 'pending') {

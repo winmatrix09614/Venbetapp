@@ -59,6 +59,7 @@ export const THEMES = {
   // ===== Español =====
   es: {
     id: 'es', lang: 'es', locale: 'es-ES', dir: 'ltr',
+    loginMode: 'button',  // Испания/Betmen: вход без ID по кнопке Entrar
     logo: LOGO_PREDICT_AI,  // картинка вместо текстового brandName
     statAcc: '89%', statPro: '69.1K', onlineMin: 10000, onlineMax: 10580,  // плитки главной
     brandName: 'VenBet AI',
@@ -93,7 +94,7 @@ export const THEMES = {
       newsRead: 'Leer →', newsUnavailable: 'Noticias no disponibles temporalmente', newsTryLater: 'Inténtalo más tarde',
       loading: 'Cargando aplicación...', statOnline: 'En línea', idError: 'ID inválido',
       single: 'Individual', express: 'Expreso', expressTitle: 'EXPRESO', combined: 'Confianza combinada',
-      howToBet: 'Cómo hacer una apuesta', videoSoon: 'El video tutorial estará disponible pronto',
+      howToBet: 'Cómo hacer una apuesta', entrarBtn: 'Entrar', videoSoon: 'El video tutorial estará disponible pronto',
       statsCapper: 'Estadísticas de pronósticos', predictionsWord: 'pronósticos', accuracyWord: 'precisión', per7d: 'en 7 días',
       dailyTitle: 'Pronóstico del día', dailyDesc: 'Señal gratuita', dailyEmpty: 'Aún no disponible',
       sportFootball: 'Fútbol', sportBasketball: 'Baloncesto',
