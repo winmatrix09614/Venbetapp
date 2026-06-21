@@ -18,8 +18,10 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
   const [idVideoHidden, setIdVideoHidden] = useState(false);
 
   useEffect(() => {
-    axios.get(`${API_BASE}/webapp/ticker`).then(r => setTicker(r.data.items || [])).catch(() => {});
-  }, []);
+    const lng = (theme && theme.lang) || 'en';
+    axios.get(`${API_BASE}/webapp/ticker?lang=${encodeURIComponent(lng)}`)
+      .then(r => setTicker(r.data.items || [])).catch(() => {});
+  }, [theme && theme.lang]);
 
   // Видео-инструкция «Где взять ID» — грузится из CRM по варианту темы.
   useEffect(() => {
@@ -128,14 +130,24 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
         {ticker.length > 0 && (
           <>
             <div className="hiw-label">{ui.tickerTitle || 'Последние прогнозы AI'}</div>
-            <div className="ticker-wrap">
-              <div className="ticker-track">
-                {[...ticker, ...ticker].map((it, i) => (
-                  <span className="ticker-item" key={i}>
-                    {it.team} <span className={it.ok ? 'tk-ok' : 'tk-no'}>{it.ok ? '✓' : '✗'}</span>
-                  </span>
-                ))}
-              </div>
+            <div className="proof-list">
+              {ticker.map((it, i) => (
+                <div className={`proof-card ${it.ok ? 'proof-won' : 'proof-lost'}`} key={i}>
+                  <div className="proof-teams">
+                    {it.logo_home && <img className="proof-logo" src={it.logo_home} alt="" />}
+                    <span className="proof-name">{it.home}</span>
+                    <span className="proof-score">{it.score}</span>
+                    <span className="proof-name">{it.away}</span>
+                    {it.logo_away && <img className="proof-logo" src={it.logo_away} alt="" />}
+                  </div>
+                  <div className="proof-bottom">
+                    <span className="proof-pred">
+                      {it.prediction}{it.odds ? ` · ${ui.oddsLabel || 'кф'} ${it.odds}` : ''}
+                    </span>
+                    <span className={it.ok ? 'tk-ok' : 'tk-no'}>{it.ok ? '✓' : '✗'}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         )}
