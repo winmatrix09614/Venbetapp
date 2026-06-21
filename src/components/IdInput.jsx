@@ -3,9 +3,16 @@ import axios from 'axios';
 import { API_BASE } from '../config';
 import './IdInput.css';
 
+// Подпись коэффициента по языку лида (беттинг-термин). Зеркалит бэкендный словарь прогноза.
+// ar пока не используется (добавим под MENA позже) -> фолбэк 'odds'.
+const _ODDS_LABEL = { ru: 'кф', en: 'odds', es: 'cuota', pt: 'odds',
+                      fr: 'cote', tr: 'oran', az: 'əmsal', uz: 'koef' };
+
 // ДОБАВЛЕН ПРОП theme
 function IdInput({ onLogin, onQuickLogin, theme }) {
   const ui = theme.ui;
+  const lng = (theme && theme.lang) || 'en';
+  const oddsLabel = _ODDS_LABEL[lng] || 'odds';
   const [id, setId] = useState('');
   const [error, setError] = useState('');
   // Плитки главной можно переопределять в теме (theme.*). Фолбэк — прежние значения.
@@ -14,14 +21,16 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
   const [onlineCount, setOnlineCount] = useState(Math.round((onlineMin + onlineMax) / 2));
   const [vid, setVid] = useState(false);
   const [ticker, setTicker] = useState([]);
+  const [tickerLoading, setTickerLoading] = useState(true);
   const [idVideoUrl, setIdVideoUrl] = useState((theme && theme.idVideoUrl) || '');
   const [idVideoHidden, setIdVideoHidden] = useState(false);
 
   useEffect(() => {
-    const lng = (theme && theme.lang) || 'en';
+    setTickerLoading(true);
     axios.get(`${API_BASE}/webapp/ticker?lang=${encodeURIComponent(lng)}`)
-      .then(r => setTicker(r.data.items || [])).catch(() => {});
-  }, [theme && theme.lang]);
+      .then(r => setTicker(r.data.items || [])).catch(() => {})
+      .finally(() => setTickerLoading(false));
+  }, [lng]);
 
   // Видео-инструкция «Где взять ID» — грузится из CRM по варианту темы.
   useEffect(() => {
@@ -127,7 +136,19 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
           </div>
         </div>
 
-        {ticker.length > 0 && (
+        {tickerLoading ? (
+          <>
+            <div className="hiw-label">{ui.tickerTitle || 'Последние прогнозы AI'}</div>
+            <div className="proof-list">
+              {[0, 1, 2].map((i) => (
+                <div className="proof-card proof-skel" key={i}>
+                  <div className="proof-skel-line teams" />
+                  <div className="proof-skel-line pred" />
+                </div>
+              ))}
+            </div>
+          </>
+        ) : ticker.length > 0 && (
           <>
             <div className="hiw-label">{ui.tickerTitle || 'Последние прогнозы AI'}</div>
             <div className="proof-list">
@@ -142,7 +163,7 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
                   </div>
                   <div className="proof-bottom">
                     <span className="proof-pred">
-                      {it.prediction}{it.odds ? ` · ${ui.oddsLabel || 'кф'} ${it.odds}` : ''}
+                      {it.prediction}{it.odds ? ` · ${oddsLabel} ${it.odds}` : ''}
                     </span>
                     <span className={it.ok ? 'tk-ok' : 'tk-no'}>{it.ok ? '✓' : '✗'}</span>
                   </div>

@@ -306,6 +306,22 @@
 }
 .proof-pred { color: #aeb4bd; }
 
+/* Скелетон-загрузка карточек-пруфов (shimmer, пока ticker грузится) */
+.proof-card.proof-skel { border-left-color: #232733; }
+.proof-skel-line {
+  height: 13px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #161a22 25%, #1f2430 37%, #161a22 63%);
+  background-size: 400% 100%;
+  animation: proofShimmer 1.3s ease-in-out infinite;
+}
+.proof-skel-line.teams { width: 70%; height: 15px; }
+.proof-skel-line.pred { width: 45%; margin-top: 8px; }
+@keyframes proofShimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
 /* === Разгон сжатости: поднять контент выше + воздух между блоками === */
 .id-screen {
   justify-content: flex-start;   /* контент идёт сверху, не распирается по краям */
