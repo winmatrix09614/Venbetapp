@@ -54,7 +54,7 @@ function MainMenu({ userId, attempts, onNavigate, onLogout, theme, sourceParam }
       {stats && (
         <div className="metric-row">
           <div className="metric-card">
-            <div className="metric-label">{ui.accuracyWord} · {ui.per7d}</div>
+            <div className="metric-label">{ui.accuracyWord}</div>
             <div className="metric-value metric-acc">~{stats.winrate}%</div>
           </div>
           <div className="metric-card">
