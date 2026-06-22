@@ -24,6 +24,8 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
   const [tickerLoading, setTickerLoading] = useState(true);
   const [idVideoUrl, setIdVideoUrl] = useState((theme && theme.idVideoUrl) || '');
   const [idVideoHidden, setIdVideoHidden] = useState(false);
+  // Честный winrate из /webapp/stats — то же число, что на главном экране (плитка «AI»).
+  const [winrate, setWinrate] = useState(null);
 
   useEffect(() => {
     setTickerLoading(true);
@@ -31,6 +33,13 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
       .then(r => setTicker(r.data.items || [])).catch(() => {})
       .finally(() => setTickerLoading(false));
   }, [lng]);
+
+  // Винрейт для плитки «AI». Фолбэк (сбой/ещё грузится) -> хардкод theme.statAcc, не пустота.
+  useEffect(() => {
+    axios.get(`${API_BASE}/webapp/stats`)
+      .then(r => { if (r.data && typeof r.data.winrate === 'number') setWinrate(r.data.winrate); })
+      .catch(() => {});
+  }, []);
 
   // Видео-инструкция «Где взять ID» — грузится из CRM по варианту темы.
   useEffect(() => {
@@ -107,7 +116,7 @@ function IdInput({ onLogin, onQuickLogin, theme }) {
 
       <div className="center-section">
         <div className="bento-stats-row">
-          <div className="stat-tile"><span className="stat-num">{(theme && theme.statAcc) || '92%'}</span><span className="stat-txt">AI</span></div>
+          <div className="stat-tile"><span className="stat-num">{winrate != null ? `~${winrate}%` : ((theme && theme.statAcc) || '92%')}</span><span className="stat-txt">AI</span></div>
           <div className="stat-tile"><span className="stat-num">{(theme && theme.statPro) || '21.5K'}</span><span className="stat-txt">PRO</span></div>
           <div className="stat-tile"><span className="stat-num online-pulse">{onlineCount}</span><span className="stat-txt">{ui.statOnline}</span></div>
         </div>
