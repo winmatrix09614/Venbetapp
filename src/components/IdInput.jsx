@@ -5,8 +5,8 @@ import './IdInput.css';
 
 // Подпись коэффициента по языку лида (беттинг-термин). Зеркалит бэкендный словарь прогноза.
 // ar пока не используется (добавим под MENA позже) -> фолбэк 'odds'.
-const _ODDS_LABEL = { ru: 'кф', en: 'odds', es: 'cuota', pt: 'odds',
-                      fr: 'cote', tr: 'oran', az: 'əmsal', uz: 'koef' };
+export const _ODDS_LABEL = { ru: 'кф', en: 'odds', es: 'cuota', pt: 'odds',
+                             fr: 'cote', tr: 'oran', az: 'əmsal', uz: 'koef' };
 
 // ДОБАВЛЕН ПРОП theme
 function IdInput({ onLogin, onQuickLogin, theme }) {

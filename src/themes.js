@@ -214,7 +214,7 @@ export const THEMES = {
       logoutConfirm: 'Çıkmak istediğinizden emin misiniz?',
       analysisTitle: 'YAPAY ZEKÂ ANALİZİ',
       analysisInit: 'Sistem başlatıldı. Maç ekran görüntüsünü yükleyin veya yapay zekâ analizini başlatmak için takım adlarını girin.',
-      verdictTag: 'YAPAY ZEKÂ KARARI', confidence: 'Güven', baseConf: 'Temel değerlendirme', promoTitle: 'Yapay zekâ tahminini yap', promoSub: 'Kim kazanır saniyeler içinde öğren', promoBtn: 'Başla', hiwTitle: 'Nasıl çalışır', hiwStep1: '1xBet ID gir', hiwStep2: 'Yapay zekâ analiz eder', hiwStep3: 'Güvenle bahis yap', tickerTitle: 'Son yapay zekâ tahminleri', statBlockTitle: 'İstatistikler', statForm: 'Form', statGoalsFor: 'Gol (ort.)', statGoalsAg: 'Yer', statPoss: 'Topla oynama %', statShots: 'Şutlar', statShotsOn: 'İsabetli', statCorners: 'Kornerler', statH2H: 'Karşılaşmalar', noH2H: 'Yakın zamanda karşılaşma yok',
+      verdictTag: 'YAPAY ZEKÂ KARARI', confidence: 'Güven', baseConf: 'Temel değerlendirme', promoTitle: 'Yapay zekâ tahminini yap', promoSub: 'Kim kazanır saniyeler içinde öğren', promoBtn: 'Başla', hiwTitle: 'Nasıl çalışır', hiwStep1: '1xBet ID gir', hiwStep2: 'Yapay zekâ analiz eder', hiwStep3: 'Güvenle bahis yap', tickerTitle: 'Son yapay zekâ tahminleri', statBlockTitle: 'İstatistikler', statForm: 'Form', statGoalsFor: 'Gol (ort.)', statGoalsAg: 'Yediği gol', statPoss: 'Topla oynama %', statShots: 'Şutlar', statShotsOn: 'İsabetli', statCorners: 'Kornerler', statH2H: 'Karşılaşmalar', noH2H: 'Yakın zamanda karşılaşma yok',
       inputPlaceholder: 'Takımlar veya ekran görüntüsü...', errorPrefix: 'Hata',
       connError: 'Sunucu bağlantı hatası.',
       offlineTitle: 'Bağlantı yok', offlineDesc: 'İnternetini kontrol et — otomatik olarak yeniden bağlanacağız.', offlineRetry: 'Tekrar dene',
@@ -302,7 +302,7 @@ export const THEMES = {
       logoutConfirm: 'Rostdan ham chiqmoqchimisiz?',
       analysisTitle: 'AI TAHLIL',
       analysisInit: 'Tizim muvaffaqiyatli ishga tushirildi. AI tahlilini boshlash uchun o\'yin skrinshotini yuboring yoki jamoalar nomini kiriting.',
-      verdictTag: 'AI QARORI', confidence: 'Ishonch', baseConf: 'Asosiy baholash', promoTitle: 'Ozingizning AI-prognozizni boshlang', promoSub: 'Kim yutishini 1 daqiqada bilib oling', promoBtn: 'Boshlash', hiwTitle: 'Bu qanday ishlaydi', hiwStep1: 'Mostbet ID sini yozing', hiwStep2: 'AI analiz qiladi', hiwStep3: 'Ishonchli stavka qilasiz', tickerTitle: 'Songi prognozlar', statBlockTitle: 'Statistika', statForm: 'Shakl', statGoalsFor: 'Gollar (o\'rt.)', statGoalsAg: 'Joy', statPoss: 'Topga egalik %', statShots: 'Zarbalar', statShotsOn: 'Aniq', statCorners: 'Burchaklar', statH2H: 'Uchrashuvlar', noH2H: 'Songi uchrashuvlar yo\'q',
+      verdictTag: 'AI QARORI', confidence: 'Ishonch', baseConf: 'Asosiy baholash', promoTitle: 'Ozingizning AI-prognozizni boshlang', promoSub: 'Kim yutishini 1 daqiqada bilib oling', promoBtn: 'Boshlash', hiwTitle: 'Bu qanday ishlaydi', hiwStep1: 'Mostbet ID sini yozing', hiwStep2: 'AI analiz qiladi', hiwStep3: 'Ishonchli stavka qilasiz', tickerTitle: 'Songi prognozlar', statBlockTitle: 'Statistika', statForm: 'Shakl', statGoalsFor: 'Gollar (o\'rt.)', statGoalsAg: 'O\'tkazadi', statPoss: 'Topga egalik %', statShots: 'Zarbalar', statShotsOn: 'Aniq', statCorners: 'Burchaklar', statH2H: 'Uchrashuvlar', noH2H: 'Songi uchrashuvlar yo\'q',
       inputPlaceholder: 'Jamoalar nomi yoki skrinshot...', errorPrefix: 'Xato',
       connError: 'Server bilan aloqa xatosi.',
       offlineTitle: 'Aloqa yo\'q', offlineDesc: 'Internetingizni tekshiring — biz avtomatik qayta ulanamiz.', offlineRetry: 'Qayta urinish',
@@ -378,7 +378,7 @@ export const THEMES = {
     menu: {
       analysisTitle: 'AI Analysis', analysisDesc: 'Deep match breakdown',
       historyTitle: 'History', historyDesc: 'Session log',
-      newsTitle: 'Digest', newsDesc: 'Sports news',
+      newsTitle: 'News', newsDesc: 'Sports news',
       supportTitle: 'Support', supportDesc: 'Contact a specialist'
     },
     ui: {

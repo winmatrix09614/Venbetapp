@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Header from './Header';
 import { API_BASE } from '../config';
+import { _ODDS_LABEL } from './IdInput';  // переиспользуем словарь подписи кф (8 языков, лента)
 import './Analysis.css';
 
 // Строгие Line-Art иконки (Без эмодзи)
@@ -12,6 +13,7 @@ const IconClose = () => (<svg viewBox="0 0 24 24" fill="none" stroke="currentCol
 function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
   const ui = theme.ui;
   const lang = theme.lang || 'ru';
+  const oddsLabel = _ODDS_LABEL[lang] || 'odds';  // подпись кф под язык лида
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [loading, setLoading] = useState(false);
@@ -121,6 +123,7 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         type: 'bot',
         text: data.prediction_text,
         prediction: data.prediction,
+        odds: data.odds,  // кф 1xBet нашего исхода (число) или null -> блок кф не рисуем
         team1: data.team1,
         team2: data.team2,
         logo1: data.logo1,
@@ -226,6 +229,12 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                       </div>
                     )}
                     <div className="pred-winner">{msg.prediction.winner}</div>
+
+                    {/* Кф 1xBet нашего исхода — «~ориентир» (кф обновляется + кэш 3ч).
+                        Только если бэк прислал odds (1X2 + матч ЧМ); иначе блок не рисуем. */}
+                    {msg.odds != null && (
+                      <div className="pred-odds">{oddsLabel} ~{msg.odds}</div>
+                    )}
 
                     {/* Базовая оценка от данных → наш итоговый % (эффект усиления) */}
                     {msg.prediction.base_confidence != null && (
