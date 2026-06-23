@@ -123,7 +123,8 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
         type: 'bot',
         text: data.prediction_text,
         prediction: data.prediction,
-        odds: data.odds,  // кф 1xBet нашего исхода (число) или null -> блок кф не рисуем
+        odds: data.odds,  // кф 1xBet главного исхода (число) или null -> блок кф не рисуем
+        addons: data.addons,  // [{market,conf,odds}] кф к каждому доп.исходу (odds null -> кф не рисуем)
         team1: data.team1,
         team2: data.team2,
         logo1: data.logo1,
@@ -256,6 +257,24 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                       </div>
                     </div>
                     
+                    {/* Доп.исходы (одиночка): кф рядом с КАЖДЫМ исходом — «~ориентир»,
+                        только при odds != null (как у главного кф). Экспресс рисует свой
+                        блок ниже (события с кф + итог), здесь не дублируем. */}
+                    {!msg.express && msg.addons && msg.addons.length > 0 && (
+                      <div className="pred-addons">
+                        {msg.addons.map((a, i) => (
+                          <div key={i} className="conf-labels pred-addon-row">
+                            <span>{a.market}</span>
+                            <span>
+                              {a.conf}%
+                              {a.odds != null && (
+                                <span className="pred-odds-inline"> · {oddsLabel} ~{a.odds}</span>
+                              )}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     {msg.additional && msg.mode === 'express' && (
                       <div className="pred-additional">{msg.additional}</div>
                     )}
@@ -317,12 +336,26 @@ function Analysis({ userId, attempts, updateAttempts, onBack, theme }) {
                     <div className="pred-tag">{ui.expressTitle}</div>
                     {msg.express.events.map((e, i) => (
                       <div key={i} className="conf-labels" style={{ marginBottom: '6px' }}>
-                        <span>{e.name}</span><span>{e.conf}%</span>
+                        <span>{e.name}</span>
+                        <span>
+                          {e.conf}%
+                          {/* кф ноги — «~ориентир», только если бэк прислал odds */}
+                          {e.odds != null && (
+                            <span className="pred-odds-inline"> · {oddsLabel} ~{e.odds}</span>
+                          )}
+                        </span>
                       </div>
                     ))}
                     <div className="conf-labels" style={{ marginTop: '10px', fontWeight: 700, color: 'var(--primary-theme-color)' }}>
                       <span>{ui.combined}</span><span>{msg.express.combined}%</span>
                     </div>
+                    {/* Итоговый кф экспресса = произведение кф ног. Бэк шлёт null, если у
+                        хоть одной ноги нет кф (неполное произведение не показываем). */}
+                    {msg.express.odds_total != null && (
+                      <div className="conf-labels" style={{ marginTop: '6px', fontWeight: 700, color: 'var(--primary-theme-color)' }}>
+                        <span>{ui.expressTotal}</span><span>~{msg.express.odds_total}</span>
+                      </div>
+                    )}
                     <div className="pred-mode-note">{ui.expressNote}</div>
                   </div>
                 )}

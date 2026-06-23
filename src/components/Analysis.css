@@ -162,6 +162,25 @@
   line-height: 1.4;
 }
 
+/* Доп.исходы одиночки: список «рынок — conf% · кф ~X» (кф к каждому исходу). */
+.pred-addons {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+  margin-bottom: 4px;
+}
+
+.pred-addon-row {
+  margin-bottom: 6px;
+}
+
+/* Инлайн-кф ноги/доп.исхода — тот же «~ориентир» что у главного .pred-odds
+   (primary-цвет, жирный), но без блочных отступов (живёт внутри строки). */
+.pred-odds-inline {
+  color: var(--primary-theme-color);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* --- СКЕЛЕТНАЯ ЗАГРУЗКА (Shimmer) --- */
 .skeleton-card {
   background: #12151a;
