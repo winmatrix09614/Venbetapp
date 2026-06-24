@@ -8,6 +8,8 @@ import LOGO_MAC_TAHMIN from './assets/logo-mac-tahmin.png';
 import LOGO_AI_TAHLILCHI from './assets/logo-ai-tahlilchi.png';
 // Логотип узбекского вар.2 «VIP» (золотой VIP $).
 import LOGO_VIP from './assets/logo-vip.png';
+// Логотип узбекского вар.3 «EPANAL Match AI» (синий, мозг+мяч+график). Партнёрка Cashyard.
+import LOGO_EPANAL from './assets/logo-epanal.png';
 const ICON_BOLT = '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>';
 const ICON_STAR = '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>';
 const ICON_GLOBE = '<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>';
@@ -464,11 +466,29 @@ THEMES.uz2 = {
   subtitle2: undefined,
   statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,
 };
+// Узбекский вариант 3 «EPANAL Match AI» (партнёрка Cashyard, вход по кнопке без ID,
+// латиница). База uz; свой логотип/бренд/подпись/бот, синий акцент. loginMode:'button'
+// — вход как у испанского Betmen (одна кнопка, без поля ID; бэк создаёт активного лида).
+THEMES.uz3 = {
+  ...THEMES.uz,
+  id: 'uz3', lang: 'uz',
+  logo: LOGO_EPANAL,
+  brandName: 'EPANAL Match AI',
+  botHandle: 'epanalaibot',
+  subtitle: 'Sun\'iy intellekt asosidagi futbol tahlili',
+  loginMode: 'button',            // Cashyard: вход без ID по кнопке (как Betmen)
+  primaryColor: '#1d8fe0',        // ярко-синий под лого EPANAL
+  ui: {
+    ...THEMES.uz.ui,
+    entrarBtn: 'Kirish',          // текст кнопки входа (loginMode button)
+  },
+  statAcc: '92%', statPro: '21.5K', onlineMin: 3000, onlineMax: 7000,
+};
 
 // Карта СЕГМЕНТ-метки -> КЛЮЧ ТЕМЫ. Только варианты: проверяется ДО _GEO_LANG,
 // чтобы сегмент tr2 дал тему-вариант tr2, а не базовую tr. Базовые гео (es, tr,
 // en ...) и алиасы (ar=Аргентина=es и пр.) идут прежним путём через _GEO_LANG.
-const _SEG_THEME = { tr2: 'tr2', es2: 'es2', uz2: 'uz2' };
+const _SEG_THEME = { tr2: 'tr2', es2: 'es2', uz2: 'uz2', uz3: 'uz3' };
 
 // Опции для выпадашки генератора (байер выбирает базу или вариант фронта).
 export const THEME_OPTIONS = [
@@ -478,6 +498,7 @@ export const THEME_OPTIONS = [
   { key: 'es2', label: 'Испания — вар.2 (зелёный)' },
   { key: 'uz',  label: 'Узбекистан — AI Tahlilchi (зелёный)' },
   { key: 'uz2', label: 'Узбекистан — VIP (золото)' },
+  { key: 'uz3', label: 'Узбекистан — EPANAL Match AI / Cashyard (синий)' },
 ];
 
 // Алиас для совместимости со старым кодом (latam → es)
@@ -502,7 +523,7 @@ const _GEO_LANG = {
   // турецкий
   tr: 'tr', tur: 'tr', turkey: 'tr',
   // варианты тем (Способ А): ЯЗЫК базовый, ТЕМА — вариант (см. _SEG_THEME / getThemeBySource)
-  tr2: 'tr', es2: 'es', uz2: 'uz',
+  tr2: 'tr', es2: 'es', uz2: 'uz', uz3: 'uz',
   // азербайджанский
   az: 'az', aze: 'az', baku: 'az',
   // узбекский (кириллица)
